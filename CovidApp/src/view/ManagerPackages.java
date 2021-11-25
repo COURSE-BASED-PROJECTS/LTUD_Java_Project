@@ -51,7 +51,6 @@ public class ManagerPackages extends JFrame {
     private JButton updateButton;
     private JButton clearButton;
     private JButton saveButton;
-    private JButton detailButton;
     private JPanel manage;
     private JButton sortAsc;
     private JButton sortDes;
@@ -179,13 +178,8 @@ public class ManagerPackages extends JFrame {
 		saveButton = new JButton("Lưu");
 		saveButton.setBackground(Color.GREEN);
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		saveButton.setBounds(103, 72, 143, 35);
+		saveButton.setBounds(176, 72, 143, 35);
 		utilities.add(saveButton);
-		
-		detailButton = new JButton("Xem chi tiết");
-		detailButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		detailButton.setBounds(256, 72, 143, 35);
-		utilities.add(detailButton);
 		
 		lblnGia = new JLabel("Đơn giá");
 		lblnGia.setHorizontalAlignment(SwingConstants.CENTER);
