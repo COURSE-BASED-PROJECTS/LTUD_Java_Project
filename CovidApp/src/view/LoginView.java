@@ -44,6 +44,7 @@ public class LoginView extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginView() {
+		setTitle("Login");
 		this.account = new Account();
 		ActionListener action = new LoginController(this);
 		
