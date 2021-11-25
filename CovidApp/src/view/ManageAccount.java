@@ -20,10 +20,9 @@ import javax.swing.border.EtchedBorder;
 public class ManageAccount extends JFrame {
 
 	private JPanel contentPane;
-	private JTable InfoTable;
+	private JTable AccountTable;
 	private String [] columnNames = new String [] {
-            "Thời gian", "Số Người F0", "Số Người F1", "Số Người F2","Số chuyển trạng thái",
-            "Số người khỏi bệnh","Số gói nyp tiêu thụ","Số tiền dư nợ"};
+            "Tài khoản", "Mật khẩu", "Phân quyền", "Trạng thái"};
 	/**
 	 * Launch the application.
 	 */
@@ -63,9 +62,9 @@ public class ManageAccount extends JFrame {
 		scrollPaneAccount.setBounds(10, 23, 1164, 464);
 		panel.add(scrollPaneAccount);
 		
-		InfoTable = new JTable();
-		scrollPaneAccount.setViewportView(InfoTable);
-		InfoTable.setModel(initialRow());
+		AccountTable = new JTable();
+		scrollPaneAccount.setViewportView(AccountTable);
+		AccountTable.setModel(initialRow());
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
