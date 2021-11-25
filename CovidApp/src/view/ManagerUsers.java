@@ -82,7 +82,7 @@ public class ManagerUsers extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagerUsers() {
-		setTitle("Manage Users");
+		setTitle("Quản lí người dùng");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 815);
 		setResizable(false);
