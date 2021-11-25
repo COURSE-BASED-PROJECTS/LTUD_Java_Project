@@ -28,6 +28,7 @@ import javax.swing.JComboBox;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JRadioButton;
 import javax.swing.JSeparator;
+import javax.swing.ButtonGroup;
 
 public class ManagerPackages extends JFrame {
 
@@ -61,6 +62,9 @@ public class ManagerPackages extends JFrame {
     private JLabel searchPackageLabel;
     private JTextField searchPackageText;
     private JButton searchButton;
+    private final ButtonGroup Wanranty = new ButtonGroup();
+    private final ButtonGroup Limitation = new ButtonGroup();
+    private final ButtonGroup Price = new ButtonGroup();
 	/**
 	 * Launch the application.
 	 */
@@ -83,7 +87,7 @@ public class ManagerPackages extends JFrame {
 	public ManagerPackages() {
 		setTitle("Quản lí gói nhu yếu phẩm");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1097, 815);
+		setBounds(100, 100, 1097, 767);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -226,39 +230,33 @@ public class ManagerPackages extends JFrame {
 		contentPane.add(manage);
 		manage.setLayout(null);
 		
-		sortAsc = new JButton("Sắp xếp tăng");
+		sortAsc = new JButton("Sản phẩm tăng");
 		sortAsc.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		sortAsc.setBounds(180, 31, 143, 35);
 		manage.add(sortAsc);
 		
-		sortDes = new JButton("Sắp xếp giảm");
+		sortDes = new JButton("Sản phẩm giảm");
 		sortDes.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		sortDes.setBounds(180, 76, 143, 35);
+		sortDes.setBounds(180, 90, 143, 35);
 		manage.add(sortDes);
 		
-		JRadioButton radioId = new JRadioButton("CMND");
-		radioId.setHorizontalAlignment(SwingConstants.CENTER);
-		radioId.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radioId.setBounds(22, 22, 103, 27);
-		manage.add(radioId);
+		JRadioButton radioNamePackage = new JRadioButton("Tên gói");
+		radioNamePackage.setHorizontalAlignment(SwingConstants.CENTER);
+		radioNamePackage.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioNamePackage.setBounds(24, 35, 103, 27);
+		manage.add(radioNamePackage);
 		
-		JRadioButton radioName = new JRadioButton("Họ tên");
-		radioName.setHorizontalAlignment(SwingConstants.CENTER);
-		radioName.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radioName.setBounds(22, 51, 103, 27);
-		manage.add(radioName);
+		JRadioButton radioTime = new JRadioButton("Thời gian");
+		radioTime.setHorizontalAlignment(SwingConstants.LEFT);
+		radioTime.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioTime.setBounds(43, 64, 103, 27);
+		manage.add(radioTime);
 		
-		JRadioButton radioYear = new JRadioButton("Năm sinh");
-		radioYear.setHorizontalAlignment(SwingConstants.LEFT);
-		radioYear.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radioYear.setBounds(44, 80, 103, 27);
-		manage.add(radioYear);
-		
-		JRadioButton radioStatus = new JRadioButton("Trạng thái");
-		radioStatus.setHorizontalAlignment(SwingConstants.LEFT);
-		radioStatus.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radioStatus.setBounds(44, 109, 103, 27);
-		manage.add(radioStatus);
+		JRadioButton radioPrice = new JRadioButton("Gía");
+		radioPrice.setHorizontalAlignment(SwingConstants.LEFT);
+		radioPrice.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioPrice.setBounds(43, 94, 103, 27);
+		manage.add(radioPrice);
 		
 		JSeparator separator = new JSeparator();
 		separator.setOrientation(SwingConstants.VERTICAL);
@@ -267,14 +265,62 @@ public class ManagerPackages extends JFrame {
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBounds(764, 31, 18, 110);
+		separator_1.setBounds(814, 31, 18, 110);
 		manage.add(separator_1);
 		
 		JButton outButton = new JButton("Thoát");
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
-		outButton.setBounds(803, 51, 143, 70);
+		outButton.setBounds(880, 42, 143, 70);
 		manage.add(outButton);
+		
+		JRadioButton radioWaranty = new JRadioButton("Còn thời hạn");
+		Wanranty.add(radioWaranty);
+		radioWaranty.setHorizontalAlignment(SwingConstants.LEFT);
+		radioWaranty.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioWaranty.setBounds(372, 35, 103, 27);
+		manage.add(radioWaranty);
+		
+		JRadioButton radioTimeOut = new JRadioButton("Hết thời hạn");
+		Wanranty.add(radioTimeOut);
+		radioTimeOut.setHorizontalAlignment(SwingConstants.LEFT);
+		radioTimeOut.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioTimeOut.setBounds(519, 35, 103, 27);
+		manage.add(radioTimeOut);
+		
+		JRadioButton radio_greater = new JRadioButton("Giá > 200.000");
+		Price.add(radio_greater);
+		radio_greater.setHorizontalAlignment(SwingConstants.LEFT);
+		radio_greater.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radio_greater.setBounds(372, 94, 103, 27);
+		manage.add(radio_greater);
+		
+		JRadioButton radioLimitGreater = new JRadioButton("Mức giới hạn > 10");
+		Limitation.add(radioLimitGreater);
+		radioLimitGreater.setHorizontalAlignment(SwingConstants.LEFT);
+		radioLimitGreater.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioLimitGreater.setBounds(372, 64, 135, 27);
+		manage.add(radioLimitGreater);
+		
+		JRadioButton radioLimitLess = new JRadioButton("Mức giới hạn <= 10");
+		Limitation.add(radioLimitLess);
+		radioLimitLess.setHorizontalAlignment(SwingConstants.LEFT);
+		radioLimitLess.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioLimitLess.setBounds(519, 64, 135, 27);
+		manage.add(radioLimitLess);
+		
+		JRadioButton radioPriceLess = new JRadioButton("Giá <= 200.000");
+		Price.add(radioPriceLess);
+		radioPriceLess.setHorizontalAlignment(SwingConstants.LEFT);
+		radioPriceLess.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radioPriceLess.setBounds(519, 94, 122, 27);
+		manage.add(radioPriceLess);
+		
+		JButton filterButton = new JButton("Lọc");
+		filterButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		filterButton.setBackground(Color.CYAN);
+		filterButton.setBounds(678, 51, 105, 52);
+		manage.add(filterButton);
 	}
 	
 	private DefaultTableModel initialRow() {
