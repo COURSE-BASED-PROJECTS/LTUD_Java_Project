@@ -15,12 +15,12 @@ import javax.swing.JSplitPane;
 import java.awt.Color;
 import javax.swing.border.EtchedBorder;
 
-public class ManagerView extends JFrame {
+public class AdminView extends JFrame {
 
 	private JPanel contentPane;
-	private JButton manageUser;
-	private JButton managePackage;
-	private JButton statisticInfo;
+	private JButton createButton;
+	private JButton manageAccount;
+	private JButton manageLockdown;
 	private JButton logout;
 
 	/**
@@ -30,7 +30,7 @@ public class ManagerView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					ManagerView frame = new ManagerView();
+					AdminView frame = new AdminView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -42,8 +42,8 @@ public class ManagerView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public ManagerView() {
-		setTitle("Manager");
+	public AdminView() {
+		setTitle("Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 656, 507);
 		setResizable(false);
@@ -58,20 +58,20 @@ public class ManagerView extends JFrame {
 		contentPane.add(feature);
 		feature.setLayout(null);
 		
-		manageUser = new JButton("Quản lí người dùng");
-		manageUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		manageUser.setBounds(87, 56, 165, 77);
-		feature.add(manageUser);
+		createButton = new JButton("Tạo tài khoản");
+		createButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		createButton.setBounds(87, 56, 165, 77);
+		feature.add(createButton);
 		
-		managePackage = new JButton("Quản lí nhu yếu phẩm");
-		managePackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		managePackage.setBounds(361, 56, 165, 77);
-		feature.add(managePackage);
+		manageAccount = new JButton("Quản lí tài khoản");
+		manageAccount.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		manageAccount.setBounds(361, 56, 165, 77);
+		feature.add(manageAccount);
 		
-		statisticInfo = new JButton("Thống kê thông tin");
-		statisticInfo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		statisticInfo.setBounds(87, 173, 439, 77);
-		feature.add(statisticInfo);
+		manageLockdown = new JButton("Quản lí nơi điều trị/cách li");
+		manageLockdown.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		manageLockdown.setBounds(87, 173, 439, 77);
+		feature.add(manageLockdown);
 		
 		logout = new JButton("Đăng xuất");
 		logout.setBackground(Color.RED);
