@@ -17,6 +17,10 @@ import java.awt.Color;
 public class ManagerView extends JFrame {
 
 	private JPanel contentPane;
+	private JButton manageUser;
+	private JButton managePackage;
+	private JButton statisticInfo;
+	private JButton logout;
 
 	/**
 	 * Launch the application.
@@ -41,6 +45,7 @@ public class ManagerView extends JFrame {
 		setTitle("Manager");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 656, 507);
+		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -52,22 +57,22 @@ public class ManagerView extends JFrame {
 		contentPane.add(feature);
 		feature.setLayout(null);
 		
-		JButton manageUser = new JButton("Manage Users");
+		manageUser = new JButton("Quản lí người dùng");
 		manageUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		manageUser.setBounds(87, 56, 165, 77);
 		feature.add(manageUser);
 		
-		JButton managePackage = new JButton("Manage Packages");
+		managePackage = new JButton("Quản lí nhu yếu phẩm");
 		managePackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		managePackage.setBounds(361, 56, 165, 77);
 		feature.add(managePackage);
 		
-		JButton statisticInfo = new JButton("Information Statistics");
+		statisticInfo = new JButton("Thống kê thông tin");
 		statisticInfo.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statisticInfo.setBounds(87, 173, 439, 77);
 		feature.add(statisticInfo);
 		
-		JButton logout = new JButton("Log out");
+		logout = new JButton("Đăng xuất");
 		logout.setBackground(Color.RED);
 		logout.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logout.setBounds(238, 357, 165, 77);
