@@ -1,0 +1,234 @@
+package view;
+
+import java.awt.BorderLayout;
+import java.awt.EventQueue;
+
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.TitledBorder;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.JLabel;
+import java.awt.Font;
+import javax.swing.SwingConstants;
+import javax.swing.JSeparator;
+import javax.swing.JScrollPane;
+import javax.swing.JTable;
+import javax.swing.border.EtchedBorder;
+import java.awt.Color;
+import javax.swing.JButton;
+
+public class UserInfoView extends JFrame {
+
+	private JPanel contentPane;
+	private JTable tableManaged;
+	private JTable tableConsume;
+	private JTable tableDebit;
+	private String [] columnNamesManaged = new String [] {
+            "Thời gian", "Từ", "Chuyển đến", "Người liên quan"};
+	private String [] columnNamesComsume = new String [] {
+            "Thời gian", "Tên gói nhu yếu phẩm", "Số tiền"};
+	private String [] columnNamesDebit = new String [] {
+            "Thời gian", "Số tiền thanh toán", "Số dư còn lại"};
+
+	/**
+	 * Launch the application.
+	 */
+	public static void main(String[] args) {
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					UserInfoView frame = new UserInfoView();
+					frame.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+
+	/**
+	 * Create the frame.
+	 */
+	public UserInfoView() {
+		setTitle("Thông tin");
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		setResizable(false);
+		setBounds(100, 100, 1178, 731);
+		contentPane = new JPanel();
+		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
+		setContentPane(contentPane);
+		contentPane.setLayout(null);
+		
+		JPanel Info = new JPanel();
+		Info.setBorder(new TitledBorder(null, "Th\u00F4ng tin ca\u0301 nh\u00E2n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		Info.setBounds(10, 10, 1144, 203);
+		contentPane.add(Info);
+		Info.setLayout(null);
+		
+		JLabel idLabel = new JLabel("CMND:");
+		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		idLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idLabel.setBounds(10, 36, 95, 35);
+		Info.add(idLabel);
+		
+		JLabel idText = new JLabel("19127422");
+		idText.setHorizontalAlignment(SwingConstants.LEFT);
+		idText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idText.setBounds(82, 36, 137, 35);
+		Info.add(idText);
+		
+		JLabel nameLabel = new JLabel("Họ tên:");
+		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		nameLabel.setBounds(212, 36, 95, 35);
+		Info.add(nameLabel);
+		
+		JLabel nameText = new JLabel("Nguyễn Đức Huy");
+		nameText.setHorizontalAlignment(SwingConstants.LEFT);
+		nameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		nameText.setBounds(286, 36, 218, 35);
+		Info.add(nameText);
+		
+		JLabel yearLabel = new JLabel("Năm sinh:");
+		yearLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		yearLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		yearLabel.setBounds(524, 36, 95, 35);
+		Info.add(yearLabel);
+		
+		JLabel idText_1 = new JLabel("2001");
+		idText_1.setHorizontalAlignment(SwingConstants.LEFT);
+		idText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idText_1.setBounds(609, 36, 75, 35);
+		Info.add(idText_1);
+		
+		JLabel addrLabel = new JLabel("Địa chỉ:");
+		addrLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		addrLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		addrLabel.setBounds(10, 99, 95, 35);
+		Info.add(addrLabel);
+		
+		JLabel addrText = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
+		addrText.setHorizontalAlignment(SwingConstants.LEFT);
+		addrText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		addrText.setBounds(82, 99, 436, 35);
+		Info.add(addrText);
+		
+		JLabel statusLabel = new JLabel("Trạng thái:");
+		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		statusLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		statusLabel.setBounds(524, 99, 95, 35);
+		Info.add(statusLabel);
+		
+		JLabel statusText = new JLabel("F");
+		statusText.setHorizontalAlignment(SwingConstants.LEFT);
+		statusText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		statusText.setBounds(609, 99, 75, 35);
+		Info.add(statusText);
+		
+		JSeparator separator_1 = new JSeparator();
+		separator_1.setOrientation(SwingConstants.VERTICAL);
+		separator_1.setBounds(694, 36, 18, 158);
+		Info.add(separator_1);
+		
+		JLabel debitLabel = new JLabel("Dư nợ:");
+		debitLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		debitLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		debitLabel.setBounds(10, 159, 95, 35);
+		Info.add(debitLabel);
+		
+		JLabel debitText = new JLabel("200.000");
+		debitText.setHorizontalAlignment(SwingConstants.LEFT);
+		debitText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		debitText.setBounds(82, 159, 137, 35);
+		Info.add(debitText);
+		
+		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
+		lockdownLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		lockdownLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lockdownLabel.setBounds(705, 36, 95, 35);
+		Info.add(lockdownLabel);
+		
+		JLabel addrText_1 = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
+		addrText_1.setHorizontalAlignment(SwingConstants.LEFT);
+		addrText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		addrText_1.setBounds(792, 36, 342, 35);
+		Info.add(addrText_1);
+		
+		JLabel relateUser = new JLabel("Người liên quan:");
+		relateUser.setHorizontalAlignment(SwingConstants.CENTER);
+		relateUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		relateUser.setBounds(705, 99, 126, 35);
+		Info.add(relateUser);
+		
+		JLabel nameText_1 = new JLabel("Nguyễn Đức Huy");
+		nameText_1.setHorizontalAlignment(SwingConstants.LEFT);
+		nameText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		nameText_1.setBounds(825, 99, 218, 35);
+		Info.add(nameText_1);
+		
+		JPanel panel = new JPanel();
+		panel.setBorder(new TitledBorder(null, "Li\u0323ch s\u01B0\u0309", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		panel.setBounds(10, 223, 1144, 471);
+		contentPane.add(panel);
+		panel.setLayout(null);
+		
+		JPanel managedHistory = new JPanel();
+		managedHistory.setBorder(new TitledBorder(null, "Li\u0323ch s\u01B0\u0309 qua\u0309n li\u0301", TitledBorder.LEADING, TitledBorder.TOP, null, null));
+		managedHistory.setBounds(10, 21, 1124, 119);
+		panel.add(managedHistory);
+		managedHistory.setLayout(null);
+		
+		JScrollPane scrollPaneManaged = new JScrollPane();
+		scrollPaneManaged.setBounds(10, 22, 1104, 91);
+		managedHistory.add(scrollPaneManaged);
+		
+		tableManaged = new JTable();
+		scrollPaneManaged.setViewportView(tableManaged);
+		tableManaged.setModel(initialRow(columnNamesManaged));
+		
+		JPanel managedConsume = new JPanel();
+		managedConsume.setLayout(null);
+		managedConsume.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Li\u0323ch s\u01B0\u0309 ti\u00EAu thu\u0323 go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		managedConsume.setBounds(10, 150, 1124, 119);
+		panel.add(managedConsume);
+		
+		JScrollPane scrollPaneConsume = new JScrollPane();
+		scrollPaneConsume.setBounds(10, 22, 1104, 89);
+		managedConsume.add(scrollPaneConsume);
+		
+		tableConsume = new JTable();
+		scrollPaneConsume.setViewportView(tableConsume);
+		tableConsume.setModel(initialRow(columnNamesComsume));
+		
+		JPanel managedDebit = new JPanel();
+		managedDebit.setLayout(null);
+		managedDebit.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Li\u0323ch s\u01B0\u0309 thanh toa\u0301n d\u01B0 n\u01A1\u0323", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		managedDebit.setBounds(10, 279, 1124, 119);
+		panel.add(managedDebit);
+		
+		JScrollPane scrollPaneDebit = new JScrollPane();
+		scrollPaneDebit.setBounds(10, 22, 1104, 89);
+		managedDebit.add(scrollPaneDebit);
+		
+		tableDebit = new JTable();
+		scrollPaneDebit.setViewportView(tableDebit);
+		tableDebit.setModel(initialRow(columnNamesDebit));
+		
+		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		logoutButton.setBackground(Color.RED);
+		logoutButton.setBounds(427, 415, 292, 35);
+		panel.add(logoutButton);
+	}
+	
+	private DefaultTableModel initialRow(String columnNames[]) {
+		DefaultTableModel defaultTableModel = new DefaultTableModel();
+		
+		for(int i=0;i<columnNames.length;i++) {
+			defaultTableModel.addColumn(columnNames[i]);
+		}
+		
+		return defaultTableModel;
+	}
+}
