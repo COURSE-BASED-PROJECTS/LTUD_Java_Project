@@ -35,7 +35,7 @@ public class ManagerPackages extends JFrame {
 	private JPanel contentPane;
 	private JPanel listPackage;
 	private JScrollPane scrollPanePackage;
-	private JTable tableListUser;
+	private JTable tableListPackage;
 	
 	// Declare columns of the table Users
     private String [] columnNames = new String [] {
@@ -103,9 +103,9 @@ public class ManagerPackages extends JFrame {
 		scrollPanePackage.setBounds(10, 22, 1043, 114);
 		listPackage.add(scrollPanePackage);
 		
-		tableListUser = new JTable();
-		scrollPanePackage.setViewportView(tableListUser);
-		tableListUser.setModel(initialRow());
+		tableListPackage = new JTable();
+		scrollPanePackage.setViewportView(tableListPackage);
+		tableListPackage.setModel(initialRow());
 		
 		packageForm = new JPanel();
 		packageForm.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Th\u00F4ng tin go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
