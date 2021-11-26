@@ -1,19 +1,21 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import controller.Admin.CreateAccountController;
 
 public class CreateAccount extends JFrame {
 
@@ -41,6 +43,7 @@ public class CreateAccount extends JFrame {
 	 * Create the frame.
 	 */
 	public CreateAccount() {
+		ActionListener action = new CreateAccountController(this);
 		setTitle("Tạo tài khoản");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -69,12 +72,14 @@ public class CreateAccount extends JFrame {
 		contentPane.add(ClassLabel);
 		
 		JButton createButton = new JButton("Tạo tài khoản");
+		createButton.addActionListener(action);
 		createButton.setBackground(Color.GREEN);
 		createButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		createButton.setBounds(111, 325, 165, 77);
 		contentPane.add(createButton);
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.addActionListener(action);
 		logoutButton.setBackground(Color.RED);
 		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logoutButton.setBounds(398, 325, 165, 77);

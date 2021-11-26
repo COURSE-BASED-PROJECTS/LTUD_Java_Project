@@ -1,20 +1,22 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Font;
+
+import controller.Manager.StatisticInfoController;
 
 public class StatisticInfo extends JFrame {
 
@@ -43,9 +45,11 @@ public class StatisticInfo extends JFrame {
 	 * Create the frame.
 	 */
 	public StatisticInfo() {
+		ActionListener action = new StatisticInfoController(this);
 		setTitle("Thống kê thông tin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 1218, 690);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,6 +80,7 @@ public class StatisticInfo extends JFrame {
 		contentPane.add(separator_2);
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.addActionListener(action);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
 		outButton.setBounds(1000, 551, 143, 70);

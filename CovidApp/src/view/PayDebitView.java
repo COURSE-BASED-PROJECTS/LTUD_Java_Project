@@ -1,19 +1,19 @@
 package view;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
 import java.awt.Color;
+import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+
+import controller.User.PayDebitController;
 
 public class PayDebitView extends JFrame {
 
@@ -40,6 +40,7 @@ public class PayDebitView extends JFrame {
 	 * Create the frame.
 	 */
 	public PayDebitView() {
+		ActionListener action = new PayDebitController(this);
 		setTitle("Thanh toán");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -68,12 +69,14 @@ public class PayDebitView extends JFrame {
 		contentPane.add(paymentMinimumLabel);
 		
 		JButton paymentButton = new JButton("Thanh toán");
+		paymentButton.addActionListener(action);
 		paymentButton.setBackground(Color.GREEN);
 		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		paymentButton.setBounds(162, 325, 165, 77);
 		contentPane.add(paymentButton);
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.addActionListener(action);
 		logoutButton.setBackground(Color.RED);
 		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logoutButton.setBounds(398, 325, 165, 77);

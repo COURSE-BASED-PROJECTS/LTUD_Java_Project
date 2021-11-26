@@ -63,7 +63,7 @@ public class DatabaseConnect {
 		
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String ConnectionUrl = "jdbc:sqlserver://localhost;databaseName=COVID;integratedSecurity=true;";
+			String ConnectionUrl = "jdbc:sqlserver://localhost;databaseName=DB_CovidApp;integratedSecurity=true;";
 			
 			try {
 				con = DriverManager.getConnection(ConnectionUrl);
@@ -85,7 +85,7 @@ public class DatabaseConnect {
 		
 		try {
 			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
-			String ConnectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=COVID"
+			String ConnectionUrl = "jdbc:sqlserver://localhost:1433;databaseName=DB_CovidApp"
 					+ ";username=" + username + ";password=" + password;
 			
 			try {

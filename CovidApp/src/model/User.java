@@ -1,7 +1,6 @@
 package model;
 
 import java.util.ArrayList;
-import java.util.Date;
 
 import model.managed.Managed_Order;
 import model.managed.Managed_Payment;
@@ -9,7 +8,7 @@ import model.managed.Managed_Payment;
 public class User {
 	private String name;
 	private String id;
-	private Date dayOfBirth;
+	private int yearOfBirth;
 	private Address address;
 	private F status;
 	private Zone placeOfTreatment;
@@ -21,12 +20,12 @@ public class User {
 	private Managed_Payment listPayment;
 	private Managed_Order listOrder;
 	
-	public User(String name, String id, Date dayOfBirth, Address address, F status, Zone placeOfTreatment,
+	public User(String name, String id, int yearOfBirth, Address address, F status, Zone placeOfTreatment,
 			Double balance, Double debt, User relative, Account account, ArrayList<Status_History> listStatus,
 			Managed_Payment listPayment, Managed_Order listOrder) {
 		this.name = name;
 		this.id = id;
-		this.dayOfBirth = dayOfBirth;
+		this.yearOfBirth = yearOfBirth;
 		this.address = address;
 		this.status = status;
 		this.placeOfTreatment = placeOfTreatment;
@@ -38,11 +37,21 @@ public class User {
 		this.listPayment = listPayment;
 		this.listOrder = listOrder;
 	}
-	
-	public User() {
 
+	public User(String name, String id, int yearOfBirth, Address address, F status, Zone placeOfTreatment,
+			User relative) {
+		this.name = name;
+		this.id = id;
+		this.yearOfBirth = yearOfBirth;
+		this.address = address;
+		this.status = status;
+		this.placeOfTreatment = placeOfTreatment;
+		this.relative = relative;
 	}
 	
+	public User(String id) {
+		this.id = id;
+	}
 
 	public String getName() {
 		return name;
@@ -60,12 +69,12 @@ public class User {
 		this.id = id;
 	}
 
-	public Date getDayOfBirth() {
-		return dayOfBirth;
+	public int getYearOfBirth() {
+		return yearOfBirth;
 	}
 
-	public void setDayOfBirth(Date dayOfBirth) {
-		this.dayOfBirth = dayOfBirth;
+	public void setYearOfBirth(int yearOfBirth) {
+		this.yearOfBirth = yearOfBirth;
 	}
 
 	public Address getAddress() {
@@ -98,6 +107,14 @@ public class User {
 
 	public void setBalance(Double balance) {
 		this.balance = balance;
+	}
+
+	public Double getDebt() {
+		return debt;
+	}
+
+	public void setDebt(Double debt) {
+		this.debt = debt;
 	}
 
 	public User getRelative() {
@@ -140,37 +157,10 @@ public class User {
 		this.listOrder = listOrder;
 	}
 
-	public void setDebt(Double debt) {
-		this.debt = debt;
-	}
+	@Override
+	public String toString() {
+		return "User [name=" + name + ", id=" + id + ", yearOfBirth=" + yearOfBirth + ", address=" + address
+				+ ", status=" + status + ", placeOfTreatment=" + placeOfTreatment + ", relative=" + relative + "]";
+	}	
 	
-	public Double getDebt() {
-		return debt;
-	}
-
-	public void showInfo() {
-		
-	}
-	public void showManagementHistory() {
-		
-	}
-	public void showPaymentHistory() {
-		
-	}
-	
-	public void showPackage(ArrayList<Package> list) {
-		
-	}
-	public Double payoffDebt(Double minDebt) {
-		return 0.0;
-	}
-	public Package searchPackage(ArrayList<Package> list) {
-		return null;
-	}
-	public ArrayList<Package> filterPackage(ArrayList<Package> list, String type) {
-		return null;
-	}
-	public void addStatusHistory() {
-		
-	}
 }

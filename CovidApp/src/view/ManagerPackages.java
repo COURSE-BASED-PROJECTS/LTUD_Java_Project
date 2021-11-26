@@ -1,34 +1,27 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.ButtonGroup;
+
+import controller.Manager.ManagerPackagesController;
 
 public class ManagerPackages extends JFrame {
 
@@ -84,10 +77,12 @@ public class ManagerPackages extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagerPackages() {
+		ActionListener action = new ManagerPackagesController(this);
 		setTitle("Quản lí gói nhu yếu phẩm");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 767);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -153,29 +148,34 @@ public class ManagerPackages extends JFrame {
 		utilities.setLayout(null);
 		
 		addButton = new JButton("Thêm");
+		addButton.addActionListener(action);
 		addButton.setBackground(Color.CYAN);
 		addButton.setBounds(10, 24, 95, 35);
 		utilities.add(addButton);
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		delButton = new JButton("Xóa");
+		delButton.addActionListener(action);
 		delButton.setBackground(Color.RED);
 		delButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		delButton.setBounds(135, 24, 95, 35);
 		utilities.add(delButton);
 		
 		updateButton = new JButton("Sửa");
+		updateButton.addActionListener(action);
 		updateButton.setBackground(Color.ORANGE);
 		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		updateButton.setBounds(266, 24, 95, 35);
 		utilities.add(updateButton);
 		
 		clearButton = new JButton("Đặt lại");
+		clearButton.addActionListener(action);
 		clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		clearButton.setBounds(390, 24, 95, 35);
 		utilities.add(clearButton);
 		
 		saveButton = new JButton("Lưu");
+		saveButton.addActionListener(action);
 		saveButton.setBackground(Color.GREEN);
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		saveButton.setBounds(176, 72, 143, 35);
@@ -213,6 +213,7 @@ public class ManagerPackages extends JFrame {
 		packageForm.add(searchPackageText);
 		
 		searchButton = new JButton("Tìm kiếm");
+		searchButton.addActionListener(action);
 		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		searchButton.setBackground(Color.CYAN);
 		searchButton.setBounds(851, 272, 105, 52);
@@ -263,6 +264,7 @@ public class ManagerPackages extends JFrame {
 		manage.add(separator_1);
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.addActionListener(action);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
 		outButton.setBounds(880, 42, 143, 70);
@@ -311,6 +313,7 @@ public class ManagerPackages extends JFrame {
 		manage.add(radioPriceLess);
 		
 		JButton filterButton = new JButton("Lọc");
+		filterButton.addActionListener(action);
 		filterButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		filterButton.setBackground(Color.CYAN);
 		filterButton.setBounds(678, 51, 105, 52);

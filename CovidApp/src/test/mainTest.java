@@ -2,6 +2,8 @@ package test;
 
 import javax.swing.UIManager;
 
+import model.managed.Managed_User;
+import utils.ModifyDataUser;
 import view.LoginView;
 
 public class mainTest {
@@ -10,7 +12,8 @@ public class mainTest {
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 //			UIManager.setLookAndFeel("com.sun.java.swing.plaf.motif.MotifLookAndFeel");
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-			new LoginView();
+			LoginView lv = new LoginView();
+			lv.setVisible(true);
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

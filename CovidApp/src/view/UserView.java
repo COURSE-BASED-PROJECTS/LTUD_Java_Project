@@ -1,19 +1,18 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.TitledBorder;
-import javax.swing.JButton;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JSplitPane;
-import java.awt.Color;
 import javax.swing.border.EtchedBorder;
+import javax.swing.border.TitledBorder;
+
+import controller.User.UserController;
 
 public class UserView extends JFrame {
 
@@ -43,6 +42,7 @@ public class UserView extends JFrame {
 	 * Create the frame.
 	 */
 	public UserView() {
+		ActionListener action = new UserController(this);
 		setTitle("Người được quản lí");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 656, 507);
@@ -59,21 +59,25 @@ public class UserView extends JFrame {
 		feature.setLayout(null);
 		
 		InfoButton = new JButton("Thông tin cá nhân");
+		InfoButton.addActionListener(action);
 		InfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		InfoButton.setBounds(87, 56, 165, 77);
 		feature.add(InfoButton);
 		
 		buyPackage = new JButton("Mua nhu yếu phẩm");
+		buyPackage.addActionListener(action);
 		buyPackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		buyPackage.setBounds(361, 56, 165, 77);
 		feature.add(buyPackage);
 		
 		paymentButton = new JButton("Thanh toán");
+		paymentButton.addActionListener(action);
 		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		paymentButton.setBounds(87, 173, 439, 77);
 		feature.add(paymentButton);
 		
 		logout = new JButton("Đăng xuất");
+		logout.addActionListener(action);
 		logout.setBackground(Color.RED);
 		logout.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		logout.setBounds(238, 357, 165, 77);

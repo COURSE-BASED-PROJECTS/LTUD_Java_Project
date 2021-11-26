@@ -1,33 +1,32 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JSpinner;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SpinnerNumberModel;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
+
+import controller.Manager.ManagerUsersController;
+import model.managed.Managed_User;
+import utils.ModifyDataUser;
 
 public class ManagerUsers extends JFrame {
 
@@ -35,6 +34,8 @@ public class ManagerUsers extends JFrame {
 	private JPanel listUser;
 	private JScrollPane scrollPaneUser;
 	private JTable tableListUser;
+	private DefaultTableModel tableModel;
+	private Managed_User mu;
 	
 	// Declare columns of the table Users
     private String [] columnNames = new String [] {
@@ -82,10 +83,12 @@ public class ManagerUsers extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagerUsers() {
+		ActionListener action = new ManagerUsersController(this);
 		setTitle("Quản lí người dùng");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 815);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -104,6 +107,10 @@ public class ManagerUsers extends JFrame {
 		tableListUser = new JTable();
 		scrollPaneUser.setViewportView(tableListUser);
 		tableListUser.setModel(initialRow());
+		
+		tableModel = (DefaultTableModel) tableListUser.getModel();
+		mu = ModifyDataUser.findAll();
+		mu.showListUser(tableModel);
 		
 		userForm = new JPanel();
 		userForm.setBorder(new TitledBorder(null, "Th\u00F4ng tin ng\u01B0\u01A1\u0300i bi\u0323 qua\u0309n li\u0301", TitledBorder.LEADING, TitledBorder.TOP, null, null));
@@ -181,7 +188,7 @@ public class ManagerUsers extends JFrame {
 		userForm.add(statusLabel);
 		
 		JComboBox status = new JComboBox();
-		status.setModel(new DefaultComboBoxModel(new String[] {"F"}));
+		status.setModel(new DefaultComboBoxModel(new String[] {"Status","F0","F1","F2",}));
 		status.setToolTipText("");
 		status.setName("");
 		status.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -220,35 +227,41 @@ public class ManagerUsers extends JFrame {
 		utilities.setLayout(null);
 		
 		addButton = new JButton("Thêm");
+		addButton.addActionListener(action);
 		addButton.setBackground(Color.CYAN);
 		addButton.setBounds(10, 24, 95, 35);
 		utilities.add(addButton);
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		delButton = new JButton("Xóa");
+		delButton.addActionListener(action);
 		delButton.setBackground(Color.RED);
 		delButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		delButton.setBounds(135, 24, 95, 35);
 		utilities.add(delButton);
 		
 		updateButton = new JButton("Sửa");
+		updateButton.addActionListener(action);
 		updateButton.setBackground(Color.ORANGE);
 		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		updateButton.setBounds(266, 24, 95, 35);
 		utilities.add(updateButton);
 		
 		clearButton = new JButton("Đặt lại");
+		clearButton.addActionListener(action);
 		clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		clearButton.setBounds(390, 24, 95, 35);
 		utilities.add(clearButton);
 		
 		saveButton = new JButton("Lưu");
+		saveButton.addActionListener(action);
 		saveButton.setBackground(Color.GREEN);
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		saveButton.setBounds(103, 72, 143, 35);
 		utilities.add(saveButton);
 		
 		detailButton = new JButton("Xem chi tiết");
+		detailButton.addActionListener(action);
 		detailButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		detailButton.setBounds(256, 72, 143, 35);
 		utilities.add(detailButton);
@@ -260,11 +273,13 @@ public class ManagerUsers extends JFrame {
 		manage.setLayout(null);
 		
 		sortAsc = new JButton("Sắp xếp tăng");
+		sortAsc.addActionListener(action);
 		sortAsc.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		sortAsc.setBounds(180, 31, 143, 35);
 		manage.add(sortAsc);
 		
 		sortDes = new JButton("Sắp xếp giảm");
+		sortDes.addActionListener(action);
 		sortDes.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		sortDes.setBounds(180, 76, 143, 35);
 		manage.add(sortDes);
@@ -321,6 +336,7 @@ public class ManagerUsers extends JFrame {
 		manage.add(searchNameText);
 		
 		JButton searchButton = new JButton("Tìm kiếm");
+		
 		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		searchButton.setBackground(Color.CYAN);
 		searchButton.setBounds(621, 14, 105, 52);
@@ -332,6 +348,7 @@ public class ManagerUsers extends JFrame {
 		manage.add(separator_1);
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.addActionListener(action);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
 		outButton.setBounds(802, 50, 143, 61);

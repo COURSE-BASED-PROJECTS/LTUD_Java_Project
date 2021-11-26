@@ -1,2 +1,15 @@
 eclipse.preferences.version=1
+encoding//src/controller/Admin/AdminController.java=UTF-8
+encoding//src/controller/Admin/CreateAccountController.java=UTF-8
+encoding//src/controller/Admin/ManageAccountController.java=UTF-8
+encoding//src/controller/Admin/ManagerZonesController.java=UTF-8
 encoding//src/controller/LoginController.java=UTF-8
+encoding//src/controller/Manager/ManagerController.java=UTF-8
+encoding//src/controller/Manager/ManagerPackagesController.java=UTF-8
+encoding//src/controller/Manager/ManagerUsersController.java=UTF-8
+encoding//src/controller/Manager/StatisticInfoController.java=UTF-8
+encoding//src/controller/User/BuyPackageController.java=UTF-8
+encoding//src/controller/User/PayDebitController.java=UTF-8
+encoding//src/controller/User/UserController.java=UTF-8
+encoding//src/controller/User/UserInfoController.java=UTF-8
+encoding/<project>=UTF-8

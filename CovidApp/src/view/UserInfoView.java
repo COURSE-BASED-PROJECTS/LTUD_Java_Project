@@ -1,22 +1,24 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JLabel;
-import java.awt.Font;
-import javax.swing.SwingConstants;
-import javax.swing.JSeparator;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-import javax.swing.JButton;
+
+import controller.User.UserInfoController;
 
 public class UserInfoView extends JFrame {
 
@@ -51,6 +53,7 @@ public class UserInfoView extends JFrame {
 	 * Create the frame.
 	 */
 	public UserInfoView() {
+		ActionListener action = new UserInfoController(this);
 		setTitle("Thông tin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -216,6 +219,7 @@ public class UserInfoView extends JFrame {
 		tableDebit.setModel(initialRow(columnNamesDebit));
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.addActionListener(action);
 		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		logoutButton.setBackground(Color.RED);
 		logoutButton.setBounds(427, 415, 292, 35);

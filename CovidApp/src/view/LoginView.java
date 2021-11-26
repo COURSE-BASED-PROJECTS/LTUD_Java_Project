@@ -1,21 +1,19 @@
 package view;
 
-import java.awt.BorderLayout;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JPasswordField;
+import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 import controller.LoginController;
 import model.Account;
-import javax.swing.JLabel;
-import java.awt.Font;
-import java.awt.event.ActionListener;
-
-import javax.swing.JTextField;
-import javax.swing.JButton;
-import javax.swing.JPasswordField;
 
 public class LoginView extends JFrame {
 
@@ -44,10 +42,9 @@ public class LoginView extends JFrame {
 	 * Create the frame.
 	 */
 	public LoginView() {
-		setTitle("Login");
 		this.account = new Account();
 		ActionListener action = new LoginController(this);
-		
+		setTitle("Login");	
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 627, 342);
 		contentPane = new JPanel();
@@ -81,13 +78,11 @@ public class LoginView extends JFrame {
 		passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
 		passwordField.setBounds(197, 140, 312, 37);
 		contentPane.add(passwordField);
-		
-		setVisible(true);
 	}
 
 	public Account getAccount() {
-		account.setUserName(tf_username.getText());
-		account.setPassword(passwordField.getText());
+		account.setUserName(tf_username.getText().trim());
+		account.setPassword(String.valueOf(passwordField.getPassword()).trim());
 		return account;
 	}
 }

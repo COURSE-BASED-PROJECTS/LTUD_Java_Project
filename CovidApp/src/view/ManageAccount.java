@@ -1,21 +1,23 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JScrollPane;
-import javax.swing.JTable;
-import javax.swing.JSeparator;
-import javax.swing.SwingConstants;
-import javax.swing.JButton;
-import java.awt.Color;
-import java.awt.Font;
-import javax.swing.border.EtchedBorder;
+
+import controller.Admin.ManageAccountController;
 
 public class ManageAccount extends JFrame {
 
@@ -43,6 +45,7 @@ public class ManageAccount extends JFrame {
 	 * Create the frame.
 	 */
 	public ManageAccount() {
+		ActionListener action = new ManageAccountController(this);
 		setTitle("Thông tin tài khoản");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -76,6 +79,7 @@ public class ManageAccount extends JFrame {
 		contentPane.add(separator_2);
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.addActionListener(action);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
 		outButton.setBounds(1000, 551, 143, 70);
@@ -88,12 +92,14 @@ public class ManageAccount extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton lockButton = new JButton("Khóa tài khoản");
+		lockButton.addActionListener(action);
 		lockButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lockButton.setBackground(Color.ORANGE);
 		lockButton.setBounds(65, 30, 145, 52);
 		panel_1.add(lockButton);
 		
 		JButton activityButton = new JButton("Xem lịch sử hoạt động");
+		activityButton.addActionListener(action);
 		activityButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		activityButton.setBackground(Color.CYAN);
 		activityButton.setBounds(265, 30, 151, 52);

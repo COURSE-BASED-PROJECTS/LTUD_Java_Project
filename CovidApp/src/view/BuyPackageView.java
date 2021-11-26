@@ -1,34 +1,27 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
+import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.ButtonGroup;
+
+import controller.User.BuyPackageController;
 
 public class BuyPackageView extends JFrame {
 
@@ -68,6 +61,7 @@ public class BuyPackageView extends JFrame {
 	 * Create the frame.
 	 */
 	public BuyPackageView() {
+		ActionListener action = new BuyPackageController(this);
 		setTitle("Mua nhu yếu phẩm");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 540);
@@ -98,11 +92,13 @@ public class BuyPackageView extends JFrame {
 		manage.setLayout(null);
 		
 		sortAsc = new JButton("Sắp xếp giá tăng");
+		sortAsc.addActionListener(action);
 		sortAsc.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		sortAsc.setBounds(10, 31, 143, 35);
 		manage.add(sortAsc);
 		
 		sortDes = new JButton("Sắp xếp giá giảm");
+		sortDes.addActionListener(action);
 		sortDes.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		sortDes.setBounds(10, 90, 143, 35);
 		manage.add(sortDes);
@@ -125,18 +121,21 @@ public class BuyPackageView extends JFrame {
 		manage.add(radio_3);
 		
 		JButton filterButton = new JButton("Lọc");
+		filterButton.addActionListener(action);
 		filterButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		filterButton.setBackground(Color.CYAN);
 		filterButton.setBounds(345, 51, 105, 52);
 		manage.add(filterButton);
 		
 		buyButton = new JButton("Mua");
+		buyButton.addActionListener(action);
 		buyButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		buyButton.setBackground(Color.GREEN);
 		buyButton.setBounds(866, 45, 143, 35);
 		manage.add(buyButton);
 		
 		logoutButton = new JButton("Thoát");
+		logoutButton.addActionListener(action);
 		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		logoutButton.setBackground(Color.RED);
 		logoutButton.setBounds(866, 90, 143, 35);
@@ -173,6 +172,7 @@ public class BuyPackageView extends JFrame {
 		searchPackageText.setColumns(10);
 		
 		searchButton = new JButton("Tìm kiếm");
+		searchButton.addActionListener(action);
 		searchButton.setBounds(574, 106, 143, 35);
 		manage.add(searchButton);
 		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));

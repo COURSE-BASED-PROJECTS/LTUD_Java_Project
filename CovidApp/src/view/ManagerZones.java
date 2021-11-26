@@ -1,34 +1,26 @@
 package view;
 
-import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.EventQueue;
+import java.awt.Font;
+import java.awt.event.ActionListener;
 
+import javax.swing.ButtonGroup;
+import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
 import javax.swing.JScrollPane;
+import javax.swing.JSeparator;
+import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
+import javax.swing.border.EmptyBorder;
+import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
-import javax.swing.JTable;
-import javax.swing.border.EtchedBorder;
-import java.awt.Color;
-import javax.swing.JLabel;
-import javax.swing.SwingConstants;
-import java.awt.Font;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import javax.swing.JTextField;
-import javax.swing.JSpinner;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import javax.swing.SpinnerNumberModel;
-import javax.swing.JComboBox;
-import javax.swing.DefaultComboBoxModel;
-import javax.swing.JRadioButton;
-import javax.swing.JSeparator;
-import javax.swing.ButtonGroup;
+
+import controller.Admin.ManagerZonesController;
 
 public class ManagerZones extends JFrame {
 
@@ -76,6 +68,7 @@ public class ManagerZones extends JFrame {
 	 * Create the frame.
 	 */
 	public ManagerZones() {
+		ActionListener action = new ManagerZonesController(this);
 		setTitle("Quản lí địa điểm điều trị/cách li");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 705);
@@ -145,29 +138,34 @@ public class ManagerZones extends JFrame {
 		utilities.setLayout(null);
 		
 		addButton = new JButton("Thêm");
+		addButton.addActionListener(action);
 		addButton.setBackground(Color.CYAN);
 		addButton.setBounds(10, 24, 95, 35);
 		utilities.add(addButton);
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		delButton = new JButton("Xóa");
+		delButton.addActionListener(action);
 		delButton.setBackground(Color.RED);
 		delButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		delButton.setBounds(135, 24, 95, 35);
 		utilities.add(delButton);
 		
 		updateButton = new JButton("Sửa");
+		updateButton.addActionListener(action);
 		updateButton.setBackground(Color.ORANGE);
 		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		updateButton.setBounds(266, 24, 95, 35);
 		utilities.add(updateButton);
 		
 		clearButton = new JButton("Đặt lại");
+		clearButton.addActionListener(action);
 		clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		clearButton.setBounds(390, 24, 95, 35);
 		utilities.add(clearButton);
 		
 		saveButton = new JButton("Lưu");
+		saveButton.addActionListener(action);
 		saveButton.setBackground(Color.GREEN);
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		saveButton.setBounds(175, 72, 143, 35);
@@ -183,6 +181,7 @@ public class ManagerZones extends JFrame {
 		zoneForm.add(separator_3);
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.addActionListener(action);
 		outButton.setBounds(578, 278, 143, 70);
 		zoneForm.add(outButton);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
