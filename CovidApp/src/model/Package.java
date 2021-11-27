@@ -6,7 +6,16 @@ public class Package {
 	private String name;
 	private Date limitedTime;
 	private Double price;
+	private int limitPackages;
 	
+	public int getLimitPackages() {
+		return limitPackages;
+	}
+
+	public void setLimitPackages(int limitPackages) {
+		this.limitPackages = limitPackages;
+	}
+
 	public Package(String name, Date limitedTime, Double price) {
 		this.name = name;
 		this.limitedTime = limitedTime;

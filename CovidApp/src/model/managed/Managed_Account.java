@@ -3,27 +3,17 @@ package model.managed;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
 
-import model.Address;
-import model.F;
-import model.User;
-import model.Zone;
 import utils.DatabaseConnect;
 
-public class Managed_Package extends Managed_General{
-	private ArrayList<Package> listPackage;
-	
-	public void getAllPackage() {
-		
-	}
-	public static DefaultTableModel showPackages(DefaultTableModel tabelModel) {
+public class Managed_Account {
+	public static DefaultTableModel showAccount(DefaultTableModel tabelModel) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From NHUYEUPHAM";
+			String sql = "Select * From TAIKHOAN";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 
@@ -36,21 +26,9 @@ public class Managed_Package extends Managed_General{
 				tabelModel.addRow(row);
 			}
 		} catch (SQLException e1) {
-			System.out.println("Lỗi trong khi load dữ liệu từ bảng NHUYEUPHAM");
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN");
 			e1.printStackTrace();
 		}
 		return tabelModel;
-	}
-	public Package searchPackage(Package pk) {
-		return null;
-	}
-	public void sortPackage(String type) {
-		
-	}
-	public void updatePackage(Package pk) {
-		
-	}
-	public void addPackage(Package pk) {
-		
 	}
 }

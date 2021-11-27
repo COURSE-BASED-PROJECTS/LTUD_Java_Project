@@ -22,6 +22,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Manager.ManagerPackagesController;
+import model.managed.Managed_Package;
 
 public class ManagerPackages extends JFrame {
 
@@ -31,8 +32,8 @@ public class ManagerPackages extends JFrame {
 	private JTable tableListPackage;
 	
 	// Declare columns of the table Users
-    private String [] columnNames = new String [] {
-            "Tên gói", "Mức giới hạn", "Thời gian giới hạn", "Đơn giá"};
+	private String [] columnNames = new String [] {"Mã NYP",
+            "Tên gói", "Thời gian giới hạn", "Mức giới hạn","Giá tiền"};
     private JPanel packageForm;
     private JTextField namePackageText;
     private JTextField limitText;
@@ -41,7 +42,47 @@ public class ManagerPackages extends JFrame {
     private JPanel utilities;
     private JButton addButton;
     private JButton delButton;
-    private JButton updateButton;
+    public JTextField getNamePackageText() {
+		return namePackageText;
+	}
+
+	public void setNamePackageText(JTextField namePackageText) {
+		this.namePackageText = namePackageText;
+	}
+
+	public JTextField getLimitText() {
+		return limitText;
+	}
+
+	public void setLimitText(JTextField limitText) {
+		this.limitText = limitText;
+	}
+
+	public JTextField getTimeText() {
+		return timeText;
+	}
+
+	public void setTimeText(JTextField timeText) {
+		this.timeText = timeText;
+	}
+
+	public JTextField getPriceText() {
+		return priceText;
+	}
+
+	public void setPriceText(JTextField priceText) {
+		this.priceText = priceText;
+	}
+
+	public JTextField getSearchPackageText() {
+		return searchPackageText;
+	}
+
+	public void setSearchPackageText(JTextField searchPackageText) {
+		this.searchPackageText = searchPackageText;
+	}
+
+	private JButton updateButton;
     private JButton clearButton;
     private JButton saveButton;
     private JPanel manage;
@@ -101,6 +142,7 @@ public class ManagerPackages extends JFrame {
 		tableListPackage = new JTable();
 		scrollPanePackage.setViewportView(tableListPackage);
 		tableListPackage.setModel(initialRow());
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
 		
 		packageForm = new JPanel();
 		packageForm.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Th\u00F4ng tin go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

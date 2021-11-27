@@ -3,6 +3,8 @@ package controller.Admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.Account;
+import model.managed.Managed_Account;
 import view.AdminView;
 import view.CreateAccount;
 
@@ -24,7 +26,6 @@ public class CreateAccountController implements ActionListener {
 			AdminView av = new AdminView();
 			av.setVisible(true);
 		} else if (cm.equals("Tạo tài khoản")) {
-			
 			
 		}		
 	}

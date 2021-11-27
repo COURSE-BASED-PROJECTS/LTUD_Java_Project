@@ -22,6 +22,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.User.BuyPackageController;
+import model.managed.Managed_Package;
 
 public class BuyPackageView extends JFrame {
 
@@ -31,8 +32,8 @@ public class BuyPackageView extends JFrame {
 	private JTable tableListPackage;
 	
 	// Declare columns of the table Users
-    private String [] columnNames = new String [] {
-            "Tên gói", "Mức giới hạn", "Thời gian giới hạn"};
+    private String [] columnNames = new String [] {"Mã NYP",
+            "Tên gói", "Thời gian giới hạn", "Mức giới hạn","Giá tiền"};
     private JPanel manage;
     private JButton sortAsc;
     private JButton sortDes;
@@ -84,6 +85,7 @@ public class BuyPackageView extends JFrame {
 		tableListPackage = new JTable();
 		scrollPanePackage.setViewportView(tableListPackage);
 		tableListPackage.setModel(initialRow());
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
 		
 		manage = new JPanel();
 		manage.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

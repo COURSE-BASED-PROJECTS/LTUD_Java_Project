@@ -24,7 +24,7 @@ public class AdminController implements ActionListener {
 		String cm = e.getActionCommand();
 		//System.out.println(cm);
 		if (cm != null) {
-			view.setVisible(false);
+//			view.setVisible(false);
 		}
 		if (cm.equals("Đăng xuất")) {
 			LoginView lv = new LoginView();

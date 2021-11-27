@@ -18,13 +18,14 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Admin.ManageAccountController;
+import model.managed.Managed_Account;
 
 public class ManageAccount extends JFrame {
 
 	private JPanel contentPane;
 	private JTable AccountTable;
 	private String [] columnNames = new String [] {
-            "Tài khoản", "Mật khẩu", "Phân quyền", "Trạng thái"};
+            "Tài khoản", "Mật khẩu", "Phân quyền","Số dư","Dư nợ", "Trạng thái"};
 	/**
 	 * Launch the application.
 	 */
@@ -68,6 +69,7 @@ public class ManageAccount extends JFrame {
 		AccountTable = new JTable();
 		scrollPaneAccount.setViewportView(AccountTable);
 		AccountTable.setModel(initialRow());
+		AccountTable.setModel(Managed_Account.showAccount(initialRow()));
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);

@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import model.Package;
 import model.managed.Managed_Package;
 import utils.DatabaseConnect;
 import view.LoginView;
@@ -34,8 +35,7 @@ public class ManagerPackagesController implements ActionListener {
 		if (cm.equals("Thoát")) {
 			ManagerView mv = new ManagerView();
 			mv.setVisible(true);
-		} else if (cm.equals("")) {
-			
+		} else if (cm.equals("Thêm")) {
 			
 		} else if (cm.equals("")) {
 			

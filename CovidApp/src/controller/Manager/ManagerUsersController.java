@@ -27,16 +27,15 @@ public class ManagerUsersController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
 		if (cm != null) {
-			view.setVisible(false);
+//			view.setVisible(false);
+			view.dispose();
 		}
 		if (cm.equals("Thoát")) {
 			ManagerView mv = new ManagerView();
 			mv.setVisible(true);
-		} else if (cm.equals("")) {
-			
-			
+		} else if (cm.equals("Thêm")) {
+			System.out.println(view.getIdText());
 		} else if (cm.equals("")) {
 			
 		} else if (cm.equals("")) {

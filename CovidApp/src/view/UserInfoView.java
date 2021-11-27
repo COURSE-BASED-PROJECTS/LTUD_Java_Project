@@ -19,6 +19,7 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.User.UserInfoController;
+import model.managed.Managed_Status;
 
 public class UserInfoView extends JFrame {
 
@@ -26,8 +27,8 @@ public class UserInfoView extends JFrame {
 	private JTable tableManaged;
 	private JTable tableConsume;
 	private JTable tableDebit;
-	private String [] columnNamesManaged = new String [] {
-            "Thời gian", "Từ", "Chuyển đến", "Người liên quan"};
+	private String [] columnNamesManaged = new String [] {"STT","CMND",
+             "Trạng thái cũ", "Trạng thái mới", "Thời gian"};
 	private String [] columnNamesComsume = new String [] {
             "Thời gian", "Tên gói nhu yếu phẩm", "Số tiền"};
 	private String [] columnNamesDebit = new String [] {
@@ -189,6 +190,7 @@ public class UserInfoView extends JFrame {
 		tableManaged = new JTable();
 		scrollPaneManaged.setViewportView(tableManaged);
 		tableManaged.setModel(initialRow(columnNamesManaged));
+		tableManaged.setModel(Managed_Status.showListHistory(initialRow(columnNamesManaged)));
 		
 		JPanel managedConsume = new JPanel();
 		managedConsume.setLayout(null);

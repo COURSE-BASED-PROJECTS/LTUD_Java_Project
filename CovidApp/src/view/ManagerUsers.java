@@ -27,6 +27,9 @@ import javax.swing.table.DefaultTableModel;
 import controller.Manager.ManagerUsersController;
 import model.managed.Managed_User;
 import utils.ModifyDataUser;
+import javax.swing.SpinnerDateModel;
+import java.util.Date;
+import java.util.Calendar;
 
 public class ManagerUsers extends JFrame {
 
@@ -43,8 +46,15 @@ public class ManagerUsers extends JFrame {
             "Nơi cách li/Điều trị","Người liên quan"};
     private JPanel userForm;
     private JTextField idText;
-    private JTextField nameText;
-    private JSpinner yearText;
+    public String getIdText() {
+		return idText.getText();
+	}
+
+	public void setIdText(JTextField idText) {
+		this.idText = idText;
+	}
+
+	private JTextField nameText;
     private JLabel addressLabel;
     private JComboBox town;
     private JComboBox city;
@@ -63,6 +73,7 @@ public class ManagerUsers extends JFrame {
     private JButton sortDes;
     private JTextField searchIdText;
     private JTextField searchNameText;
+    private JTextField yearText;
 	/**
 	 * Launch the application.
 	 */
@@ -145,11 +156,6 @@ public class ManagerUsers extends JFrame {
 		yearLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		yearLabel.setBounds(782, 34, 95, 35);
 		userForm.add(yearLabel);
-		
-		yearText = new JSpinner();
-		yearText.setModel(new SpinnerNumberModel(2000, 1920, 2021, 1));
-		yearText.setBounds(874, 30, 102, 47);
-		userForm.add(yearText);
 		
 		addressLabel = new JLabel("Địa chỉ:");
 		addressLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -265,6 +271,11 @@ public class ManagerUsers extends JFrame {
 		detailButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		detailButton.setBounds(256, 72, 143, 35);
 		utilities.add(detailButton);
+		
+		yearText = new JTextField();
+		yearText.setColumns(10);
+		yearText.setBounds(864, 28, 119, 51);
+		userForm.add(yearText);
 		
 		manage = new JPanel();
 		manage.setBorder(new TitledBorder(null, "Qua\u0309n li\u0301", TitledBorder.LEADING, TitledBorder.TOP, null, null));

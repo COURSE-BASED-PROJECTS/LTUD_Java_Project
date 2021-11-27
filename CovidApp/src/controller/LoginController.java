@@ -59,7 +59,8 @@ public class LoginController implements ActionListener {
 			}
 			if (found) {
 				//System.out.println(role);
-				view.setVisible(false);
+//				view.setVisible(false);
+				view.dispose();
 				switch (role) {
 				case "QUANLY":
 					ManagerView mv = new ManagerView();
