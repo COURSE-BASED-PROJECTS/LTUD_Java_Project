@@ -3,10 +3,8 @@ package controller.Admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import model.Account;
-import model.managed.Managed_Account;
-import view.AdminView;
-import view.CreateAccount;
+import view.Admin.AdminView;
+import view.Admin.CreateAccount;
 
 public class CreateAccountController implements ActionListener {
 	public CreateAccount view;

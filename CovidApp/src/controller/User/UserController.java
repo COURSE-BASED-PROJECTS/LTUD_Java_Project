@@ -3,14 +3,11 @@ package controller.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.BuyPackageView;
-import view.CreateAccount;
 import view.LoginView;
-import view.ManageAccount;
-import view.ManagerZones;
-import view.PayDebitView;
-import view.UserInfoView;
-import view.UserView;
+import view.User.BuyPackageView;
+import view.User.PayDebitView;
+import view.User.UserInfoView;
+import view.User.UserView;
 
 public class UserController implements ActionListener {
 	public UserView view;

@@ -2,20 +2,9 @@ package controller.Manager;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.Vector;
 
-import javax.swing.JOptionPane;
-
-import model.managed.Managed_Package;
-import utils.DatabaseConnect;
-import view.LoginView;
-import view.ManagerPackages;
-import view.ManagerUsers;
-import view.ManagerView;
-import view.StatisticInfo;
+import view.Manager.ManagerView;
+import view.Manager.StatisticInfo;
 
 public class StatisticInfoController implements ActionListener {
 	public StatisticInfo view;

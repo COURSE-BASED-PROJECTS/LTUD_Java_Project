@@ -3,8 +3,8 @@ package controller.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.PayDebitView;
-import view.UserView;
+import view.User.PayDebitView;
+import view.User.UserView;
 
 public class PayDebitController implements ActionListener {
 	public PayDebitView view;

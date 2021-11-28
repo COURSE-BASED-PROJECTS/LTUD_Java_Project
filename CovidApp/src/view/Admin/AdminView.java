@@ -1,4 +1,4 @@
-package view;
+package view.Admin;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -12,24 +12,25 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 
-import controller.User.UserController;
+import controller.Admin.AdminController;
 
-public class UserView extends JFrame {
+public class AdminView extends JFrame {
 
 	private JPanel contentPane;
-	private JButton InfoButton;
-	private JButton buyPackage;
-	private JButton paymentButton;
+	private JButton createButton;
+	private JButton manageAccount;
+	private JButton manageLockdown;
 	private JButton logout;
 
 	/**
 	 * Launch the application.
 	 */
+	
 	public static void main(String[] args) {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserView frame = new UserView();
+					AdminView frame = new AdminView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -41,9 +42,9 @@ public class UserView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserView() {
-		ActionListener action = new UserController(this);
-		setTitle("Người được quản lí");
+	public AdminView() {
+		ActionListener action = new AdminController(this);
+		setTitle("Admin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 656, 507);
 		setResizable(false);
@@ -58,23 +59,23 @@ public class UserView extends JFrame {
 		contentPane.add(feature);
 		feature.setLayout(null);
 		
-		InfoButton = new JButton("Thông tin cá nhân");
-		InfoButton.addActionListener(action);
-		InfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		InfoButton.setBounds(87, 56, 165, 77);
-		feature.add(InfoButton);
+		createButton = new JButton("Tạo tài khoản");
+		createButton.addActionListener(action);
+		createButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		createButton.setBounds(87, 56, 165, 77);
+		feature.add(createButton);
 		
-		buyPackage = new JButton("Mua nhu yếu phẩm");
-		buyPackage.addActionListener(action);
-		buyPackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		buyPackage.setBounds(361, 56, 165, 77);
-		feature.add(buyPackage);
+		manageAccount = new JButton("Quản lí tài khoản");
+		manageAccount.addActionListener(action);
+		manageAccount.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		manageAccount.setBounds(361, 56, 165, 77);
+		feature.add(manageAccount);
 		
-		paymentButton = new JButton("Thanh toán");
-		paymentButton.addActionListener(action);
-		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		paymentButton.setBounds(87, 173, 439, 77);
-		feature.add(paymentButton);
+		manageLockdown = new JButton("Quản lí nơi điều trị/cách li");
+		manageLockdown.addActionListener(action);
+		manageLockdown.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		manageLockdown.setBounds(87, 173, 439, 77);
+		feature.add(manageLockdown);
 		
 		logout = new JButton("Đăng xuất");
 		logout.addActionListener(action);

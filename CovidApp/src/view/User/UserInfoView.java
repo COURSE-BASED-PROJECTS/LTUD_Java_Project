@@ -1,4 +1,4 @@
-package view;
+package view.User;
 
 import java.awt.Color;
 import java.awt.EventQueue;

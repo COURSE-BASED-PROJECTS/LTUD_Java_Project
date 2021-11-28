@@ -3,8 +3,8 @@ package controller.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.UserInfoView;
-import view.UserView;
+import view.User.UserInfoView;
+import view.User.UserView;
 
 public class UserInfoController implements ActionListener {
 	public UserInfoView view;

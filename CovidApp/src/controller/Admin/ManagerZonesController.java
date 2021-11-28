@@ -3,8 +3,8 @@ package controller.Admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.AdminView;
-import view.ManagerZones;
+import view.Admin.AdminView;
+import view.Admin.ManagerZones;
 
 public class ManagerZonesController implements ActionListener {
 	public ManagerZones view;

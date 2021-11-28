@@ -3,8 +3,8 @@ package controller.Admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.AdminView;
-import view.ManageAccount;
+import view.Admin.AdminView;
+import view.Admin.ManageAccount;
 
 public class ManageAccountController implements ActionListener {
 	public ManageAccount view;

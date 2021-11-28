@@ -10,10 +10,10 @@ import java.util.Vector;
 import javax.swing.JOptionPane;
 
 import utils.DatabaseConnect;
-import view.AdminView;
 import view.LoginView;
-import view.ManagerView;
-import view.UserView;
+import view.Admin.AdminView;
+import view.Manager.ManagerView;
+import view.User.UserView;
 
 public class LoginController implements ActionListener {
 	public LoginView view;

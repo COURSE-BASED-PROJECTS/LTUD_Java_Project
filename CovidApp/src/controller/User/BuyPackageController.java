@@ -3,8 +3,8 @@ package controller.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.BuyPackageView;
-import view.UserView;
+import view.User.BuyPackageView;
+import view.User.UserView;
 
 public class BuyPackageController implements ActionListener {
 	public BuyPackageView view;

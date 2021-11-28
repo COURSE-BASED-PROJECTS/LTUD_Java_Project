@@ -3,14 +3,11 @@ package controller.Admin;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import view.AdminView;
-import view.CreateAccount;
 import view.LoginView;
-import view.ManageAccount;
-import view.ManagerPackages;
-import view.ManagerUsers;
-import view.ManagerZones;
-import view.StatisticInfo;
+import view.Admin.AdminView;
+import view.Admin.CreateAccount;
+import view.Admin.ManageAccount;
+import view.Admin.ManagerZones;
 
 public class AdminController implements ActionListener {
 	public AdminView view;
