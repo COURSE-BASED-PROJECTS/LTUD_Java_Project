@@ -22,6 +22,10 @@ public class LoginView extends JFrame {
 	private JTextField tf_username;
 	private JPasswordField passwordField;
 
+	public String get_username() {
+		return tf_username.getText();
+	}
+
 	/**
 	 * Launch the application.
 	 */

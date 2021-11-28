@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import model.AccountCurrent;
 import utils.DatabaseConnect;
 import view.AdminView;
 import view.LoginView;
@@ -72,6 +73,9 @@ public class LoginController implements ActionListener {
 					break;
 				case "NGUOIDUNG":
 					UserView uv = new UserView();
+//					uv.setUsernameCurrent(view.get_username());
+					AccountCurrent.setUsernameCurrent(view.get_username());
+					System.out.println(AccountCurrent.getUsernameCurrent());
 					uv.setVisible(true);
 					break;
 				default:

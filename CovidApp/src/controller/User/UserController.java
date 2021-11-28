@@ -3,6 +3,7 @@ package controller.User;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import model.AccountCurrent;
 import view.BuyPackageView;
 import view.CreateAccount;
 import view.LoginView;
@@ -33,7 +34,7 @@ public class UserController implements ActionListener {
 		} else if (cm.equals("Thông tin cá nhân")) {
 			UserInfoView uiv = new UserInfoView();
 			uiv.setVisible(true);
-			
+			System.out.println(AccountCurrent.getUsernameCurrent());
 		} else if (cm.equals("Mua nhu yếu phẩm")) {
 			BuyPackageView bpv = new BuyPackageView();
 			bpv.setVisible(true);
