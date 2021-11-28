@@ -23,7 +23,7 @@ CREATE TABLE KHUCACHLY
 	MAKCL CHAR(10) NOT NULL,
 	TENKCL NVARCHAR(100),
 	SUCCHUC INT,
-	CHOTRONG INT
+	DATIEPNHAN INT
 
 	PRIMARY KEY(MAKCL)
 )
@@ -126,17 +126,16 @@ INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH) -- NGUOILIENQU
 			('0213489216', N'Nguyễn Minh Bảo',1990, 'F1',N'Phường Long Phước',N'Thị Xã Phước Long',N'Tỉnh Bình Phước')
 GO
 
-INSERT INTO KHUCACHLY(MAKCL,TENKCL,SUCCHUC,CHOTRONG)
+INSERT INTO KHUCACHLY(MAKCL,TENKCL,SUCCHUC,DATIEPNHAN)
 	VALUES	('BV001',N'Bệnh viện Quận 7',300,150),
-			('BV002',N'Bệnh viện Cần Giờ',366,14),
-			('BV003',N'Bệnh viện dã chiến Củ Chi',1000,150),
+			('BV002',N'Bệnh viện Cần Giờ',366,300),
 			('BV004',N'Bệnh viện Bệnh Nhiệt đới Q.5',700,150),
-			('BV005',N'Trung tâm Y tế Cần Giờ',300,5),
-			('KS002',N'Khách sạn Holiday Inn',350,350),
-			('KS003',N'Khách sạn Bát Đạt',77,70),
-			('KS004',N'Khách sạn Đệ Nhất',152,120),
-			('KS005',N'Khách sạn Des Arts Saigon',165,100),
-			('KS006',N'Khách sạn Norfolk',104,100)
+			('BV005',N'Trung tâm Y tế Cần Giờ',300,300),
+			('KS002',N'Khách sạn Holiday Inn',350,50),
+			('KS003',N'Khách sạn Bát Đạt',77,50),
+			('KS004',N'Khách sạn Đệ Nhất',152,0),
+			('KS005',N'Khách sạn Des Arts Saigon',165,35),
+			('KS006',N'Khách sạn Norfolk',104,20)
 
 INSERT INTO TAIKHOAN(TAIKHOAN,MATKHAU,PHANHE,SODU,TINHTRANG) --DUNO
 	VALUES  ('0312614186',NULL,'NGUOIDUNG',3782644,0),
