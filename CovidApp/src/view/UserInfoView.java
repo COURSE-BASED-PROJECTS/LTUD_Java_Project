@@ -19,6 +19,8 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.User.UserInfoController;
+import model.managed.Managed_Order;
+import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
 
 public class UserInfoView extends JFrame {
@@ -30,9 +32,9 @@ public class UserInfoView extends JFrame {
 	private String [] columnNamesManaged = new String [] {"STT","CMND",
              "Trạng thái cũ", "Trạng thái mới", "Thời gian"};
 	private String [] columnNamesComsume = new String [] {
-            "Thời gian", "Tên gói nhu yếu phẩm", "Số tiền"};
+            "Mã HD", "CMND", "Loại hàng","Số lượng","Thời gian"};
 	private String [] columnNamesDebit = new String [] {
-            "Thời gian", "Số tiền thanh toán", "Số dư còn lại"};
+            "Mã GD", "CMND", "Dư nợ","Số tiền trả","Thời gian"};
 
 	/**
 	 * Launch the application.
@@ -58,6 +60,7 @@ public class UserInfoView extends JFrame {
 		setTitle("Thông tin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 1178, 731);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -205,6 +208,7 @@ public class UserInfoView extends JFrame {
 		tableConsume = new JTable();
 		scrollPaneConsume.setViewportView(tableConsume);
 		tableConsume.setModel(initialRow(columnNamesComsume));
+		tableConsume.setModel(Managed_Order.showListHistory(initialRow(columnNamesComsume)));
 		
 		JPanel managedDebit = new JPanel();
 		managedDebit.setLayout(null);
@@ -219,6 +223,7 @@ public class UserInfoView extends JFrame {
 		tableDebit = new JTable();
 		scrollPaneDebit.setViewportView(tableDebit);
 		tableDebit.setModel(initialRow(columnNamesDebit));
+		tableDebit.setModel(Managed_Payment.showListHistory(initialRow(columnNamesDebit)));
 		
 		JButton logoutButton = new JButton("Thoát");
 		logoutButton.addActionListener(action);
