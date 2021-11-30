@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
+import model.Account;
 import model.User;
 import model.Zone;
 import utils.DatabaseConnect;
@@ -22,8 +24,13 @@ public class Managed_User {
 	public Managed_User() {
 		listUser = new ArrayList<User>();
 	}
-
-	public DefaultTableModel showListUser(DefaultTableModel tableModel) {
+	
+	public static void showPaymentUser(JLabel debitCurrentText, JLabel balanceCurrentText, Account account) {
+		debitCurrentText.setText(account.getDebit());
+		balanceCurrentText.setText(account.getBalance());
+	}
+	
+	public static DefaultTableModel showListUser(DefaultTableModel tableModel) {
 //		for (User user : listUser) {
 //			tableModel.addRow(new Object[] { user.getId(), user.getName(), user.getYearOfBirth(), user.getAddress(),
 //					user.getStatus(), user.getPlaceOfTreatment().toString(), user.getRelative().getId() });

@@ -14,11 +14,24 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
 import controller.User.PayDebitController;
+import model.AccountCurrent;
+import model.managed.Managed_Account;
+import model.managed.Managed_User;
 
 public class PayDebitView extends JFrame {
 
 	private JPanel contentPane;
+	public JTextField getPaymentMinimumText() {
+		return paymentMinimumText;
+	}
+
+	public JLabel getDebitCurrentText() {
+		return debitCurrentText;
+	}
+
 	private JTextField paymentMinimumText;
+	private JLabel debitCurrentText;
+	private JLabel balanceCurrentText;
 
 	/**
 	 * Launch the application.
@@ -87,16 +100,18 @@ public class PayDebitView extends JFrame {
 		paymentMinimumText.setBounds(261, 228, 281, 51);
 		contentPane.add(paymentMinimumText);
 		
-		JLabel debitCurrentText = new JLabel("200.000");
+		debitCurrentText = new JLabel("200.000");
 		debitCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitCurrentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		debitCurrentText.setBounds(204, 77, 95, 35);
 		contentPane.add(debitCurrentText);
 		
-		JLabel debitCurrentText_1 = new JLabel("1.000.000");
-		debitCurrentText_1.setHorizontalAlignment(SwingConstants.LEFT);
-		debitCurrentText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitCurrentText_1.setBounds(292, 148, 95, 35);
-		contentPane.add(debitCurrentText_1);
+		balanceCurrentText = new JLabel("1.000.000");
+		balanceCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
+		balanceCurrentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		balanceCurrentText.setBounds(292, 148, 95, 35);
+		contentPane.add(balanceCurrentText);
+		
+		Managed_User.showPaymentUser(debitCurrentText, balanceCurrentText, Managed_Account.setAccount(AccountCurrent.getUsernameCurrent()));
 	}
 }

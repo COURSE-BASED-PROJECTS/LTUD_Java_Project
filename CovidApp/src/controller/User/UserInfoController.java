@@ -16,7 +16,6 @@ public class UserInfoController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
 		if (cm != null) {
 			view.setVisible(false);
 		}

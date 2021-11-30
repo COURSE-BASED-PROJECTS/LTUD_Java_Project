@@ -24,6 +24,7 @@ public class BuyPackageController implements ActionListener {
 		if (cm.equals("Thoát")) {
 			UserView uv = new UserView();
 			uv.setVisible(true);
+			view.dispose();
 		} else if (cm.equals("Sắp xếp giá tăng")) {
 			view.getTableListPackage().setModel(Managed_Package.showPackages(view.getDefaultTableModel(),true,true));
 		} else if (cm.equals("Sắp xếp giá giảm")) {
