@@ -142,7 +142,7 @@ public class ManagerPackages extends JFrame {
 		tableListPackage = new JTable();
 		scrollPanePackage.setViewportView(tableListPackage);
 		tableListPackage.setModel(initialRow());
-		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow(),false,false));
 		
 		packageForm = new JPanel();
 		packageForm.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Th\u00F4ng tin go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));

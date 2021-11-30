@@ -19,9 +19,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.User.UserInfoController;
+import model.AccountCurrent;
+import model.managed.Managed_Account;
 import model.managed.Managed_Order;
 import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
+import model.managed.Managed_User;
 
 public class UserInfoView extends JFrame {
 
@@ -83,6 +86,7 @@ public class UserInfoView extends JFrame {
 		idText.setHorizontalAlignment(SwingConstants.LEFT);
 		idText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idText.setBounds(82, 36, 137, 35);
+		idText.setText(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getId());
 		Info.add(idText);
 		
 		JLabel nameLabel = new JLabel("Họ tên:");
@@ -95,6 +99,7 @@ public class UserInfoView extends JFrame {
 		nameText.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameText.setBounds(286, 36, 218, 35);
+		nameText.setText(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getName());
 		Info.add(nameText);
 		
 		JLabel yearLabel = new JLabel("Năm sinh:");
@@ -107,6 +112,7 @@ public class UserInfoView extends JFrame {
 		idText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		idText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idText_1.setBounds(609, 36, 75, 35);
+		idText_1.setText(String.valueOf(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getYearOfBirth()));
 		Info.add(idText_1);
 		
 		JLabel addrLabel = new JLabel("Địa chỉ:");
@@ -119,6 +125,7 @@ public class UserInfoView extends JFrame {
 		addrText.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		addrText.setBounds(82, 99, 436, 35);
+		addrText.setText(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getAddress().toString());
 		Info.add(addrText);
 		
 		JLabel statusLabel = new JLabel("Trạng thái:");
@@ -131,6 +138,7 @@ public class UserInfoView extends JFrame {
 		statusText.setHorizontalAlignment(SwingConstants.LEFT);
 		statusText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusText.setBounds(609, 99, 75, 35);
+		statusText.setText(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getStatus().toString());
 		Info.add(statusText);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -148,6 +156,7 @@ public class UserInfoView extends JFrame {
 		debitText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		debitText.setBounds(82, 159, 137, 35);
+		debitText.setText(String.valueOf(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt()));
 		Info.add(debitText);
 		
 		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
@@ -160,6 +169,7 @@ public class UserInfoView extends JFrame {
 		addrText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		addrText_1.setBounds(792, 36, 342, 35);
+		addrText_1.setText(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getPlaceOfTreatment().getName());
 		Info.add(addrText_1);
 		
 		JLabel relateUser = new JLabel("Người liên quan:");
@@ -172,6 +182,7 @@ public class UserInfoView extends JFrame {
 		nameText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameText_1.setBounds(825, 99, 218, 35);
+		nameText_1.setText(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getRelative());
 		Info.add(nameText_1);
 		
 		JPanel panel = new JPanel();

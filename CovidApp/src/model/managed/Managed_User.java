@@ -2,6 +2,7 @@ package model.managed;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.RowIdLifetime;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
@@ -10,6 +11,8 @@ import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
 import model.Account;
+import model.Address;
+import model.F;
 import model.User;
 import model.Zone;
 import utils.DatabaseConnect;
@@ -31,10 +34,6 @@ public class Managed_User {
 	}
 	
 	public static DefaultTableModel showListUser(DefaultTableModel tableModel) {
-//		for (User user : listUser) {
-//			tableModel.addRow(new Object[] { user.getId(), user.getName(), user.getYearOfBirth(), user.getAddress(),
-//					user.getStatus(), user.getPlaceOfTreatment().toString(), user.getRelative().getId() });
-//		}
 		try {
 			Connection con = DatabaseConnect.openConnection();
 			String sql = "Select * From NGUOIDUNG";
@@ -57,6 +56,85 @@ public class Managed_User {
 		return tableModel;
 	}
 
+	public static User setUser(String id) {
+		
+		User user = new User(id);
+		Vector<String> row = new Vector<String>();
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From NGUOIDUNG WHERE NGUOIDUNG.CMND='"+id+"'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+			
+			while (rs.next()) {
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
+			e1.printStackTrace();
+		}
+		
+		user.setName(row.get(1));
+		user.setYearOfBirth(Integer.valueOf(row.get(2)));
+		user.setStatus(row.get(3).equals("F2")?F.F2:(row.get(3).equals("F1")?F.F1:F.F0));
+		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
+		user.setPlaceOfTreatment(Managed_User.LockDownPlace(row.get(8)));
+		user.setRelative(searchNameRelativeById(row.get(4)));
+		return user;
+	}
+	
+	public static String searchNameRelativeById(String id) {
+		Vector<String> row = new Vector<String>();
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From NGUOIDUNG WHERE NGUOIDUNG.CMND='"+id+"'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+			
+			while (rs.next()) {
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
+			e1.printStackTrace();
+		}
+		
+		return row.get(1);
+		
+	}
+	
+	public static Zone LockDownPlace(String idLockDown) {
+		Zone zone = new Zone(idLockDown); 
+		
+		Vector<String> row = new Vector<String>();
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From KHUCACHLY WHERE KHUCACHLY.MAKCL='"+idLockDown+"'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+			
+			while (rs.next()) {
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng KHUCACHLY");
+			e1.printStackTrace();
+		}
+		
+		zone.setName(row.get(1));
+		zone.setCapacity(Integer.valueOf(row.get(2)));
+		zone.setEmptySlot(Integer.valueOf(row.get(3)));
+		
+		return zone;
+		
+	}
+	
 	public void viewDetailUser(User user) {
 
 	}
