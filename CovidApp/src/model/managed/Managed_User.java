@@ -38,15 +38,7 @@ public class Managed_User {
 				Vector<String> row = new Vector<String>();
 				String addr = "";
 				for (int i = 1; i <= numberColumn; i++) {
-					if(i>=2&&i<=4) {
-						addr += rs.getString(i);
-						if(i==4)
-						{
-							row.addElement(addr);
-						}
-					}
-					else
-						row.addElement(rs.getString(i));
+						row.addElement(addr);
 				}
 				
 				tableModel.addRow(row);
