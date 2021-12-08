@@ -1,25 +1,26 @@
 package model.managed;
 
 import java.sql.Connection;
+import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import model.Address;
 import model.F;
+import model.Package;
 import model.User;
 import model.Zone;
 import utils.DatabaseConnect;
 
-public class Managed_Package extends Managed_General{
-	private ArrayList<Package> listPackage;
-	
-	public void getAllPackage() {
-		
-	}
+public class Managed_Package extends Managed_General {
 	public static DefaultTableModel showPackages(DefaultTableModel tabelModel) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
@@ -41,16 +42,134 @@ public class Managed_Package extends Managed_General{
 		}
 		return tabelModel;
 	}
-	public Package searchPackage(Package pk) {
-		return null;
+
+	public static void addPackage(Package pk) {
+		Connection con = DatabaseConnect.openConnection();
+		String timeLimit = new SimpleDateFormat("yyyy-MM-dd").format(pk.getLimitedTime());
+		// INSERT INTO NHUYEUPHAM(MANYP,TENNYP,HSD,GIOIHANSL,GIATIEN)
+		// VALUES ('NYP01',N'Gói Đồ đóng hộp','2023/01/01', 2, 120000)
+		String sql = "INSERT INTO NHUYEUPHAM(MANYP,TENNYP,HSD,GIOIHANSL,GIATIEN)" + " VALUES(?,?,?,?,?)";
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, pk.getId());
+			stmt.setString(2, pk.getName());
+			stmt.setString(3, timeLimit);
+			stmt.setInt(4, pk.getLimitPackages());
+			stmt.setDouble(5, pk.getPrice());
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Thêm NYP không thành công");
+			e.printStackTrace();
+		}
+
 	}
-	public void sortPackage(String type) {
-		
+
+	public static void modifyPackage(Package pk) {
+		Connection con = DatabaseConnect.openConnection();
+		String timeLimit = new SimpleDateFormat("yyyy-MM-dd").format(pk.getLimitedTime());
+		// UPDATE NHUYEUPHAM
+		// SET TENNYP = 'abc', HSD= '2020-01-01', GIOIHANSL = 0, GIATIEN = 1
+		// WHERE MANYP = 'NYP06';
+		String sql = "UPDATE NHUYEUPHAM" + " SET TENNYP = ?, HSD= ?, GIOIHANSL = ?, GIATIEN = ?" + " WHERE MANYP = ?";
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, pk.getName());
+			stmt.setString(2, timeLimit);
+			stmt.setInt(3, pk.getLimitPackages());
+			stmt.setDouble(4, pk.getPrice());
+			stmt.setString(5, pk.getId());
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Sửa NYP không thành công");
+			e.printStackTrace();
+		}
+
 	}
-	public void updatePackage(Package pk) {
-		
+
+	public static void delPackage(String id) {
+		Connection con = DatabaseConnect.openConnection();
+
+		String sql = "DELETE FROM NHUYEUPHAM WHERE MANYP=?";
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
+			stmt.setString(1, id);
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Xóa NYP không thành công");
+			e.printStackTrace();
+		}
 	}
-	public void addPackage(Package pk) {
-		
+
+	public static DefaultTableModel showPackageByName(DefaultTableModel dftm, String keyword) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From NHUYEUPHAM Where TENNYP LIKE N'%" + keyword + "%'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+				dftm.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NHUYEUPHAM");
+			e1.printStackTrace();
+		}
+		return dftm;
 	}
+
+	public static DefaultTableModel sortBy(String col, String type, DefaultTableModel dftm) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "SELECT * FROM NHUYEUPHAM ORDER BY" + col + type;
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+				dftm.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NHUYEUPHAM");
+			e1.printStackTrace();
+		}
+		return dftm;
+
+	}
+
+	public static TableModel filterPackage(DefaultTableModel dftm, String sql) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+				dftm.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NHUYEUPHAM");
+			e1.printStackTrace();
+		}
+		return dftm;
+	}
+
 }

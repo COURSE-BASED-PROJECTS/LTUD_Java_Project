@@ -45,7 +45,7 @@ public class ModifyDataUser {
 				Address address = new Address(row.get(5).trim(),row.get(6).trim(),row.get(7).trim());
 				Zone placeOfTreatment = new Zone(row.get(8).trim());
 				user = new User(name, id, yearOfBirth, address, status, placeOfTreatment, relative);
-				mu.addUser(user);
+				//mu.addUser(user);
 			}
 		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");

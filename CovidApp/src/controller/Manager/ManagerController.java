@@ -21,7 +21,8 @@ public class ManagerController implements ActionListener {
 		String cm = e.getActionCommand();
 		//System.out.println(cm);
 		if (cm != null) {
-			view.setVisible(false);
+			//view.setVisible(false);
+			view.dispose();
 		}
 		if (cm.equals("Đăng xuất")) {
 			LoginView lv = new LoginView();

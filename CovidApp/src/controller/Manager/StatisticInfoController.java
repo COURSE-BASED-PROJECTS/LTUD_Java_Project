@@ -18,7 +18,8 @@ public class StatisticInfoController implements ActionListener {
 		String cm = e.getActionCommand();
 		//System.out.println(cm);
 		if (cm != null) {
-			view.setVisible(false);
+			//view.setVisible(false);
+			view.dispose();
 		}
 		if (cm.equals("Thoát")) {
 			ManagerView mv = new ManagerView();

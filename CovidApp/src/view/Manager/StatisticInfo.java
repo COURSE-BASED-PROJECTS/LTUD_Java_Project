@@ -24,7 +24,7 @@ public class StatisticInfo extends JFrame {
 	private JTable InfoTable;
 	private String [] columnNames = new String [] {
             "Thời gian", "Số Người F0", "Số Người F1", "Số Người F2","Số chuyển trạng thái",
-            "Số người khỏi bệnh","Số gói nyp tiêu thụ","Số tiền dư nợ"};
+            "Số người khỏi bệnh","Số gói NYP tiêu thụ","Số tiền dư nợ"};
 	/**
 	 * Launch the application.
 	 */
