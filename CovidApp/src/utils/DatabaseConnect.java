@@ -11,7 +11,7 @@ import java.util.Vector;
 import javax.swing.SpinnerListModel;
 
 public class DatabaseConnect {
-	
+/*	
 	public static void main(String args[]) {
 		
 		DatabaseConnect dbConnect = new DatabaseConnect();
@@ -57,7 +57,8 @@ public class DatabaseConnect {
 			System.out.print("\n");
 		}
 	}
-	
+*/
+
 	public static Connection openConnection() {
 		Connection con = null;
 		

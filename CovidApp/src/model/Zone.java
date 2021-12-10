@@ -1,22 +1,16 @@
 package model;
 
-import java.sql.Connection;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-
-import utils.DatabaseConnect;
-
 public class Zone {
 	String id;
 	String name;
 	int capacity;
-	int emptySlot;
+	int receivedSlot;
 
-	public Zone(String id, String name, int capacity, int emptySlot) {
+	public Zone(String id, String name, int capacity, int receivedSlot) {
 		this.id = id;
 		this.name = name;
 		this.capacity = capacity;
-		this.emptySlot = emptySlot;
+		this.receivedSlot = receivedSlot;
 	}
 
 	public Zone(String id) {
@@ -47,12 +41,12 @@ public class Zone {
 		this.capacity = capacity;
 	}
 
-	public int getEmptySlot() {
-		return emptySlot;
+	public int getReceivedSlot() {
+		return receivedSlot;
 	}
 
-	public void setEmptySlot(int emptySlot) {
-		this.emptySlot = emptySlot;
+	public void setreceivedSlot(int receivedSlot) {
+		this.receivedSlot = receivedSlot;
 	}
 
 	@Override

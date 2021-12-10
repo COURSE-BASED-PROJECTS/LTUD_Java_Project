@@ -27,6 +27,7 @@ public class ManagerController implements ActionListener {
 		if (cm.equals("Đăng xuất")) {
 			LoginView lv = new LoginView();
 			lv.setVisible(true);
+			
 		} else if (cm.equals("Quản lí người dùng")) {
 			ManagerUsers mu = new ManagerUsers();
 			mu.setVisible(true);
@@ -34,6 +35,7 @@ public class ManagerController implements ActionListener {
 		} else if (cm.equals("Quản lí nhu yếu phẩm")) {
 			ManagerPackages mp = new ManagerPackages();
 			mp.setVisible(true);
+			
 		} else if (cm.equals("Thống kê thông tin")) {
 			StatisticInfo si = new StatisticInfo();
 			si.setVisible(true);

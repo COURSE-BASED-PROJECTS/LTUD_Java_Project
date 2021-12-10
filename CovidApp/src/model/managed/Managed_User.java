@@ -94,7 +94,6 @@ public class Managed_User {
 			System.out.println("Thêm NGUOIDUNG không thành công");
 			e.printStackTrace();
 		}
-
 	}
 
 	public static void modifyUser(User user, String idModify) {

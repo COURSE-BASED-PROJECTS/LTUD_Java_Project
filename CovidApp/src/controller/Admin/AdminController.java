@@ -19,13 +19,13 @@ public class AdminController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
 		if (cm != null) {
-//			view.setVisible(false);
+			view.dispose();
 		}
 		if (cm.equals("Đăng xuất")) {
 			LoginView lv = new LoginView();
 			lv.setVisible(true);
+			
 		} else if (cm.equals("Tạo tài khoản")) {
 			CreateAccount ca = new CreateAccount();
 			ca.setVisible(true);
@@ -33,6 +33,7 @@ public class AdminController implements ActionListener {
 		} else if (cm.equals("Quản lí tài khoản")) {
 			ManageAccount ma = new ManageAccount();
 			ma.setVisible(true);
+			
 		} else if (cm.equals("Quản lí nơi điều trị/cách li")) {
 			ManagerZones mz = new ManagerZones();
 			mz.setVisible(true);

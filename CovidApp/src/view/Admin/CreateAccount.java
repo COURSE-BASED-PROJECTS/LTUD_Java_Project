@@ -20,8 +20,11 @@ import controller.Admin.CreateAccountController;
 public class CreateAccount extends JFrame {
 
 	private JPanel contentPane;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JLabel usernameLabel;
+	private JLabel passLabel;
+	private JTextField usernameText;
+	private JTextField passText;
+	private JComboBox district;
 
 	/**
 	 * Launch the application.
@@ -42,6 +45,7 @@ public class CreateAccount extends JFrame {
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings("unchecked")
 	public CreateAccount() {
 		ActionListener action = new CreateAccountController(this);
 		setTitle("Tạo tài khoản");
@@ -53,13 +57,13 @@ public class CreateAccount extends JFrame {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		JLabel usernameLabel = new JLabel("Tài khoản:");
+		usernameLabel = new JLabel("Tài khoản:");
 		usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		usernameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		usernameLabel.setBounds(128, 77, 95, 35);
 		contentPane.add(usernameLabel);
 		
-		JLabel passLabel = new JLabel("Mật khẩu:");
+		passLabel = new JLabel("Mật khẩu:");
 		passLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		passLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		passLabel.setBounds(128, 148, 95, 35);
@@ -85,22 +89,38 @@ public class CreateAccount extends JFrame {
 		logoutButton.setBounds(398, 325, 165, 77);
 		contentPane.add(logoutButton);
 		
-		textField = new JTextField();
-		textField.setColumns(10);
-		textField.setBounds(223, 71, 281, 51);
-		contentPane.add(textField);
+		usernameText = new JTextField();
+		usernameText.setColumns(10);
+		usernameText.setBounds(223, 71, 281, 51);
+		contentPane.add(usernameText);
 		
-		textField_1 = new JTextField();
-		textField_1.setColumns(10);
-		textField_1.setBounds(223, 148, 281, 51);
-		contentPane.add(textField_1);
+		passText = new JTextField();
+		passText.setColumns(10);
+		passText.setBounds(223, 148, 281, 51);
+		contentPane.add(passText);
 		
-		JComboBox district = new JComboBox();
+		district = new JComboBox();
 		district.setModel(new DefaultComboBoxModel(new String[] {"Quản lí", "Người bị quản lí"}));
 		district.setToolTipText("");
 		district.setName("");
 		district.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		district.setBounds(223, 226, 132, 51);
 		contentPane.add(district);
+	}
+	
+	public JLabel getUsernameLabel() {
+		return usernameLabel;
+	}
+	public JLabel getPassLabel() {
+		return passLabel;
+	}
+	public JTextField getUsernameText() {
+		return usernameText;
+    }
+	public JTextField getPassText() {
+		return passText;
+    }
+	public int getRole() {
+		return district.getSelectedIndex();
 	}
 }
