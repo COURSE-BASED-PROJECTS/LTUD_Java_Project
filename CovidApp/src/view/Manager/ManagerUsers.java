@@ -4,7 +4,12 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
+import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -14,32 +19,18 @@ import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
-import javax.swing.JSpinner;
 import javax.swing.JTable;
 import javax.swing.JTextField;
-import javax.swing.SpinnerNumberModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
-import javax.swing.event.AncestorListener;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Manager.ManagerUsersController;
 import model.managed.Managed_Address;
-import model.managed.Managed_Package;
 import model.managed.Managed_User;
 import model.managed.Managed_Zone;
-import utils.ModifyDataUser;
-import javax.swing.SpinnerDateModel;
-import java.util.Date;
-import java.util.Calendar;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
-import java.awt.event.ActionEvent;
-import javax.swing.ButtonGroup;
-import java.awt.event.ItemListener;
-import java.awt.event.ItemEvent;
 
 public class ManagerUsers extends JFrame {
 
@@ -131,7 +122,7 @@ public class ManagerUsers extends JFrame {
 			}
 		});
 		scrollPaneUser.setViewportView(tableListUser);
-		//tableListUser.setModel(initialRow());
+		// tableListUser.setModel(initialRow());
 		tableListUser.setModel(Managed_User.showListUser(initialRow()));
 
 		userForm = new JPanel();
@@ -180,8 +171,8 @@ public class ManagerUsers extends JFrame {
 		city = new JComboBox();
 		city.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				loadDistrict();
-				loadTown();
+				((ManagerUsersController) action).loadDistrict();
+				((ManagerUsersController) action).loadTown();
 			}
 		});
 		city.setEnabled(false);
@@ -195,7 +186,7 @@ public class ManagerUsers extends JFrame {
 		district = new JComboBox();
 		district.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				loadTown();
+				((ManagerUsersController) action).loadTown();
 			}
 		});
 		district.setEnabled(false);
@@ -224,7 +215,8 @@ public class ManagerUsers extends JFrame {
 		status = new JComboBox();
 		status.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if (status.getSelectedItem().toString().trim().equals("F0")) {
+				if (status.getSelectedItem().toString().trim().equals("F0")
+						|| status.getSelectedItem().toString().trim().equals("Khỏi bệnh")) {
 					relativeText.setText("");
 					relativeText.setEnabled(false);
 				} else {
@@ -233,7 +225,7 @@ public class ManagerUsers extends JFrame {
 			}
 		});
 		status.setEnabled(false);
-		status.setModel(new DefaultComboBoxModel(new String[] { "Status", "F0", "F1", "F2", "F3" }));
+		status.setModel(new DefaultComboBoxModel(new String[] { "Status", "F0", "F1", "F2", "F3", "Khỏi bệnh" }));
 		status.setToolTipText("");
 		status.setName("");
 		status.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -555,25 +547,6 @@ public class ManagerUsers extends JFrame {
 
 	public ButtonGroup getSortGroup() {
 		return sortGroup;
-	}
-
-	public void loadData() {
-		tableListUser.setModel(Managed_User.showListUser(initialRow()));
-	}
-
-	public void loadDistrict() {
-		//System.out.println("loadDistrict:");
-		//System.out.println(this.getCity().getSelectedItem().toString().trim());
-		district.setModel(new DefaultComboBoxModel(
-				Managed_Address.getListDistrict(this.getCity().getSelectedItem().toString().trim())));
-	}
-
-	public void loadTown() {
-		//System.out.println("loadTown:");
-		//System.out.println(this.getCity().getSelectedItem().toString().trim());
-		//System.out.println(this.getDistrict().getSelectedItem().toString().trim());
-		town.setModel(new DefaultComboBoxModel(
-				Managed_Address.getListWard(this.getCity().getSelectedItem().toString().trim(),this.getDistrict().getSelectedItem().toString().trim())));
 	}
 
 }

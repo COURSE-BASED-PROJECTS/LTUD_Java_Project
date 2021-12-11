@@ -30,7 +30,7 @@ public class Managed_User {
 	}
 
 	public static void main(String[] args) {
-		//System.out.println(findById("123456789"));
+		// System.out.println(findById("123456789"));
 		// test hàm findListId
 		Vector<String> id = findListIdRelativeUser("031261418");
 		for (String string : id) {
@@ -107,12 +107,13 @@ public class Managed_User {
 				+ "SET CMND = ?, HOTEN = ?, NAMSINH = ?, TRANGTHAI = ?, NGUOILIENQUAN = ?, XA = ?, HUYEN = ?, TINH = ?, NOICACHLY = ?"
 				+ " WHERE CMND = ?";
 		PreparedStatement stmt;
-		
+
 		String oldStatus = Managed_Status.getStatusFromId(idModify);
 		String newStatus = user.getStatus().getF();
-		
+
 		if (!oldStatus.equals(newStatus)) {
 			Managed_Status.addStatusHistory(idModify, oldStatus, newStatus);
+			Managed_Status.updateStatusUser(idModify, newStatus);
 			if (!oldStatus.equals("F3")) {
 				Managed_Status.updateStatusRelativeUser(idModify, oldStatus, newStatus);
 			}
@@ -247,7 +248,7 @@ public class Managed_User {
 	public static User findById(String Id) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From NGUOIDUNG WHERE CMND = " + Id;
+			String sql = "Select * From NGUOIDUNG WHERE CMND = '" + Id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			while (rs.next()) {
 				String id = rs.getString(1).trim();
@@ -263,6 +264,8 @@ public class Managed_User {
 					status = F.F2;
 				} else if (f.equals("F3")) {
 					status = F.F3;
+				} else if (f.equals("Khỏi bệnh")) {
+					status = F.CURED;
 				}
 				String relative = rs.getString(5).trim();
 				User relativeUser = new User(relative);

@@ -4,6 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.Calendar;
 
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
@@ -11,6 +12,7 @@ import model.Address;
 import model.F;
 import model.User;
 import model.Zone;
+import model.managed.Managed_Address;
 import model.managed.Managed_User;
 import model.managed.Managed_Zone;
 import view.Manager.ManagerUsers;
@@ -34,48 +36,41 @@ public class ManagerUsersController implements ActionListener {
 			view.dispose();
 			ManagerView mv = new ManagerView();
 			mv.setVisible(true);
-			
+
 		} else if (cm.equals("Thêm")) {
 			this.previousCm = cm;
 			enabledForm();
 			clearForm();
-			
+
 		} else if (cm.equals("Sửa")) {
 			this.previousCm = cm;
-			int i = this.view.getTableListUser().getSelectedRow();
-			// System.out.println(i);
-			if (i == -1) {
-				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để sửa");
-			} else {
-				enabledForm();
-			}
-			
+			modifyAction();
+
 		} else if (cm.equals("Xóa")) {
 			delAction();
-			this.view.loadData();
-			
+			loadData();
+
 		} else if (cm.equals("Đặt lại")) {
 			clearForm();
-			this.view.loadData();
-			
+			loadData();
+
 		} else if (cm.equals("Lưu")) {
 			saveAction(previousCm);
-			clearForm();
-			this.view.loadData();
-			
+			loadData();
+
 		} else if (cm.equals("Sắp xếp tăng")) {
 			sortAction(" ASC");
-			
+
 		} else if (cm.equals("Sắp xếp giảm")) {
 			sortAction(" DESC");
-			
+
 		} else if (cm.equals("Tìm kiếm")) {
 			searchAction();
-			
+
 		} else if (cm.equals("Xem chi tiết")) {
 			this.view.dispose();
 			int i = this.view.getTableListUser().getSelectedRow();
-			
+
 			if (i == -1) {
 				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xem");
 			} else {
@@ -83,6 +78,17 @@ public class ManagerUsersController implements ActionListener {
 				UserInfoViewDetail uivd = new UserInfoViewDetail(id);
 				uivd.setVisible(true);
 			}
+		}
+
+	}
+
+	private void modifyAction() {
+		int i = this.view.getTableListUser().getSelectedRow();
+		// System.out.println(i);
+		if (i == -1) {
+			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để sửa");
+		} else {
+			enabledForm();
 		}
 
 	}
@@ -156,16 +162,14 @@ public class ManagerUsersController implements ActionListener {
 				System.out.println(idModify);
 				Managed_User.modifyUser(user, idModify);
 			}
+			clearForm();
+			disabledForm();
 		}
 	}
 
 	public User validateUser(String name, String id, String year, String ward, String district, String city, String f,
 			String zoneName, String relative) {
-		if (name.length() == 0) {
-			JOptionPane.showMessageDialog(view, "Chưa nhập tên User");
-			return null;
-		}
-		if (id.length() != 9 || id.length() != 10 || id.length() != 12) {
+		if (id.length() < 9 || id.length() > 12 || id.length() == 11) {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD là dãy 9/10/12 chữ số ");
 			return null;
 		}
@@ -173,6 +177,11 @@ public class ManagerUsersController implements ActionListener {
 			int temp = Integer.parseInt(id);
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD phải là dãy số");
+			return null;
+		}
+
+		if (name.length() == 0) {
+			JOptionPane.showMessageDialog(view, "Chưa nhập tên User");
 			return null;
 		}
 		int yob = -1;
@@ -205,23 +214,29 @@ public class ManagerUsersController implements ActionListener {
 			status = F.F2;
 		} else if (f.equals("F3")) {
 			status = F.F3;
+		} else if (f.equals("Khỏi bệnh")) {
+			status = F.CURED;
 		}
 		if (zoneName.equals("Nơi điều trị/cách ly")) {
 			JOptionPane.showMessageDialog(view, "Chưa chọn nơi điều trị/cách ly");
 			return null;
 		}
 		Zone zone = new Zone(Managed_Zone.getIdFromZoneName(zoneName));
-		int relativeId = 0;
-		try {
-			relativeId = Integer.parseInt(relative);
-		} catch (Exception e) {
-			JOptionPane.showMessageDialog(view, "Nhập CMND/CCCD ở ô người liên quan");
-			return null;
-		}
-		User relativeUser = Managed_User.findById(relative);
-		if (relativeUser == null) {
-			JOptionPane.showMessageDialog(view, "Người liên quan không tồn tại");
-			return null;
+
+		User relativeUser = new User("");
+		if (!f.equals("F0") && !f.equals("Khỏi bệnh")) {
+			int relativeId = 0;
+			try {
+				relativeId = Integer.parseInt(relative);
+			} catch (Exception e) {
+				JOptionPane.showMessageDialog(view, "Nhập số CMND/CCCD ở ô người liên quan");
+				return null;
+			}
+			relativeUser = Managed_User.findById(relative);
+			if (relativeUser == null) {
+				JOptionPane.showMessageDialog(view, "Người liên quan không tồn tại");
+				return null;
+			}
 		}
 		return new User(name, id, yob, addr, status, zone, relativeUser);
 	}
@@ -265,6 +280,7 @@ public class ManagerUsersController implements ActionListener {
 		this.view.getDistrict().setSelectedIndex(0);
 		this.view.getTown().setSelectedIndex(0);
 		this.view.getTreatment().setSelectedIndex(0);
+		this.view.getStatus().setSelectedIndex(0);
 
 		this.view.getSortGroup().clearSelection();
 		this.view.getSearchIdText().setText("");
@@ -291,6 +307,12 @@ public class ManagerUsersController implements ActionListener {
 		case "F2":
 			this.view.getStatus().setSelectedIndex(3);
 			break;
+		case "F3":
+			this.view.getStatus().setSelectedIndex(4);
+			break;
+		case "Khỏi bệnh":
+			this.view.getStatus().setSelectedIndex(5);
+			break;
 		default:
 			this.view.getStatus().setSelectedIndex(0);
 			break;
@@ -304,6 +326,27 @@ public class ManagerUsersController implements ActionListener {
 
 		String zoneName = Managed_Zone.getZoneNameFromId(model.getValueAt(i, 6).toString().trim());
 		this.view.getTreatment().setSelectedItem(zoneName);
+	}
+
+	public void loadData() {
+		this.view.getTableListUser().setModel(Managed_User.showListUser(this.view.initialRow()));
+	}
+
+	public void loadDistrict() {
+		// System.out.println("loadDistrict:");
+		// System.out.println(this.getCity().getSelectedItem().toString().trim());
+		this.view.getDistrict().setModel(new DefaultComboBoxModel(
+				Managed_Address.getListDistrict(this.view.getCity().getSelectedItem().toString().trim())));
+	}
+
+	public void loadTown() {
+		// System.out.println("loadTown:");
+		// System.out.println(this.getCity().getSelectedItem().toString().trim());
+		// System.out.println(this.getDistrict().getSelectedItem().toString().trim());
+		this.view.getTown()
+				.setModel(new DefaultComboBoxModel(
+						Managed_Address.getListWard(this.view.getCity().getSelectedItem().toString().trim(),
+								this.view.getDistrict().getSelectedItem().toString().trim())));
 	}
 
 }

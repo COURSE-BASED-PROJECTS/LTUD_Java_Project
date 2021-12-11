@@ -105,9 +105,11 @@ public class Managed_Status {
 
 	public static void updateStatusUser(String idUpdate, String newStatus) {
 		Connection con = DatabaseConnect.openConnection();
-		String sql = "UPDATE NGUOIDUNG " + "SET TRANGTHAI = ? WHERE CMND = ?";
+		String sql = "UPDATE NGUOIDUNG SET TRANGTHAI = ? WHERE CMND = ?";
 		PreparedStatement stmt = null;
 		try {
+			stmt = con.prepareStatement(sql);
+			
 			stmt.setString(1, newStatus);
 			stmt.setString(2, idUpdate);
 
@@ -132,7 +134,7 @@ public class Managed_Status {
 				addStatusHistory(f3, "F3", "F1");
 				updateStatusUser(f3, "F1");
 			}
-			
+
 		} else if (oldStatus.equals("F1")) {
 			Vector<String> idF2 = Managed_User.findListIdRelativeUser(idUpdated);
 			for (String f2 : idF2) {
@@ -146,6 +148,5 @@ public class Managed_Status {
 				}
 			}
 		}
-
 	}
 }

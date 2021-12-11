@@ -9,7 +9,9 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import model.managed.Managed_Account;
 import utils.DatabaseConnect;
+import utils.Password;
 import view.LoginView;
 import view.Admin.AdminView;
 import view.Manager.ManagerView;
@@ -25,42 +27,15 @@ public class LoginController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		boolean found = false;
-		String role = null;
 		if (cm.equals("Login")) {
-			String username = view.getAccount().getUserName();
-			String password = view.getAccount().getPassword();
-			//System.out.println("TK: " + username);
-			//System.out.println("MK: " + password);
-			// Kiểm tra tài khoản
-			try {
-				Connection con = DatabaseConnect.openConnection();
-				String sql = "Select * From TAIKHOAN";
-				ResultSet rs = DatabaseConnect.getResultSet(con, sql);
-				int numberColumn = rs.getMetaData().getColumnCount();
-
-				Vector<String> row = null;
-
-				while (rs.next()) {
-					row = new Vector<String>();
-
-					for (int i = 1; i <= numberColumn; i++)
-						row.addElement(rs.getString(i));
-
-					if (row.get(0).trim().equals(username) && row.get(1).trim().equals(password)) {
-						found = true;
-						role = row.get(2).trim();
-						break;
-					}
-				}
-			} catch (SQLException e1) {
-				System.out.println("Lỗi đăng nhập");
-				e1.printStackTrace();
-			}
+			String username = this.view.getAccount().getUserName();
+			String password = Password.encrypt(this.view.getAccount().getPassword());
+			boolean found = Managed_Account.isAccount(username, password);
 			if (found) {
-				//System.out.println(role);
+				// System.out.println(role);
 //				view.setVisible(false);
 				view.dispose();
+				String role = Managed_Account.getRole(username);
 				switch (role) {
 				case "QUANLY":
 					ManagerView mv = new ManagerView();
@@ -82,6 +57,6 @@ public class LoginController implements ActionListener {
 			}
 
 		}
+		
 	}
-
 }
