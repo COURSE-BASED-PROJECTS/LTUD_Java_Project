@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -12,13 +14,33 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 import controller.User.PayDebitController;
+import model.AccountCurrent;
+import model.managed.Managed_Account;
+import model.managed.Managed_User;
 
 public class PayDebitView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField paymentMinimumText;
+	private JLabel debitCurrentText;
+	
+	public JLabel getBalanceCurrentText() {
+		return balanceCurrentText;
+	}
+	public JTextField getPaymentMinimumText() {
+		return paymentMinimumText;
+	}
+	public JLabel getDebitCurrentText() {
+		return debitCurrentText;
+	}
+
+	private JLabel balanceCurrentText;
 
 	/**
 	 * Launch the application.
@@ -59,7 +81,7 @@ public class PayDebitView extends JFrame {
 		JLabel balanceLabel = new JLabel("Số tiền trong tài khoản:");
 		balanceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		balanceLabel.setBounds(128, 148, 154, 35);
+		balanceLabel.setBounds(128, 148, 159, 35);
 		contentPane.add(balanceLabel);
 		
 		JLabel paymentMinimumLabel = new JLabel("Mức thanh toán:");
@@ -83,20 +105,36 @@ public class PayDebitView extends JFrame {
 		contentPane.add(logoutButton);
 		
 		paymentMinimumText = new JTextField();
+		paymentMinimumText.setFont(new Font("Tahoma", Font.BOLD, 12));
 		paymentMinimumText.setColumns(10);
 		paymentMinimumText.setBounds(261, 228, 281, 51);
 		contentPane.add(paymentMinimumText);
 		
-		JLabel debitCurrentText = new JLabel("200.000");
+		debitCurrentText = new JLabel("200.000");
 		debitCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
-		debitCurrentText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitCurrentText.setBounds(204, 77, 95, 35);
+		debitCurrentText.setFont(new Font("Tahoma", Font.BOLD, 15));
+		debitCurrentText.setBounds(204, 77, 123, 35);
 		contentPane.add(debitCurrentText);
 		
-		JLabel debitCurrentText_1 = new JLabel("1.000.000");
-		debitCurrentText_1.setHorizontalAlignment(SwingConstants.LEFT);
-		debitCurrentText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitCurrentText_1.setBounds(292, 148, 95, 35);
-		contentPane.add(debitCurrentText_1);
+		balanceCurrentText = new JLabel("1.000.000");
+		balanceCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
+		balanceCurrentText.setFont(new Font("Tahoma", Font.BOLD, 15));
+		balanceCurrentText.setBounds(292, 148, 143, 35);
+		contentPane.add(balanceCurrentText);
+		
+		((AbstractDocument)paymentMinimumText.getDocument()).setDocumentFilter(new DocumentFilter(){
+	        Pattern regEx = Pattern.compile("\\d*");
+
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {          
+	            Matcher matcher = regEx.matcher(text);
+	            if(!matcher.matches()){
+	                return;
+	            }
+	            super.replace(fb, offset, length, text, attrs);
+	        }
+	    });
+		
+		Managed_User.showPaymentUser(debitCurrentText, balanceCurrentText, Managed_Account.setAccount(AccountCurrent.getUsernameCurrent()));
 	}
 }

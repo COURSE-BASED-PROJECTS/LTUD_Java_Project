@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -38,10 +39,14 @@ public class BuyPackageView extends JFrame {
     private JButton sortAsc;
     private JButton sortDes;
     private JTextField searchPackageText;
-    private JButton searchButton;
+	private JButton searchButton;
     private final ButtonGroup Price = new ButtonGroup();
     private JButton buyButton;
     private JButton logoutButton;
+    private JRadioButton radio;
+    private JRadioButton radio_1;
+    private JRadioButton radio_2;
+    
 	/**
 	 * Launch the application.
 	 */
@@ -84,8 +89,11 @@ public class BuyPackageView extends JFrame {
 		
 		tableListPackage = new JTable();
 		scrollPanePackage.setViewportView(tableListPackage);
+		tableListPackage.getTableHeader().setReorderingAllowed(false);
+		tableListPackage.setDefaultEditor(Object.class,null);
+		tableListPackage.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableListPackage.setModel(initialRow());
-		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow(),true,false));
 		
 		manage = new JPanel();
 		manage.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
@@ -115,12 +123,12 @@ public class BuyPackageView extends JFrame {
 		separator_1.setBounds(814, 31, 18, 110);
 		manage.add(separator_1);
 		
-		JRadioButton radio_3 = new JRadioButton("Giá < 250.000");
-		Price.add(radio_3);
-		radio_3.setHorizontalAlignment(SwingConstants.LEFT);
-		radio_3.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radio_3.setBounds(175, 94, 103, 27);
-		manage.add(radio_3);
+		radio_2 = new JRadioButton("Giá < 250.000");
+		Price.add(radio_2);
+		radio_2.setHorizontalAlignment(SwingConstants.LEFT);
+		radio_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radio_2.setBounds(175, 94, 103, 27);
+		manage.add(radio_2);
 		
 		JButton filterButton = new JButton("Lọc");
 		filterButton.addActionListener(action);
@@ -143,19 +151,19 @@ public class BuyPackageView extends JFrame {
 		logoutButton.setBounds(866, 90, 143, 35);
 		manage.add(logoutButton);
 		
-		JRadioButton radio_2 = new JRadioButton("Giá 250.000 - 500.000");
-		Price.add(radio_2);
-		radio_2.setHorizontalAlignment(SwingConstants.LEFT);
-		radio_2.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radio_2.setBounds(175, 64, 151, 27);
-		manage.add(radio_2);
-		
-		JRadioButton radio_1 = new JRadioButton("Giá > 500.000");
+		radio_1 = new JRadioButton("Giá 250.000 - 500.000");
 		Price.add(radio_1);
 		radio_1.setHorizontalAlignment(SwingConstants.LEFT);
 		radio_1.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		radio_1.setBounds(175, 35, 103, 27);
+		radio_1.setBounds(175, 64, 151, 27);
 		manage.add(radio_1);
+		
+		radio = new JRadioButton("Giá > 500.000");
+		Price.add(radio);
+		radio.setHorizontalAlignment(SwingConstants.LEFT);
+		radio.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		radio.setBounds(175, 35, 103, 27);
+		manage.add(radio);
 		
 		JSeparator separator_1_1 = new JSeparator();
 		separator_1_1.setOrientation(SwingConstants.VERTICAL);
@@ -181,6 +189,46 @@ public class BuyPackageView extends JFrame {
 		searchButton.setBackground(Color.CYAN);
 	}
 	
+	public JRadioButton getRadio() {
+		return radio;
+	}
+
+	public void setRadio(JRadioButton radio) {
+		this.radio = radio;
+	}
+
+	public JRadioButton getRadio_1() {
+		return radio_1;
+	}
+
+	public void setRadio_1(JRadioButton radio_1) {
+		this.radio_1 = radio_1;
+	}
+
+	public JRadioButton getRadio_2() {
+		return radio_2;
+	}
+
+	public void setRadio_2(JRadioButton radio_2) {
+		this.radio_2 = radio_2;
+	}
+
+	public JTable getTableListPackage() {
+		return tableListPackage;
+	}
+	
+	public ButtonGroup getPrice() {
+		return Price;
+	}
+	
+    public JTextField getSearchPackageText() {
+		return searchPackageText;
+	}
+
+	public void setSearchPackageText(JTextField searchPackageText) {
+		this.searchPackageText = searchPackageText;
+	}
+	
 	private DefaultTableModel initialRow() {
 		DefaultTableModel defaultTableModel = new DefaultTableModel();
 		
@@ -189,5 +237,9 @@ public class BuyPackageView extends JFrame {
 		}
 		
 		return defaultTableModel;
+	}
+	
+	public DefaultTableModel getDefaultTableModel() {
+		return initialRow();
 	}
 }

@@ -3,7 +3,7 @@ package model;
 import java.util.Date;
 
 public class History {
-	private Date time;
+	protected Date time;
 	public History(Date time) {
 		this.time = time;
 	}
