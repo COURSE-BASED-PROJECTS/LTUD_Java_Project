@@ -3,6 +3,7 @@ package model.managed;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.StringTokenizer;
 import java.util.Vector;
 
 import javax.swing.RowFilter;
@@ -59,5 +60,11 @@ public class Managed_Account {
 		account.setBalance(row.get(3));
 		
 		return account;
+	}
+	
+	static public void changePassword(String id, String password) throws SQLException {
+		Connection con = DatabaseConnect.openConnection();
+		String sql = "UPDATE TAIKHOAN SET MATKHAU='"+password+"' WHERE TAIKHOAN='"+id+"'";
+		DatabaseConnect.query(con, sql);
 	}
 }

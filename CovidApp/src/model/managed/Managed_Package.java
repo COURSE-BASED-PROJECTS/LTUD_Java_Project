@@ -1,6 +1,7 @@
 package model.managed;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -93,7 +94,7 @@ public class Managed_Package extends Managed_General{
 	
 	public static DefaultTableModel searchPackage(DefaultTableModel tabelModel,String name) {
 		String sql="SELECT * FROM NHUYEUPHAM "
-				+ "WHERE NHUYEUPHAM.TENNYP LIKE N'%"+name+"%'";
+				+ "WHERE CONTAINS(NHUYEUPHAM.TENNYP,'"+name+"')";
 		
 		try {
 			Connection con = DatabaseConnect.openConnection();
@@ -114,6 +115,9 @@ public class Managed_Package extends Managed_General{
 		}
 		return tabelModel;
 	}
+	
+	
+	
 	public void sortPackage(String type) {
 		
 	}

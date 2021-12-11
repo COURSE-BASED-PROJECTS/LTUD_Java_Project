@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Vector;
 
+import javax.lang.model.type.NullType;
 import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 
@@ -29,8 +30,8 @@ public class Managed_User {
 	}
 	
 	public static void showPaymentUser(JLabel debitCurrentText, JLabel balanceCurrentText, Account account) {
-		debitCurrentText.setText(account.getDebit());
-		balanceCurrentText.setText(account.getBalance());
+		debitCurrentText.setText(account.getDebit()==null?"0":account.getDebit());
+		balanceCurrentText.setText(account.getBalance()==null?"0":account.getBalance());
 	}
 	
 	public static DefaultTableModel showListUser(DefaultTableModel tableModel) {
@@ -78,7 +79,7 @@ public class Managed_User {
 		
 		user.setName(row.get(1));
 		user.setYearOfBirth(Integer.valueOf(row.get(2)));
-		user.setStatus(row.get(3).equals("F2")?F.F2:(row.get(3).equals("F1")?F.F1:F.F0));
+		user.setStatus(row.get(3).contains("F2")?F.F2:(row.get(3).contains("F1")?F.F1:F.F0));
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
 		user.setPlaceOfTreatment(Managed_User.LockDownPlace(row.get(8)));
 		user.setRelative(searchNameRelativeById(row.get(4)));

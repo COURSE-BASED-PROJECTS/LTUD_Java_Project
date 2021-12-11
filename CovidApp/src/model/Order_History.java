@@ -4,18 +4,58 @@ import java.util.ArrayList;
 import java.util.Date;
 
 public class Order_History extends History{
-	private ArrayList<Package> listOrder;
 	
-	public Order_History() {
-		listOrder = new ArrayList<Package>();
+	private String MaHD;
+	private String CMND;
+	private String type;
+	private int quantity;
+	
+	public String getMaHD() {
+		return MaHD;
 	}
-
-	public Order_History(ArrayList<Package> listOrder) {
-		this.listOrder = listOrder;
+	public void setMaHD(String maHD) {
+		MaHD = maHD;
 	}
-
-
-	public void showOrderHistory() {
+	public String getCMND() {
+		return CMND;
+	}
+	public void setCMND(String cMND) {
+		CMND = cMND;
+	}
+	public String getType() {
+		return type;
+	}
+	public void setType(String type) {
+		this.type = type;
+	}
+	public int getQuantity() {
+		return quantity;
+	}
+	public void setQuantity(int quantity) {
+		this.quantity = quantity;
+	}
+	
+	public static String randomCodeHistory() {
+		char letterCode = (char)Math.floor(Math.random()*(90-65+1)+65);
+		int numberCode = (int)Math.floor(Math.random()*(9999-1111+1)+1111);
+		
+		return letterCode + String.valueOf(numberCode);
 		
 	}
+	
+
+	
+//	private ArrayList<Package> listOrder;
+//	
+//	public Order_History() {
+//		listOrder = new ArrayList<Package>();
+//	}
+//
+//	public Order_History(ArrayList<Package> listOrder) {
+//		this.listOrder = listOrder;
+//	}
+//
+//
+//	public void showOrderHistory() {
+//	}
 }

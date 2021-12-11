@@ -15,6 +15,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -88,6 +89,9 @@ public class BuyPackageView extends JFrame {
 		
 		tableListPackage = new JTable();
 		scrollPanePackage.setViewportView(tableListPackage);
+		tableListPackage.getTableHeader().setReorderingAllowed(false);
+		tableListPackage.setDefaultEditor(Object.class,null);
+		tableListPackage.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableListPackage.setModel(initialRow());
 		tableListPackage.setModel(Managed_Package.showPackages(initialRow(),true,false));
 		

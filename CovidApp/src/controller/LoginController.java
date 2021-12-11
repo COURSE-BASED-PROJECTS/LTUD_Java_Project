@@ -8,8 +8,11 @@ import java.sql.SQLException;
 import java.util.Vector;
 
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JPasswordField;
 
 import model.AccountCurrent;
+import model.managed.Managed_Account;
 import utils.DatabaseConnect;
 import view.AdminView;
 import view.LoginView;
@@ -28,7 +31,7 @@ public class LoginController implements ActionListener {
 		String cm = e.getActionCommand();
 		boolean found = false;
 		String role = null;
-		if (cm.equals("Login")) {
+		if (cm.equals("Đăng nhập")) {
 			String username = view.getAccount().getUserName();
 			String password = view.getAccount().getPassword();
 			//System.out.println("TK: " + username);
@@ -36,10 +39,14 @@ public class LoginController implements ActionListener {
 			// Kiểm tra tài khoản
 			try {
 				Connection con = DatabaseConnect.openConnection();
-				String sql = "Select * From TAIKHOAN";
+				String sql = "Select * From TAIKHOAN WHERE TAIKHOAN="+username;
 				ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 				int numberColumn = rs.getMetaData().getColumnCount();
-
+				if(numberColumn == 0) {
+					JOptionPane.showMessageDialog(view, "lỗi", "Không có tài khoản trong hệ thống", JOptionPane.ERROR_MESSAGE, null);
+				}
+				
+				
 				Vector<String> row = null;
 
 				while (rs.next()) {
@@ -47,8 +54,26 @@ public class LoginController implements ActionListener {
 
 					for (int i = 1; i <= numberColumn; i++)
 						row.addElement(rs.getString(i));
-
-					if (row.get(0).trim().equals(username) && row.get(1).trim().equals(password)) {
+					
+					if(row.get(0) == null) {
+						JOptionPane.showMessageDialog(view, "lỗi", "Vui lòng nhập tài khoản", JOptionPane.ERROR_MESSAGE, null);
+					}
+					else if(row.get(1) == null) {
+						found = false;
+						role = row.get(2).trim();
+						
+						JPasswordField pf = new JPasswordField();
+						int okCxl = JOptionPane.showConfirmDialog(view, pf, "Vui lòng đổi mật khẩu", JOptionPane.OK_CANCEL_OPTION, JOptionPane.PLAIN_MESSAGE);
+						
+						String password_new="";
+						if (okCxl == JOptionPane.OK_OPTION) {
+						  password_new = new String(pf.getPassword());
+						}
+						
+						Managed_Account.changePassword(username,password_new);
+						break;
+					}
+					else if(row.get(0).trim().equals(username) && row.get(1).trim().equals(password)) {
 						found = true;
 						role = row.get(2).trim();
 						break;
@@ -59,8 +84,6 @@ public class LoginController implements ActionListener {
 				e1.printStackTrace();
 			}
 			if (found) {
-				//System.out.println(role);
-//				view.setVisible(false);
 				view.dispose();
 				switch (role) {
 				case "QUANLY":
@@ -73,16 +96,14 @@ public class LoginController implements ActionListener {
 					break;
 				case "NGUOIDUNG":
 					UserView uv = new UserView();
-//					uv.setUsernameCurrent(view.get_username());
 					AccountCurrent.setUsernameCurrent(view.get_username());
-					System.out.println(AccountCurrent.getUsernameCurrent());
 					uv.setVisible(true);
 					break;
 				default:
 					break;
 				}
 			} else {
-				JOptionPane.showMessageDialog(view, "Đăng nhập thất bại");
+//				JOptionPane.showMessageDialog(view, "Đăng nhập thất bại");
 			}
 
 		}

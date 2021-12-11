@@ -34,7 +34,6 @@ public class UserController implements ActionListener {
 		} else if (cm.equals("Thông tin cá nhân")) {
 			UserInfoView uiv = new UserInfoView();
 			uiv.setVisible(true);
-			System.out.println(AccountCurrent.getUsernameCurrent());
 		} else if (cm.equals("Mua nhu yếu phẩm")) {
 			BuyPackageView bpv = new BuyPackageView();
 			bpv.setVisible(true);

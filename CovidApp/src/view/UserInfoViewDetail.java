@@ -26,27 +26,23 @@ import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
 import model.managed.Managed_User;
 
-public class UserInfoView extends JFrame {
+public class UserInfoViewDetail extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableManaged;
-	private JTable tableConsume;
-	private JTable tableDebit;
+	private JTable tableRelated;
 	private String [] columnNamesManaged = new String [] {"STT","CMND",
              "Trạng thái cũ", "Trạng thái mới", "Thời gian"};
-	private String [] columnNamesComsume = new String [] {
-            "Mã HD", "CMND", "Loại hàng","Số lượng","Thời gian"};
-	private String [] columnNamesDebit = new String [] {
-            "Mã GD", "CMND", "Dư nợ","Số tiền trả","Thời gian"};
+	private String [] columnNamesRelated = new String [] {
+            "CMND", "Họ tên","Năm sinh","Trạng Thái", "Địa chỉ"};
+	
 	private JLabel idText;
 	private JLabel addrText;
-	private JLabel debitLabel;
 	private JLabel nameText;
 	private JLabel idText_1;
 	private JLabel statusText;
 	private JLabel addrText_1;
 	private JLabel nameText_1;
-	private JLabel debitText;
 
 	/**
 	 * Launch the application.
@@ -55,7 +51,7 @@ public class UserInfoView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserInfoView frame = new UserInfoView();
+					UserInfoViewDetail frame = new UserInfoViewDetail();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -67,13 +63,13 @@ public class UserInfoView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public UserInfoView() {
-		ActionListener action = new UserInfoController(this);
+	public UserInfoViewDetail() {
+//		ActionListener action = new UserInfoController(this);
 		setTitle("Thông tin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 1178, 731);
+		setBounds(100, 100, 1178, 602);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -81,7 +77,7 @@ public class UserInfoView extends JFrame {
 		
 		JPanel Info = new JPanel();
 		Info.setBorder(new TitledBorder(null, "Th\u00F4ng tin ca\u0301 nh\u00E2n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		Info.setBounds(10, 10, 1144, 203);
+		Info.setBounds(10, 10, 1144, 155);
 		contentPane.add(Info);
 		Info.setLayout(null);
 		
@@ -152,21 +148,8 @@ public class UserInfoView extends JFrame {
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBounds(694, 36, 18, 158);
+		separator_1.setBounds(694, 36, 18, 98);
 		Info.add(separator_1);
-		
-		debitLabel = new JLabel("Dư nợ:");
-		debitLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		debitLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitLabel.setBounds(10, 159, 95, 35);
-		Info.add(debitLabel);
-		
-		debitText = new JLabel("200.000");
-		debitText.setHorizontalAlignment(SwingConstants.LEFT);
-		debitText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitText.setBounds(82, 159, 137, 35);
-		
-		Info.add(debitText);
 		
 		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
 		lockdownLabel.setHorizontalAlignment(SwingConstants.CENTER);
@@ -196,7 +179,7 @@ public class UserInfoView extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "Li\u0323ch s\u01B0\u0309", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(10, 223, 1144, 471);
+		panel.setBounds(10, 175, 1144, 373);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
@@ -213,11 +196,11 @@ public class UserInfoView extends JFrame {
 		tableManaged = new JTable();
 		scrollPaneManaged.setViewportView(tableManaged);
 		tableManaged.setModel(initialRow(columnNamesManaged));
-		tableManaged.setModel(Managed_Status.showListHistory(initialRow(columnNamesManaged)));
+//		tableManaged.setModel(Managed_Status.showListHistory(initialRow(columnNamesManaged)));
 		
 		JPanel managedConsume = new JPanel();
 		managedConsume.setLayout(null);
-		managedConsume.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Li\u0323ch s\u01B0\u0309 ti\u00EAu thu\u0323 go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		managedConsume.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Danh s\u00E1ch ng\u01B0\u1EDDi li\u00EAn \u0111\u1EDBi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
 		managedConsume.setBounds(10, 150, 1124, 119);
 		panel.add(managedConsume);
 		
@@ -225,34 +208,19 @@ public class UserInfoView extends JFrame {
 		scrollPaneConsume.setBounds(10, 22, 1104, 89);
 		managedConsume.add(scrollPaneConsume);
 		
-		tableConsume = new JTable();
-		scrollPaneConsume.setViewportView(tableConsume);
-		tableConsume.setModel(initialRow(columnNamesComsume));
-		tableConsume.setModel(Managed_Order.showListHistory(initialRow(columnNamesComsume)));
-		
-		JPanel managedDebit = new JPanel();
-		managedDebit.setLayout(null);
-		managedDebit.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Li\u0323ch s\u01B0\u0309 thanh toa\u0301n d\u01B0 n\u01A1\u0323", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		managedDebit.setBounds(10, 279, 1124, 119);
-		panel.add(managedDebit);
-		
-		JScrollPane scrollPaneDebit = new JScrollPane();
-		scrollPaneDebit.setBounds(10, 22, 1104, 89);
-		managedDebit.add(scrollPaneDebit);
-		
-		tableDebit = new JTable();
-		scrollPaneDebit.setViewportView(tableDebit);
-		tableDebit.setModel(initialRow(columnNamesDebit));
-		tableDebit.setModel(Managed_Payment.showListHistory(initialRow(columnNamesDebit)));
+		tableRelated = new JTable();
+		scrollPaneConsume.setViewportView(tableRelated);
+		tableRelated.setModel(initialRow(columnNamesRelated));
+//		tableConsume.setModel(Managed_Order.showListHistory(initialRow(columnNamesComsume)));
 		
 		JButton logoutButton = new JButton("Thoát");
-		logoutButton.addActionListener(action);
+//		logoutButton.addActionListener(action);
 		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		logoutButton.setBackground(Color.RED);
-		logoutButton.setBounds(427, 415, 292, 35);
+		logoutButton.setBounds(428, 299, 292, 35);
 		panel.add(logoutButton);
 		
-		showInfo();
+//		showInfo();
 	}
 	
 	private DefaultTableModel initialRow(String columnNames[]) {
@@ -264,29 +232,5 @@ public class UserInfoView extends JFrame {
 		
 		return defaultTableModel;
 	}
-	private void showInfo() {
-		String id = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getId();
-		String name = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getName();
-		String dob = String.valueOf(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getYearOfBirth());
-		String adrr = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getAddress().toString();
-		String status = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getStatus().toString();
-		
-		double debt = 0;
-		if(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt() != null)
-			debt = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt();
-		String zone = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getPlaceOfTreatment().getName();
-		String relative = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getRelative();
-		
-		
-		idText.setText(id.equals("") ?"không có dữ liệu":id);
-		nameText.setText(name.equals("") ? "không có dữ liệu":name);
-		idText_1.setText(dob.equals("") ? "không có dữ liệu":dob);
-		addrText.setText(adrr.equals("") ? "không có dữ liệu":adrr);
-		statusText.setText(status.equals("") ? "không có dữ liệu":status);
-		
-		debitText.setText(String.valueOf(debt));
-		addrText_1.setText(zone.equals("") ?"không có dữ liệu":zone);
-		nameText_1.setText(relative.equals("") ? "không có dữ liệu":relative);
-		
-	}
+
 }
