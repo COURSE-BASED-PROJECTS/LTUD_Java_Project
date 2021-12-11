@@ -275,7 +275,7 @@ public class UserInfoView extends JFrame {
 		if(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt() != null)
 			debt = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt();
 		String zone = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getPlaceOfTreatment().getName();
-		String relative = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getRelative();
+		String relative = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getRelativesString();
 		
 		
 		idText.setText(id.equals("") ?"không có dữ liệu":id);

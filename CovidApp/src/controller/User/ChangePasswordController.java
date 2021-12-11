@@ -8,8 +8,8 @@ import javax.swing.JOptionPane;
 import model.managed.Managed_Account;
 import model.managed.Managed_User;
 import utils.Password;
-import view.ChangePasswordView;
 import view.User.UserInfoView;
+import model.managed.Managed_User;
 
 public class ChangePasswordController implements ActionListener {
 	public ChangePasswordView view;

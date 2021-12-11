@@ -451,6 +451,6 @@ public class ManagerPackages extends JFrame {
 	}
 
 	public void loadData() {
-		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow(),true,false));
 	}
 }

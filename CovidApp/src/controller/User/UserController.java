@@ -4,8 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import model.AccountCurrent;
-import view.BuyPackageView;
-import view.CreateAccount;
+import view.User.BuyPackageView;
+import view.Admin.CreateAccount;
 import view.LoginView;
 import view.User.BuyPackageView;
 import view.User.PayDebitView;

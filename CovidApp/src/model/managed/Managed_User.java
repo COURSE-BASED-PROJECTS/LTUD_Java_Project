@@ -129,7 +129,7 @@ public class Managed_User {
 		user.setStatus(row.get(3).contains("F2")?F.F2:(row.get(3).contains("F1")?F.F1:F.F0));
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
 		user.setPlaceOfTreatment(Managed_User.LockDownPlace(row.get(8)));
-		user.setRelative(searchNameRelativeById(row.get(4)));
+		user.setRelativesString(searchNameRelativeById(row.get(4)));
 		return user;
 	}
 	
