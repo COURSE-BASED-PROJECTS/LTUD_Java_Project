@@ -6,15 +6,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JOptionPane;
 
 import model.managed.Managed_Account;
-import model.managed.Managed_User;
 import utils.Password;
 import view.User.UserInfoView;
-import model.managed.Managed_User;
+import view.changePasswordView;
 
 public class ChangePasswordController implements ActionListener {
-	public ChangePasswordView view;
+	public changePasswordView view;
 
-	public ChangePasswordController(ChangePasswordView view) {
+	public void changePasswordView(changePasswordView view) {
 		this.view = view;
 	}
 

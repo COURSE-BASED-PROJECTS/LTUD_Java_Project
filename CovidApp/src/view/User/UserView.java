@@ -67,7 +67,7 @@ public class UserView extends JFrame {
 		buyPackage = new JButton("Mua nhu yếu phẩm");
 		buyPackage.addActionListener(action);
 		buyPackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		buyPackage.setBounds(361, 56, 165, 77);
+		buyPackage.setBounds(342, 56, 184, 77);
 		feature.add(buyPackage);
 		
 		paymentButton = new JButton("Thanh toán");

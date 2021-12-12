@@ -4,8 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import PaymentSystem.PaymentSystemView;
-import view.PayDebitView;
-import view.UserView;
+import view.User.*;
 
 public class PaymentSystemController implements ActionListener {
 	public PaymentSystemView view;

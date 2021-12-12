@@ -109,4 +109,16 @@ public class changePasswordView extends JFrame {
 		contentPane.add(panel);
 		
 	}
+	public JPanel getContentPane() {
+		return contentPane;
+	}
+	public JTextField getNewPassAgainText() {
+		return newPassAgainText;
+	}
+	public JTextField getNewPassText() {
+		return newPassText;
+	}
+	public JTextField getOldPassText() {
+		return oldPassText;
+	}
 }
