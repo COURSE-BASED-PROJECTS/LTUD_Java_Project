@@ -9,6 +9,7 @@ import java.util.Vector;
 
 import javax.swing.JOptionPane;
 
+import model.AccountCurrent;
 import model.managed.Managed_Account;
 import utils.DatabaseConnect;
 import utils.Password;
@@ -27,7 +28,7 @@ public class LoginController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		if (cm.equals("Login")) {
+		if (cm.equals("Đăng nhập")) {
 			String username = this.view.getAccount().getUserName();
 			String password = Password.encrypt(this.view.getAccount().getPassword());
 			boolean found = Managed_Account.isAccount(username, password);
@@ -36,6 +37,8 @@ public class LoginController implements ActionListener {
 //				view.setVisible(false);
 				view.dispose();
 				String role = Managed_Account.getRole(username);
+				AccountCurrent.setUsernameCurrent(username);
+				
 				switch (role) {
 				case "QUANLY":
 					ManagerView mv = new ManagerView();
