@@ -19,6 +19,7 @@ public class User {
 	private ArrayList<Status_History> listStatus;
 	private Managed_Payment listPayment;
 	private Managed_Order listOrder;
+	private String relativesString;
 	
 	public User(String name, String id, int yearOfBirth, Address address, F status, Zone placeOfTreatment,
 			Double balance, Double debt, User relative, Account account, ArrayList<Status_History> listStatus,
@@ -51,6 +52,16 @@ public class User {
 	
 	public User(String id) {
 		this.id = id;
+	}
+
+	
+	
+	public String getRelativesString() {
+		return relativesString;
+	}
+
+	public void setRelativesString(String relativesString) {
+		this.relativesString = relativesString;
 	}
 
 	public String getName() {
@@ -121,7 +132,7 @@ public class User {
 		return relative;
 	}
 
-	public void setRelative(User relative) {
+	public void User(User relative) {
 		this.relative = relative;
 	}
 

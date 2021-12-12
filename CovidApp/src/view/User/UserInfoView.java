@@ -19,7 +19,12 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.User.UserInfoController;
+import model.AccountCurrent;
+import model.managed.Managed_Account;
+import model.managed.Managed_Order;
+import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
+import model.managed.Managed_User;
 
 public class UserInfoView extends JFrame {
 
@@ -30,9 +35,18 @@ public class UserInfoView extends JFrame {
 	private String [] columnNamesManaged = new String [] {"STT","CMND",
              "Trạng thái cũ", "Trạng thái mới", "Thời gian"};
 	private String [] columnNamesComsume = new String [] {
-            "Thời gian", "Tên gói nhu yếu phẩm", "Số tiền"};
+            "Mã HD", "CMND", "Loại hàng","Số lượng","Thời gian"};
 	private String [] columnNamesDebit = new String [] {
-            "Thời gian", "Số tiền thanh toán", "Số dư còn lại"};
+            "Mã GD", "CMND", "Dư nợ","Số tiền trả","Thời gian"};
+	private JLabel idText;
+	private JLabel addrText;
+	private JLabel debitLabel;
+	private JLabel nameText;
+	private JLabel idText_1;
+	private JLabel statusText;
+	private JLabel addrText_1;
+	private JLabel nameText_1;
+	private JLabel debitText;
 
 	/**
 	 * Launch the application.
@@ -58,6 +72,7 @@ public class UserInfoView extends JFrame {
 		setTitle("Thông tin");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
+		setLocationRelativeTo(null);
 		setBounds(100, 100, 1178, 731);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,10 +91,11 @@ public class UserInfoView extends JFrame {
 		idLabel.setBounds(10, 36, 95, 35);
 		Info.add(idLabel);
 		
-		JLabel idText = new JLabel("19127422");
+		idText = new JLabel("19127422");
 		idText.setHorizontalAlignment(SwingConstants.LEFT);
 		idText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idText.setBounds(82, 36, 137, 35);
+		
 		Info.add(idText);
 		
 		JLabel nameLabel = new JLabel("Họ tên:");
@@ -88,10 +104,11 @@ public class UserInfoView extends JFrame {
 		nameLabel.setBounds(212, 36, 95, 35);
 		Info.add(nameLabel);
 		
-		JLabel nameText = new JLabel("Nguyễn Đức Huy");
+		nameText = new JLabel("Nguyễn Đức Huy");
 		nameText.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameText.setBounds(286, 36, 218, 35);
+		
 		Info.add(nameText);
 		
 		JLabel yearLabel = new JLabel("Năm sinh:");
@@ -100,10 +117,11 @@ public class UserInfoView extends JFrame {
 		yearLabel.setBounds(524, 36, 95, 35);
 		Info.add(yearLabel);
 		
-		JLabel idText_1 = new JLabel("2001");
+		idText_1 = new JLabel("2001");
 		idText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		idText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idText_1.setBounds(609, 36, 75, 35);
+		
 		Info.add(idText_1);
 		
 		JLabel addrLabel = new JLabel("Địa chỉ:");
@@ -112,10 +130,11 @@ public class UserInfoView extends JFrame {
 		addrLabel.setBounds(10, 99, 95, 35);
 		Info.add(addrLabel);
 		
-		JLabel addrText = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
+		addrText = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
 		addrText.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		addrText.setBounds(82, 99, 436, 35);
+		
 		Info.add(addrText);
 		
 		JLabel statusLabel = new JLabel("Trạng thái:");
@@ -124,10 +143,11 @@ public class UserInfoView extends JFrame {
 		statusLabel.setBounds(524, 99, 95, 35);
 		Info.add(statusLabel);
 		
-		JLabel statusText = new JLabel("F");
+		statusText = new JLabel("F");
 		statusText.setHorizontalAlignment(SwingConstants.LEFT);
 		statusText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusText.setBounds(609, 99, 75, 35);
+		
 		Info.add(statusText);
 		
 		JSeparator separator_1 = new JSeparator();
@@ -135,16 +155,17 @@ public class UserInfoView extends JFrame {
 		separator_1.setBounds(694, 36, 18, 158);
 		Info.add(separator_1);
 		
-		JLabel debitLabel = new JLabel("Dư nợ:");
+		debitLabel = new JLabel("Dư nợ:");
 		debitLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		debitLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		debitLabel.setBounds(10, 159, 95, 35);
 		Info.add(debitLabel);
 		
-		JLabel debitText = new JLabel("200.000");
+		debitText = new JLabel("200.000");
 		debitText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		debitText.setBounds(82, 159, 137, 35);
+		
 		Info.add(debitText);
 		
 		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
@@ -153,10 +174,11 @@ public class UserInfoView extends JFrame {
 		lockdownLabel.setBounds(705, 36, 95, 35);
 		Info.add(lockdownLabel);
 		
-		JLabel addrText_1 = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
+		addrText_1 = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
 		addrText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		addrText_1.setBounds(792, 36, 342, 35);
+		
 		Info.add(addrText_1);
 		
 		JLabel relateUser = new JLabel("Người liên quan:");
@@ -165,10 +187,11 @@ public class UserInfoView extends JFrame {
 		relateUser.setBounds(705, 99, 126, 35);
 		Info.add(relateUser);
 		
-		JLabel nameText_1 = new JLabel("Nguyễn Đức Huy");
+		nameText_1 = new JLabel("Nguyễn Đức Huy");
 		nameText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameText_1.setBounds(825, 99, 218, 35);
+		
 		Info.add(nameText_1);
 		
 		JPanel panel = new JPanel();
@@ -205,6 +228,7 @@ public class UserInfoView extends JFrame {
 		tableConsume = new JTable();
 		scrollPaneConsume.setViewportView(tableConsume);
 		tableConsume.setModel(initialRow(columnNamesComsume));
+		tableConsume.setModel(Managed_Order.showListHistory(initialRow(columnNamesComsume)));
 		
 		JPanel managedDebit = new JPanel();
 		managedDebit.setLayout(null);
@@ -219,6 +243,7 @@ public class UserInfoView extends JFrame {
 		tableDebit = new JTable();
 		scrollPaneDebit.setViewportView(tableDebit);
 		tableDebit.setModel(initialRow(columnNamesDebit));
+		tableDebit.setModel(Managed_Payment.showListHistory(initialRow(columnNamesDebit)));
 		
 		JButton logoutButton = new JButton("Thoát");
 		logoutButton.addActionListener(action);
@@ -226,6 +251,8 @@ public class UserInfoView extends JFrame {
 		logoutButton.setBackground(Color.RED);
 		logoutButton.setBounds(427, 415, 292, 35);
 		panel.add(logoutButton);
+		
+		showInfo();
 	}
 	
 	private DefaultTableModel initialRow(String columnNames[]) {
@@ -236,5 +263,30 @@ public class UserInfoView extends JFrame {
 		}
 		
 		return defaultTableModel;
+	}
+	private void showInfo() {
+		String id = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getId();
+		String name = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getName();
+		String dob = String.valueOf(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getYearOfBirth());
+		String adrr = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getAddress().toString();
+		String status = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getStatus().toString();
+		
+		double debt = 0;
+		if(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt() != null)
+			debt = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt();
+		String zone = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getPlaceOfTreatment().getName();
+		String relative = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getRelativesString();
+		
+		
+		idText.setText(id.equals("") ?"không có dữ liệu":id);
+		nameText.setText(name.equals("") ? "không có dữ liệu":name);
+		idText_1.setText(dob.equals("") ? "không có dữ liệu":dob);
+		addrText.setText(adrr.equals("") ? "không có dữ liệu":adrr);
+		statusText.setText(status.equals("") ? "không có dữ liệu":status);
+		
+		debitText.setText(String.valueOf(debt));
+		addrText_1.setText(zone.equals("") ?"không có dữ liệu":zone);
+		nameText_1.setText(relative.equals("") ? "không có dữ liệu":relative);
+		
 	}
 }

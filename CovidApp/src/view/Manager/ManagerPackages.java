@@ -119,9 +119,8 @@ public class ManagerPackages extends JFrame {
 		});
 		scrollPanePackage.setViewportView(tableListPackage);
 		tableListPackage.setModel(initialRow());
-		//load dữ liệu lên bảng
-		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
-
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow(),false,false));
+		
 		packageForm = new JPanel();
 		packageForm.setBorder(new TitledBorder(
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
@@ -452,6 +451,6 @@ public class ManagerPackages extends JFrame {
 	}
 
 	public void loadData() {
-		tableListPackage.setModel(Managed_Package.showPackages(initialRow()));
+		tableListPackage.setModel(Managed_Package.showPackages(initialRow(),true,false));
 	}
 }

@@ -5,6 +5,15 @@ public class Zone {
 	String name;
 	int capacity;
 	int receivedSlot;
+	int EmptySlot;
+
+	public int getEmptySlot() {
+		return EmptySlot;
+	}
+
+	public void setEmptySlot(int emptySlot) {
+		EmptySlot = emptySlot;
+	}
 
 	public Zone(String id, String name, int capacity, int receivedSlot) {
 		this.id = id;
