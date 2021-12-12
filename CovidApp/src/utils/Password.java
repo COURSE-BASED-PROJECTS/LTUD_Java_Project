@@ -7,8 +7,10 @@ import java.security.NoSuchAlgorithmException;
 
 public class Password {
 	public static void main(String[] args) {
-		System.out.println(encrypt(""));
 		System.out.println(encrypt("a"));
+		System.out.println(encrypt("b"));
+		System.out.println(encrypt("c"));
+		System.out.println(encrypt("d"));
 	}
 	public static String encrypt(String pass) {
 		String result = null;

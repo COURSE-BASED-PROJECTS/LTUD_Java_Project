@@ -67,7 +67,7 @@ public class PaymentSystemView extends JFrame {
 		balanceLabel.setBounds(369, 77, 154, 35);
 		contentPane.add(balanceLabel);
 		
-		JButton paymentButton = new JButton("Thêm người bị quản lí");
+		JButton paymentButton = new JButton("Thêm người được quản lí");
 		//paymentButton.addActionListener(action);
 		paymentButton.setBackground(Color.GREEN);
 		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));

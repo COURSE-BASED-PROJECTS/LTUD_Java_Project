@@ -48,9 +48,11 @@ public class Managed_Status {
 			String sql = "Select * From LSTRANGTHAI Where CMND = '" + id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
+			int stt = 0;
 			while (rs.next()) {
 				Vector<String> row = new Vector<String>();
-				for (int i = 1; i <= numberColumn; i++) {
+				row.addElement("" + ++stt);
+				for (int i = 2; i <= numberColumn; i++) {
 					row.addElement(rs.getString(i).trim());
 				}
 
@@ -109,7 +111,7 @@ public class Managed_Status {
 		PreparedStatement stmt = null;
 		try {
 			stmt = con.prepareStatement(sql);
-			
+
 			stmt.setString(1, newStatus);
 			stmt.setString(2, idUpdate);
 
