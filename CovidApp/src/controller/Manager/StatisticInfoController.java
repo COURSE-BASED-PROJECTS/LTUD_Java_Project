@@ -24,15 +24,7 @@ public class StatisticInfoController implements ActionListener {
 		if (cm.equals("Thoát")) {
 			ManagerView mv = new ManagerView();
 			mv.setVisible(true);
-		} else if (cm.equals("")) {
-			
-			
-		} else if (cm.equals("")) {
-			
-		} else if (cm.equals("")) {
-			
-		}
-		
+		} 		
 	}
 
 }

@@ -5,6 +5,7 @@ import java.awt.event.ActionListener;
 
 import model.AccountCurrent;
 import view.User.BuyPackageView;
+import view.User.ChangePasswordView;
 import view.Admin.CreateAccount;
 import view.LoginView;
 import view.User.BuyPackageView;
@@ -22,7 +23,7 @@ public class UserController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
+//		System.out.println(cm);
 		if (cm != null) {
 //			view.setVisible(false);
 			view.dispose();
@@ -39,6 +40,9 @@ public class UserController implements ActionListener {
 		} else if (cm.equals("Thanh toán")) {
 			PayDebitView pdv = new PayDebitView();
 			pdv.setVisible(true);
+		} else if (cm.equals("Đổi mật khẩu")) {
+			ChangePasswordView cpv = new ChangePasswordView();
+			cpv.setVisible(true);
 		}
 		
 	}

@@ -68,7 +68,7 @@ public class DatabaseConnect {
 			
 			try {
 				con = DriverManager.getConnection(ConnectionUrl);
-				System.out.println("Successful Connection!");
+				//System.out.println("Successful Connection!");
 				
 			} catch (SQLException e) {
 				System.out.println("Failed Connection!");

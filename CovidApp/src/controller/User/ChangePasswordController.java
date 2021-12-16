@@ -5,15 +5,16 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
+import model.AccountCurrent;
 import model.managed.Managed_Account;
 import utils.Password;
-import view.User.UserInfoView;
-import view.changePasswordView;
+import view.User.ChangePasswordView;
+import view.User.UserView;
 
 public class ChangePasswordController implements ActionListener {
-	public changePasswordView view;
+	public ChangePasswordView view;
 
-	public void changePasswordView(changePasswordView view) {
+	public ChangePasswordController(ChangePasswordView view) {
 		this.view = view;
 	}
 
@@ -24,8 +25,8 @@ public class ChangePasswordController implements ActionListener {
 
 		if (cm.equals("Thoát")) {
 			this.view.dispose();
-			UserInfoView uiv = new UserInfoView();
-			uiv.setVisible(true);
+			UserView uv = new UserView();
+			uv.setVisible(true);
 		} else if (cm.equals("Đổi mật khẩu")) {
 			changePassAction();
 		}
@@ -33,8 +34,7 @@ public class ChangePasswordController implements ActionListener {
 	}
 
 	private void changePassAction() {
-		// Cần lấy được username từ User đổi mật khẩu
-		String username = "a"; //****
+		String username = AccountCurrent.getUsernameCurrent();
 		
 		String oldPass = Password.encrypt(this.view.getOldPassText().getText().toString().trim());
 		if (!Managed_Account.isAccount(username, oldPass)) {

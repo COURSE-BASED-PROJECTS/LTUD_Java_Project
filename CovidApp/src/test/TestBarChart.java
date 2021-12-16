@@ -1,8 +1,10 @@
 package test;
 
-import javax.swing.JFrame;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+
 import org.jfree.chart.ChartFactory;
-import org.jfree.chart.ChartPanel;
 import org.jfree.chart.JFreeChart;
 import org.jfree.chart.plot.PlotOrientation;
 import org.jfree.data.category.CategoryDataset;
@@ -32,15 +34,10 @@ public class TestBarChart {
     }
 
     public static void main(String[] args) {
-        ChartPanel chartPanel = new ChartPanel(createChart());
-        chartPanel.setPreferredSize(new java.awt.Dimension(560, 367));
-        JFrame frame = new JFrame();
-        frame.add(chartPanel);
-        frame.setTitle("Biểu đồ JFreeChart trong Java Swing");
-        frame.setSize(600, 400);
-        frame.setLocationRelativeTo(null);
-        frame.setResizable(false);
-        frame.setVisible(true);
+           
+        
+       
+
     }
 
 }

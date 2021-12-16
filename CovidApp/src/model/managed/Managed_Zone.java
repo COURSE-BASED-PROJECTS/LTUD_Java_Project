@@ -155,6 +155,32 @@ public class Managed_Zone {
 			System.out.println("Xóa KHU CÁCH LY không thành công");
 			e.printStackTrace();
 		}
-
+	}
+	public static Zone LockDownPlace(String idLockDown) {
+		Zone zone = new Zone(idLockDown); 
+		
+		Vector<String> row = new Vector<String>();
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From KHUCACHLY WHERE KHUCACHLY.MAKCL='"+idLockDown+"'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+			
+			while (rs.next()) {
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng KHUCACHLY");
+			e1.printStackTrace();
+		}
+		
+		zone.setName(row.get(1));
+		zone.setCapacity(Integer.valueOf(row.get(2)));
+		zone.setEmptySlot(Integer.valueOf(row.get(3)));
+		
+		return zone;
+		
 	}
 }

@@ -21,6 +21,7 @@ public class UserView extends JFrame {
 	private JButton buyPackage;
 	private JButton paymentButton;
 	private JButton logout;
+	private JButton changePassButton;
 
 	/**
 	 * Launch the application.
@@ -61,20 +62,26 @@ public class UserView extends JFrame {
 		InfoButton = new JButton("Thông tin cá nhân");
 		InfoButton.addActionListener(action);
 		InfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		InfoButton.setBounds(87, 56, 165, 77);
+		InfoButton.setBounds(80, 50, 180, 70);
 		feature.add(InfoButton);
 		
 		buyPackage = new JButton("Mua nhu yếu phẩm");
 		buyPackage.addActionListener(action);
 		buyPackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		buyPackage.setBounds(342, 56, 184, 77);
+		buyPackage.setBounds(350, 50, 180, 70);
 		feature.add(buyPackage);
 		
 		paymentButton = new JButton("Thanh toán");
 		paymentButton.addActionListener(action);
 		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		paymentButton.setBounds(87, 173, 439, 77);
+		paymentButton.setBounds(80, 170, 180, 70);
 		feature.add(paymentButton);
+		
+		changePassButton = new JButton("Đổi mật khẩu");
+		changePassButton.addActionListener(action);
+		changePassButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		changePassButton.setBounds(350, 170, 180, 70);
+		feature.add(changePassButton);
 		
 		logout = new JButton("Đăng xuất");
 		logout.addActionListener(action);

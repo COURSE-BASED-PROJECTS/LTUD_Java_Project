@@ -85,7 +85,6 @@ public class Managed_Status {
 	public static void addStatusHistory(String id, String oldStatus, String newStatus) {
 		SimpleDateFormat sdfDate = new SimpleDateFormat("yyyy-MM-dd");
 		String strDate = sdfDate.format(new Date());
-
 		Connection con = DatabaseConnect.openConnection();
 		String sql = "INSERT INTO LSTRANGTHAI(CMND, TRANGTHAICU, TRANGTHAIMOI, THOIGIAN)" + "	VALUES (?,?,?,?)";
 		PreparedStatement stmt = null;
@@ -150,5 +149,54 @@ public class Managed_Status {
 				}
 			}
 		}
+	}
+
+	public static int getNumberOfStatusTransitions() {
+		int count = 0;
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select count(*) From LSTRANGTHAI";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSTRANGTHAI");
+			e1.printStackTrace();
+		}
+		return count;
+	}
+
+	public static int getNumberOf(String status) {
+		int count = 0;
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select count(*) From NGUOIDUNG Where TRANGTHAI = N'" + status + "'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSTRANGTHAI");
+			e1.printStackTrace();
+		}
+		return count;
+	}
+
+	public static int getNumberOf(String status, String dateSql) {
+		int count = 0;
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select count(*) From LSTRANGTHAI Where TRANGTHAIMOI = N'" + status + "' AND THOIGIAN = '"
+					+ dateSql + "'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				count = rs.getInt(1);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSTRANGTHAI");
+			e1.printStackTrace();
+		}
+		return count;
 	}
 }

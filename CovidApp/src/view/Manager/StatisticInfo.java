@@ -5,6 +5,10 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Vector;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -24,13 +28,12 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 import controller.Manager.StatisticInfoController;
+import model.managed.Managed_Package;
+import model.managed.Managed_Status;
 
 public class StatisticInfo extends JFrame {
 
 	private JPanel contentPane;
-	private String[] columnNames = new String[] { "Thời gian", "Số Người F0", "Số Người F1", "Số Người F2",
-			"Số chuyển trạng thái", "Số người khỏi bệnh", "Số gói NYP tiêu thụ", "Số tiền dư nợ" };
-
 	/**
 	 * Launch the application.
 	 */
@@ -127,23 +130,13 @@ public class StatisticInfo extends JFrame {
 		contentPane.add(outButton);
 	}
 
-	private DefaultTableModel initialRow() {
-		DefaultTableModel defaultTableModel = new DefaultTableModel();
-
-		for (int i = 0; i < columnNames.length; i++) {
-			defaultTableModel.addColumn(columnNames[i]);
-		}
-
-		return defaultTableModel;
-	}
-
 	public static JFreeChart createChart(String type) {
 		JFreeChart chart = null;
 		if (type.equals("Status")) {
 			chart = ChartFactory.createBarChart("BIỂU ĐỒ TRẠNG THÁI", "Thời gian", "Số người", createDataset(type),
 					PlotOrientation.VERTICAL, true, true, true);
 		} else if (type.equals("Package")) {
-			chart = ChartFactory.createBarChart("BIỂU ĐỒ TIÊU THỤ GÓI NYP", "", "Số lượng",
+			chart = ChartFactory.createBarChart("BIỂU ĐỒ TIÊU THỤ GÓI NHU YẾU PHẨM", "", "Số lượng",
 					createDataset(type), PlotOrientation.VERTICAL, true, true, true);
 		} else if (type.equals("Infor")) {
 			chart = ChartFactory.createBarChart("BIỂU ĐỒ THÔNG TIN", "", "Số lượng",
@@ -157,36 +150,48 @@ public class StatisticInfo extends JFrame {
 	private static CategoryDataset createDataset(String type) {
 		final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
 		if (type.equals("Status")) {
-			dataset.addValue(100, "F0", "2021-12-11");
-			dataset.addValue(50, "F1", "2021-12-11");
-			dataset.addValue(100, "F2", "2021-12-11");
-			dataset.addValue(50, "F3", "2021-12-11");
-			dataset.addValue(50, "Khỏi bệnh", "2021-12-11");
-
-			dataset.addValue(200, "F0", "2021-12-12");
-			dataset.addValue(250, "F1", "2021-12-12");
-			dataset.addValue(300, "F2", "2021-12-12");
-			dataset.addValue(400, "F3", "2021-12-12");
-			dataset.addValue(50, "Khỏi bệnh", "2021-12-12");
-			
+			 SimpleDateFormat formatter = new SimpleDateFormat("dd/MM");
+			 SimpleDateFormat formatterSql = new SimpleDateFormat("yyyy-MM-dd"); 
+		        for (int i = 6; i >= 0; i--) {
+		        	Calendar cal = Calendar.getInstance();
+		        	cal.add(Calendar.DATE, -i);
+		            Date date = cal.getTime();    
+		            String fromdate = formatter.format(date);
+		            String dateSql = formatterSql.format(date);
+		            int numF0 = Managed_Status.getNumberOf("F0", dateSql);
+		            int numF1 = Managed_Status.getNumberOf("F1", dateSql);
+		            int numF2 = Managed_Status.getNumberOf("F2", dateSql);
+		            int numF3 = Managed_Status.getNumberOf("F3", dateSql);
+		            int numCured = Managed_Status.getNumberOf("Khỏi bệnh", dateSql);
+		            
+		            dataset.addValue(numF0, "F0", fromdate);
+					dataset.addValue(numF1, "F1", fromdate);
+					dataset.addValue(numF2, "F2", fromdate);
+					dataset.addValue(numF3, "F3", fromdate);
+					dataset.addValue(numCured, "Khỏi bệnh", fromdate);
+				}				
 		} else if (type.equals("Package")) {
-			dataset.addValue(10, "NYP01", "");
-			dataset.addValue(20, "NYP02", "");
-			dataset.addValue(15, "NYP03", "");
-			dataset.addValue(4, "NYP04", "");
+			Vector<String> listId = Managed_Package.getListId();
+			for (String id : listId) {
+				int amount = Managed_Package.getAmountOfConsumption(id);
+				dataset.addValue(amount, id, "");
+			}
 
 		} else if (type.equals("Infor")) {
-			dataset.addValue(100, "Chuyển trạng thái", "");
-			dataset.addValue(20, "Khỏi bệnh", "");
-			dataset.addValue(50, "F0", "");
+			int numberOfStatusTransitions = Managed_Status.getNumberOfStatusTransitions();
+			int numberOfCured = Managed_Status.getNumberOf("Khỏi bệnh");
+			int numberOfF0 = Managed_Status.getNumberOf("F0");
+			dataset.addValue(numberOfStatusTransitions, "Chuyển trạng thái", "");
+			dataset.addValue(numberOfCured, "Khỏi bệnh", "");
+			dataset.addValue(numberOfF0, "F0", "");
 		}
 
 		return dataset;
 	}
 	private static PieDataset createPieDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Đã thanh toán", new Double(34.0));
         dataset.setValue("Chưa thanh toán", new Double(66.0));
+        dataset.setValue("Đã thanh toán", new Double(34.0));
         return dataset;
     }
 }

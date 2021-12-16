@@ -85,9 +85,12 @@ public class Managed_User {
 		// 5',N'TP.HCM')
 		String sql = "INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH,NGUOILIENQUAN,NOICACHLY)"
 				+ "	VALUES  (?,?,?,?,?,?,?,?,?)";
-		PreparedStatement stmt;
+		
+		PreparedStatement stmt = null;
+		
 		try {
 			stmt = con.prepareStatement(sql);
+			
 			stmt.setString(1, user.getId());
 			stmt.setString(2, user.getName());
 			stmt.setInt(3, user.getYearOfBirth());
@@ -99,6 +102,7 @@ public class Managed_User {
 			stmt.setString(9, user.getPlaceOfTreatment().getId());
 
 			stmt.executeUpdate();
+			Managed_Status.addStatusHistory(user.getId(), "", user.getStatus().getF());
 		} catch (SQLException e) {
 			System.out.println("Thêm NGUOIDUNG không thành công");
 			e.printStackTrace();
@@ -128,7 +132,7 @@ public class Managed_User {
 		user.setYearOfBirth(Integer.valueOf(row.get(2)));
 		user.setStatus(row.get(3).contains("F2")?F.F2:(row.get(3).contains("F1")?F.F1:F.F0));
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
-		user.setPlaceOfTreatment(Managed_User.LockDownPlace(row.get(8)));
+		user.setPlaceOfTreatment(Managed_Zone.LockDownPlace(row.get(8)));
 		user.setRelativesString(searchNameRelativeById(row.get(4)));
 		return user;
 	}
@@ -155,38 +159,7 @@ public class Managed_User {
 		
 	}
 	
-	public static Zone LockDownPlace(String idLockDown) {
-		Zone zone = new Zone(idLockDown); 
-		
-		Vector<String> row = new Vector<String>();
-		try {
-			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From KHUCACHLY WHERE KHUCACHLY.MAKCL='"+idLockDown+"'";
-			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
-			int numberColumn = rs.getMetaData().getColumnCount();
-			
-			while (rs.next()) {
-				for (int i = 1; i <= numberColumn; i++) {
-					row.addElement(rs.getString(i));
-				}
-			}
-		} catch (SQLException e1) {
-			System.out.println("Lỗi trong khi load dữ liệu từ bảng KHUCACHLY");
-			e1.printStackTrace();
-		}
-		
-		zone.setName(row.get(1));
-		zone.setCapacity(Integer.valueOf(row.get(2)));
-		zone.setEmptySlot(Integer.valueOf(row.get(3)));
-		
-		return zone;
-		
-	}
 	
-	
-
-
-
 	public static void modifyUser(User user, String idModify) {
 		Connection con = DatabaseConnect.openConnection();
 		// UPDATE NGUOIDUNG

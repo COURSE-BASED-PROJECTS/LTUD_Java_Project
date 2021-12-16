@@ -179,6 +179,10 @@ public class ManagerUsersController implements ActionListener {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD phải là dãy số");
 			return null;
 		}
+		if (Managed_User.findById(id) != null) {
+			JOptionPane.showMessageDialog(view, "CMND/CCCD đã tồn tại");
+			return null;
+		}
 
 		if (name.length() == 0) {
 			JOptionPane.showMessageDialog(view, "Chưa nhập tên User");
