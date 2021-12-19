@@ -77,7 +77,6 @@ public class Managed_User {
 		}
 		return tableModel;
 	}
-
 	public static void addUser(User user) {
 		Connection con = DatabaseConnect.openConnection();
 		// INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH)

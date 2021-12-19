@@ -13,8 +13,6 @@ import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
-//import controller.PaymentSystem.PaymentSystemController;
-
 public class PaymentSystemView extends JFrame {
 
 	private JPanel contentPane;
@@ -97,7 +95,5 @@ public class PaymentSystemView extends JFrame {
 		panel.setBorder(new TitledBorder(null, "Qu\u1EA3n l\u00ED thanh to\u00E1n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
 		panel.setBounds(94, 54, 503, 187);
 		contentPane.add(panel);
-		
-//		Managed_User.showPaymentUser(debitCurrentText, balanceCurrentText, Managed_Account.setAccount(AccountCurrent.getUsernameCurrent()));
 	}
 }

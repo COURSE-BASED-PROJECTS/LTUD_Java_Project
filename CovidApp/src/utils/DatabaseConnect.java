@@ -140,5 +140,26 @@ public class DatabaseConnect {
 		
 		return rs;
 	}
+	
+	public static Connection connectDB_Payment() {
+		Connection con = null;
+		
+		try {
+			Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+			String ConnectionUrl = "jdbc:sqlserver://localhost;databaseName=DB_Payment;integratedSecurity=true;";
+			
+			try {
+				con = DriverManager.getConnection(ConnectionUrl);
+				System.out.println("Successful Connection DB_Payment!");
+				
+			} catch (SQLException e) {
+				System.out.println("Failed Connection DB_Payment!");
+			}
+			
+		} catch (ClassNotFoundException e) {
+			System.out.println("Failed Connection DB_Payment!");
+		}
+		return con;
+	}
 }
 

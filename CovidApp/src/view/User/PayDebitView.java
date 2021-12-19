@@ -4,12 +4,19 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.net.Socket;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -22,6 +29,7 @@ import javax.swing.text.DocumentFilter;
 import controller.User.PayDebitController;
 import model.AccountCurrent;
 import model.managed.Managed_Account;
+import model.managed.Managed_Payment;
 import model.managed.Managed_User;
 
 public class PayDebitView extends JFrame {
@@ -29,7 +37,8 @@ public class PayDebitView extends JFrame {
 	private JPanel contentPane;
 	private JTextField paymentMinimumText;
 	private JLabel debitCurrentText;
-	
+	private JLabel balanceCurrentText;
+
 	public JLabel getBalanceCurrentText() {
 		return balanceCurrentText;
 	}
@@ -39,9 +48,12 @@ public class PayDebitView extends JFrame {
 	public JLabel getDebitCurrentText() {
 		return debitCurrentText;
 	}
-
-	private JLabel balanceCurrentText;
-
+	public void setBalanceCurrentText(String curr) {
+		balanceCurrentText.setText(curr);;
+	}
+	public void setDebitCurrentText(String curr) {
+		balanceCurrentText.setText(curr);;
+	}
 	/**
 	 * Launch the application.
 	 */
@@ -110,13 +122,13 @@ public class PayDebitView extends JFrame {
 		paymentMinimumText.setBounds(261, 228, 281, 51);
 		contentPane.add(paymentMinimumText);
 		
-		debitCurrentText = new JLabel("200.000");
+		debitCurrentText = new JLabel("Debit");
 		debitCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitCurrentText.setFont(new Font("Tahoma", Font.BOLD, 15));
 		debitCurrentText.setBounds(204, 77, 123, 35);
 		contentPane.add(debitCurrentText);
 		
-		balanceCurrentText = new JLabel("1.000.000");
+		balanceCurrentText = new JLabel("Balance");
 		balanceCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
 		balanceCurrentText.setFont(new Font("Tahoma", Font.BOLD, 15));
 		balanceCurrentText.setBounds(292, 148, 143, 35);

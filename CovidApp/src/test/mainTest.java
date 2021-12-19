@@ -1,12 +1,18 @@
 package test;
 
+import java.io.IOException;
+import java.net.InetAddress;
+import java.net.ServerSocket;
+import java.net.Socket;
+
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 
+import PaymentSystem.PaymentSystemView;
 import model.Account;
 import model.Role;
 import model.managed.Managed_Account;
-import utils.Password;
+import utils.ServerThread;
 import view.LoginView;
 
 public class mainTest {
@@ -25,6 +31,9 @@ public class mainTest {
 			}
 			LoginView lv = new LoginView();
 			lv.setVisible(true);
+			
+			ServerThread.startServer();
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}

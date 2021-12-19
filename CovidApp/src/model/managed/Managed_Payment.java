@@ -46,11 +46,11 @@ public class Managed_Payment extends Managed_General{
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
-			stmt.setString(1, paymentHistory.randomCodeHistory());
+			stmt.setString(1, paymentHistory.getMaGD());
 			stmt.setString(2, paymentHistory.getCMND());
 			stmt.setDouble(3, paymentHistory.getDebit());
 			stmt.setDouble(4, paymentHistory.getMinDebt());
-			stmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+			stmt.setTimestamp(5, paymentHistory.getTime());
 			
 			result = stmt.executeUpdate() > 0;
 			stmt.close();
@@ -67,7 +67,7 @@ public class Managed_Payment extends Managed_General{
 		Connection con = DatabaseConnect.openConnection();
 		boolean result = false;
 		String sql = "UPDATE TAIKHOAN SET SODU=?, DUNO=? "
-				+ "WHERE TAIKHOAN=? ";
+				+ " WHERE TAIKHOAN=? ";
 		
 		try {
 			PreparedStatement stmt = null;
@@ -85,7 +85,9 @@ public class Managed_Payment extends Managed_General{
 			e.printStackTrace();
 		}
 		
-		return result;
+		return result;	
+	}
+	private void openConnection() {
 		
 	}
 }

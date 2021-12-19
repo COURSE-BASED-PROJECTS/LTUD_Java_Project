@@ -336,6 +336,7 @@ public class ManagerUsersController implements ActionListener {
 		this.view.getTableListUser().setModel(Managed_User.showListUser(this.view.initialRow()));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void loadDistrict() {
 		// System.out.println("loadDistrict:");
 		// System.out.println(this.getCity().getSelectedItem().toString().trim());
@@ -343,6 +344,7 @@ public class ManagerUsersController implements ActionListener {
 				Managed_Address.getListDistrict(this.view.getCity().getSelectedItem().toString().trim())));
 	}
 
+	@SuppressWarnings("unchecked")
 	public void loadTown() {
 		// System.out.println("loadTown:");
 		// System.out.println(this.getCity().getSelectedItem().toString().trim());

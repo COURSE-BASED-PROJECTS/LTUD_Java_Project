@@ -4,7 +4,8 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import PaymentSystem.PaymentSystemView;
-import view.User.*;
+import view.LoginView;
+import view.Admin.CreateAccount;
 
 public class PaymentSystemController implements ActionListener {
 	public PaymentSystemView view;
@@ -16,22 +17,19 @@ public class PaymentSystemController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
-		if (cm != null) {
-			view.setVisible(false);
-		}
 		if (cm.equals("Thoát")) {
-			UserView uv = new UserView();
-			uv.setVisible(true);
-		} else if (cm.equals("")) {
 			
+			this.view.dispose();
 			
-		} else if (cm.equals("")) {
+			LoginView lv = new LoginView();
+			lv.setVisible(true);
 			
-		} else if (cm.equals("")) {
+		} else if (cm.equals("Thêm người được quản lí")) {
+			CreateAccount ca = new CreateAccount();
+			ca.setVisible(true);
 			
+		}else if (cm.equals("...")) {
+			//Bảng tài khoản + bảng giao dịch của DB_Payment
 		}
-		
 	}
-
 }
