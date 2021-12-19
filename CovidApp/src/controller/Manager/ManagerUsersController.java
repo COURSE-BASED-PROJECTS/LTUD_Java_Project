@@ -8,7 +8,6 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
-import model.AccountCurrent;
 import model.Address;
 import model.F;
 import model.User;
@@ -49,13 +48,18 @@ public class ManagerUsersController implements ActionListener {
 			modifyAction();
 
 		} else if (cm.equals("Xóa")) {
-			delAction();
+			//delAction();
 			loadData();
 
 		} else if (cm.equals("Đặt lại")) {
-			clearForm();
-			loadData();
-
+			String ops[] = { "Có", "Không", "Thoát" };
+			int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn đặt lại?", "Xác nhận đặt lại", JOptionPane.NO_OPTION,
+					JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
+			// System.out.println(op);
+			if (op == 0) {
+				clearForm();
+				loadData();
+			}
 		} else if (cm.equals("Lưu")) {
 			saveAction(previousCm);
 			loadData();
@@ -109,7 +113,7 @@ public class ManagerUsersController implements ActionListener {
 
 	private void sortAction(String type) {
 		String col = this.view.getSortGroup().getSelection().getActionCommand();
-		System.out.println(col);
+		//System.out.println(col);
 		if (col.equals("CMND")) {
 			this.view.getTableListUser().setModel(Managed_User.sortBy("CMND", type, this.view.initialRow()));
 		} else if (col.equals("Họ tên")) {
@@ -160,11 +164,21 @@ public class ManagerUsersController implements ActionListener {
 			Managed_History.addManagerHistory(previousCm, "NGUOIDUNG", user.getId());
 			if (previousCm.equals("Thêm")) {
 				Managed_User.addUser(user);
+				int receivedSlot = Managed_Zone.getReceivedSlot(user.getPlaceOfTreatment().getId()) + 1;
+				Managed_Zone.updateReceivedSlot(user.getPlaceOfTreatment().getId(), receivedSlot);
 			} else {
 				int i = this.view.getTableListUser().getSelectedRow();
 				TableModel model = this.view.getTableListUser().getModel();
 				String idModify = model.getValueAt(i, 0).toString().trim();
 				//System.out.println(idModify);
+				String oldZone = model.getValueAt(i, 6).toString().trim();
+				String newZone = user.getPlaceOfTreatment().getId();
+				if (!oldZone.equals(newZone)) {
+					int newReceivedSlot = Managed_Zone.getReceivedSlot(newZone) + 1;
+					int oldReceivedSlot = Managed_Zone.getReceivedSlot(newZone) - 1;
+					Managed_Zone.updateReceivedSlot(newZone, newReceivedSlot);
+					Managed_Zone.updateReceivedSlot(oldZone, oldReceivedSlot);
+				}
 				Managed_User.modifyUser(user, idModify);
 			}
 			clearForm();
@@ -227,7 +241,10 @@ public class ManagerUsersController implements ActionListener {
 			status = F.CURED;
 		}
 		if (zoneName.equals("Nơi điều trị/cách ly")) {
-			JOptionPane.showMessageDialog(view, "Chưa chọn nơi điều trị/cách ly");
+			JOptionPane.showMessageDialog(view, "Chưa chọn nơi điều trị/cách ly!");
+			return null;
+		} else if (Managed_Zone.isFull(zoneName)) {
+			JOptionPane.showMessageDialog(view, "Khu điều trị/cách ly đã đầy!");
 			return null;
 		}
 		Zone zone = new Zone(Managed_Zone.getIdFromZoneName(zoneName));
