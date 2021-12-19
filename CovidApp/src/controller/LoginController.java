@@ -16,6 +16,7 @@ import utils.Password;
 import view.LoginView;
 import view.Admin.AdminView;
 import view.Manager.ManagerView;
+import view.User.ChangePasswordView;
 import view.User.UserView;
 
 public class LoginController implements ActionListener {
@@ -37,6 +38,7 @@ public class LoginController implements ActionListener {
 //				view.setVisible(false);
 				view.dispose();
 				String role = Managed_Account.getRole(username);
+				String pass = Managed_Account.getPassword(username);
 				AccountCurrent.setUsernameCurrent(username);
 				
 				switch (role) {
@@ -49,6 +51,11 @@ public class LoginController implements ActionListener {
 					av.setVisible(true);
 					break;
 				case "NGUOIDUNG":
+					if (pass.equals(Password.encrypt(username))) {
+						ChangePasswordView cpv = new ChangePasswordView();
+						cpv.setVisible(true);
+						break;
+					}
 					UserView uv = new UserView();
 					uv.setVisible(true);
 					break;
@@ -56,7 +63,7 @@ public class LoginController implements ActionListener {
 					break;
 				}
 			} else {
-				JOptionPane.showMessageDialog(view, "Đăng nhập thất bại");
+				JOptionPane.showMessageDialog(view, "Tài khoản không tồn tại hoặc đã bị khóa");
 			}
 
 		}

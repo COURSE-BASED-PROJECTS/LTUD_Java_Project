@@ -21,7 +21,6 @@ public class ChangePasswordController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		System.out.println(cm);
 
 		if (cm.equals("Thoát")) {
 			this.view.dispose();
@@ -43,13 +42,16 @@ public class ChangePasswordController implements ActionListener {
 		}
 		String newPass = Password.encrypt(this.view.getNewPassText().getText().toString().trim());
 		String newAgainPass = Password.encrypt(this.view.getNewPassText().getText().toString().trim());
-		
+		if (oldPass.equals(newPass)) {
+			JOptionPane.showMessageDialog(view, "Mật khẩu mới không được trùng mật khẩu cũ");
+			return;
+		}
 		if (newPass.equals(newAgainPass)) {
 			Managed_Account.changePassword(username, newPass);
 			JOptionPane.showMessageDialog(view, "Đổi mật khẩu thành công");
-			this.view.getOldPassText().setText("");
-			this.view.getNewPassText().setText("");
-			this.view.getNewPassAgainText().setText("");
+			this.view.dispose();
+			UserView uv = new UserView();
+			uv.setVisible(true);
 		} else {
 			JOptionPane.showMessageDialog(view, "Nhập lại mật khẩu mới không đúng");
 		}

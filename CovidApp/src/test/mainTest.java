@@ -32,7 +32,7 @@ public class mainTest {
 			LoginView lv = new LoginView();
 			lv.setVisible(true);
 			
-			ServerThread.startServer();
+			//ServerThread.startServer();
 			
 		} catch (Exception ex) {
 			ex.printStackTrace();

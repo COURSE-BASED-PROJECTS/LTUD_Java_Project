@@ -7,7 +7,7 @@ import java.security.NoSuchAlgorithmException;
 
 public class Password {
 	public static void main(String[] args) {
-		System.out.println(encrypt("0213489216"));
+		System.out.println(encrypt("QuanTriCOVID"));
 	}
 	public static String encrypt(String pass) {
 		String result = null;

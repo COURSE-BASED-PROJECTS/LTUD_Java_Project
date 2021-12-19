@@ -61,19 +61,19 @@ public class ManagerView extends JFrame {
 		manageUser = new JButton("Quản lí người dùng");
 		manageUser.addActionListener(action);
 		manageUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		manageUser.setBounds(87, 56, 165, 77);
+		manageUser.setBounds(87, 56, 200, 80);
 		feature.add(manageUser);
 		
 		managePackage = new JButton("Quản lí nhu yếu phẩm");
 		managePackage.addActionListener(action);
 		managePackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		managePackage.setBounds(361, 56, 165, 77);
+		managePackage.setBounds(361, 56, 200, 80);
 		feature.add(managePackage);
 		
 		statisticInfo = new JButton("Thống kê thông tin");
 		statisticInfo.addActionListener(action);
 		statisticInfo.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		statisticInfo.setBounds(87, 173, 439, 77);
+		statisticInfo.setBounds(87, 173, 474, 80);
 		feature.add(statisticInfo);
 		
 		logout = new JButton("Đăng xuất");

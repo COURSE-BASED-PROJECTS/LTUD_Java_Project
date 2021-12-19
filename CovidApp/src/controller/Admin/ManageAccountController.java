@@ -4,11 +4,14 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
+import javax.swing.table.TableModel;
 
 import model.managed.Managed_Account;
 import model.managed.Managed_Zone;
 import view.Admin.AdminView;
 import view.Admin.ManageAccount;
+import view.Admin.ManagerHistory;
+import view.Admin.UserHistory;
 
 public class ManageAccountController implements ActionListener {
 	public ManageAccount view;
@@ -33,11 +36,30 @@ public class ManageAccountController implements ActionListener {
 			this.view.loadData();
 			
 		} else if (cm.equals("Xem lịch sử hoạt động")) {
-			
-			
+			viewHistoryAction();			
 		}
 	}
 	
+	private void viewHistoryAction() {
+		int i = this.view.getAccountTable().getSelectedRow();
+		if (i == -1) {
+			JOptionPane.showMessageDialog(view, "Chưa chọn tài khoản để xem lịch sử hoạt động");
+		} else {
+			this.view.dispose();
+			TableModel model = this.view.getAccountTable().getModel();
+			String id = model.getValueAt(i, 0).toString().trim();
+			String role = model.getValueAt(i, 2).toString().trim();
+			if (role.equals("QUANLY")) {
+				ManagerHistory mh = new ManagerHistory(id);
+				mh.setVisible(true);
+			} else if (role.equals("NGUOIDUNG")) {
+				UserHistory uh = new UserHistory(id);
+				uh.setVisible(true);
+			}
+		}
+		
+	}
+
 	private void lockAction() {		
 		String id = this.view.getTextField().getText();
 		if (id.length() == 0) {

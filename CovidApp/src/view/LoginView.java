@@ -93,8 +93,8 @@ public class LoginView extends JFrame {
 	}
 
 	public Account getAccount() {
-		account.setUserName(tf_username.getText().trim());
-		account.setPassword(String.valueOf(passwordField.getPassword()).trim());
+		account.setUserName(tf_username.getText());
+		account.setPassword(String.valueOf(passwordField.getPassword()));
 		return account;
 	}
 }

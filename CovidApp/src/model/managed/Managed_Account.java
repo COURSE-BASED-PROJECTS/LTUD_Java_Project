@@ -136,7 +136,7 @@ public class Managed_Account {
 		try {
 			Connection con = DatabaseConnect.openConnection();
 			String sql = "Select count(*) From TAIKHOAN Where TAIKHOAN = '" + username + "' AND MATKHAU = '" + password
-					+ "'";
+					+ "' AND TINHTRANG = 1";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			while (rs.next()) {
 				if (rs.getInt(1) == 1) {
@@ -197,6 +197,24 @@ public class Managed_Account {
 			e.printStackTrace();
 		}
 
+	}
+
+	public static String getPassword(String username) {
+		String pass = "";
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select MATKHAU From TAIKHOAN Where TAIKHOAN = '" + username + "'";
+
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				pass = rs.getString(1).trim();
+				return pass;
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN");
+			e1.printStackTrace();
+		}
+		return pass;
 	}
 }
 

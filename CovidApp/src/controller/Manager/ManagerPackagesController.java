@@ -15,6 +15,7 @@ import javax.swing.JTable;
 import javax.swing.table.TableModel;
 
 import model.Package;
+import model.managed.Managed_History;
 import model.managed.Managed_Package;
 import model.managed.Managed_Zone;
 import utils.DatabaseConnect;
@@ -149,12 +150,14 @@ public class ManagerPackagesController implements ActionListener {
 		if (i == -1) {
 			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xóa");
 		}
-		String id = this.view.getIdText().getText().toString().trim();
 		String ops[] = { "Có", "Không", "Thoát" };
 		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
 		// System.out.println(op);
 		if (op == 0) {
+			TableModel model = this.view.getTableListPackage().getModel();
+			String id = model.getValueAt(i, 0).toString().trim();
+			Managed_History.addManagerHistory("Xóa", "NHUYEUPHAM", id);
 			Managed_Package.delPackage(id);
 		}
 	}
@@ -189,6 +192,7 @@ public class ManagerPackagesController implements ActionListener {
 		Package pk = validatedData(id, name, limit, timeLimit, price);
 
 		if (pk != null) {
+			Managed_History.addManagerHistory(previousCm, "NHUYEUPHAM", pk.getId());
 			if (previousCm.equals("Thêm")) {
 				Managed_Package.addPackage(pk);
 			} else {

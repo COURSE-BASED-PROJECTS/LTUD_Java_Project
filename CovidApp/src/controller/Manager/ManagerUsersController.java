@@ -8,11 +8,13 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.table.TableModel;
 
+import model.AccountCurrent;
 import model.Address;
 import model.F;
 import model.User;
 import model.Zone;
 import model.managed.Managed_Address;
+import model.managed.Managed_History;
 import model.managed.Managed_User;
 import model.managed.Managed_Zone;
 import view.Manager.ManagerUsers;
@@ -31,7 +33,7 @@ public class ManagerUsersController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		System.out.println(cm);
+		//System.out.println(cm);
 		if (cm.equals("Thoát")) {
 			view.dispose();
 			ManagerView mv = new ManagerView();
@@ -134,6 +136,8 @@ public class ManagerUsersController implements ActionListener {
 				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
 		// System.out.println(op);
 		if (op == 0) {
+			TableModel model = this.view.getTableListUser().getModel();
+			Managed_History.addManagerHistory("Xóa", "NGUOIDUNG", model.getValueAt(i, 0).toString().trim());
 			Managed_User.delUser(id);
 		}
 
@@ -153,13 +157,14 @@ public class ManagerUsersController implements ActionListener {
 		User user = validateUser(name, id, year, ward, district, city, f, zoneName, relative);
 		// System.out.println(user.toString());
 		if (user != null) {
+			Managed_History.addManagerHistory(previousCm, "NGUOIDUNG", user.getId());
 			if (previousCm.equals("Thêm")) {
 				Managed_User.addUser(user);
 			} else {
 				int i = this.view.getTableListUser().getSelectedRow();
 				TableModel model = this.view.getTableListUser().getModel();
 				String idModify = model.getValueAt(i, 0).toString().trim();
-				System.out.println(idModify);
+				//System.out.println(idModify);
 				Managed_User.modifyUser(user, idModify);
 			}
 			clearForm();
@@ -179,7 +184,7 @@ public class ManagerUsersController implements ActionListener {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD phải là dãy số");
 			return null;
 		}
-		if (Managed_User.findById(id) != null) {
+		if (Managed_User.findById(id) != null && previousCm.equals("Thêm")) {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD đã tồn tại");
 			return null;
 		}

@@ -42,12 +42,11 @@ public class Managed_User {
 		}
 	}
 
-	
 	public static void showPaymentUser(JLabel debitCurrentText, JLabel balanceCurrentText, Account account) {
-		debitCurrentText.setText(account.getDebit()==null?"0":account.getDebit());
-		balanceCurrentText.setText(account.getBalance()==null?"0":account.getBalance());
+		debitCurrentText.setText(account.getDebit() == null ? "0" : account.getDebit());
+		balanceCurrentText.setText(account.getBalance() == null ? "0" : account.getBalance());
 	}
-	
+
 	public static DefaultTableModel showListUser(DefaultTableModel tableModel) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
@@ -69,14 +68,14 @@ public class Managed_User {
 				}
 				tableModel.addRow(row);
 			}
-		} catch (
-
-		SQLException e1) {
+			con.close();
+		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
 		}
 		return tableModel;
 	}
+
 	public static void addUser(User user) {
 		Connection con = DatabaseConnect.openConnection();
 		// INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH)
@@ -84,12 +83,12 @@ public class Managed_User {
 		// 5',N'TP.HCM')
 		String sql = "INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH,NGUOILIENQUAN,NOICACHLY)"
 				+ "	VALUES  (?,?,?,?,?,?,?,?,?)";
-		
+
 		PreparedStatement stmt = null;
-		
+
 		try {
 			stmt = con.prepareStatement(sql);
-			
+
 			stmt.setString(1, user.getId());
 			stmt.setString(2, user.getName());
 			stmt.setInt(3, user.getYearOfBirth());
@@ -101,22 +100,25 @@ public class Managed_User {
 			stmt.setString(9, user.getPlaceOfTreatment().getId());
 
 			stmt.executeUpdate();
+			stmt.close();
+			con.close();
 			Managed_Status.addStatusHistory(user.getId(), "", user.getStatus().getF());
 		} catch (SQLException e) {
 			System.out.println("Thêm NGUOIDUNG không thành công");
 			e.printStackTrace();
 		}
 	}
+
 	public static User setUser(String id) {
-		
+
 		User user = new User(id);
 		Vector<String> row = new Vector<String>();
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From NGUOIDUNG WHERE NGUOIDUNG.CMND='"+id+"'";
+			String sql = "Select * From NGUOIDUNG WHERE NGUOIDUNG.CMND='" + id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
-			
+
 			while (rs.next()) {
 				for (int i = 1; i <= numberColumn; i++) {
 					row.addElement(rs.getString(i));
@@ -126,39 +128,39 @@ public class Managed_User {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
 		}
-		
+
 		user.setName(row.get(1));
 		user.setYearOfBirth(Integer.valueOf(row.get(2)));
-		user.setStatus(row.get(3).contains("F2")?F.F2:(row.get(3).contains("F1")?F.F1:F.F0));
+		user.setStatus(row.get(3).contains("F2") ? F.F2 : (row.get(3).contains("F1") ? F.F1 : F.F0));
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
 		user.setPlaceOfTreatment(Managed_Zone.LockDownPlace(row.get(8)));
 		user.setRelativesString(searchNameRelativeById(row.get(4)));
 		return user;
 	}
-	
+
 	public static String searchNameRelativeById(String id) {
 		Vector<String> row = new Vector<String>();
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From NGUOIDUNG WHERE NGUOIDUNG.CMND='"+id+"'";
+			String sql = "Select * From NGUOIDUNG WHERE NGUOIDUNG.CMND='" + id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
-			
+
 			while (rs.next()) {
 				for (int i = 1; i <= numberColumn; i++) {
 					row.addElement(rs.getString(i));
 				}
 			}
+			con.close();
 		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
 		}
-		
+
 		return row.get(1);
-		
+
 	}
-	
-	
+
 	public static void modifyUser(User user, String idModify) {
 		Connection con = DatabaseConnect.openConnection();
 		// UPDATE NGUOIDUNG
@@ -196,6 +198,8 @@ public class Managed_User {
 			stmt.setString(10, idModify);
 
 			stmt.executeUpdate();
+			stmt.close();
+			con.close();
 		} catch (SQLException e) {
 			System.out.println("Sửa NGUOIDUNG không thành công");
 			e.printStackTrace();
@@ -214,6 +218,8 @@ public class Managed_User {
 			stmt.setString(1, id);
 
 			stmt.executeUpdate();
+			stmt.close();
+			con.close();
 		} catch (SQLException e) {
 			System.out.println("Xóa NGUOI DUNG không thành công");
 			e.printStackTrace();
@@ -225,7 +231,7 @@ public class Managed_User {
 		try {
 			Connection con = DatabaseConnect.openConnection();
 			String sql = "SELECT * FROM NGUOIDUNG ORDER BY " + col + type;
-			System.out.println(sql);
+			//System.out.println(sql);
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 
@@ -243,6 +249,7 @@ public class Managed_User {
 				}
 				dftm.addRow(row);
 			}
+			con.close();
 		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
@@ -273,6 +280,7 @@ public class Managed_User {
 				}
 				dftm.addRow(row);
 			}
+			con.close();
 		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
@@ -301,6 +309,7 @@ public class Managed_User {
 				}
 				dftm.addRow(row);
 			}
+			con.close();
 		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
@@ -330,7 +339,12 @@ public class Managed_User {
 				} else if (f.equals("Khỏi bệnh")) {
 					status = F.CURED;
 				}
-				String relative = rs.getString(5).trim();
+				String relative;
+				if (rs.getString(5) == null) {
+					relative = "";
+				} else {
+					relative = rs.getString(5).trim();
+				}
 				User relativeUser = new User(relative);
 
 				String ward = rs.getString(6);
@@ -340,6 +354,7 @@ public class Managed_User {
 
 				String zoneId = rs.getString(9).trim();
 				Zone zone = new Zone(zoneId);
+				con.close();
 				return new User(name, id, year, addr, status, zone, relativeUser);
 			}
 		} catch (SQLException e1) {
@@ -373,9 +388,8 @@ public class Managed_User {
 				}
 				dftm.addRow(row);
 			}
-		} catch (
-
-		SQLException e1) {
+			con.close();
+		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();
 		}
@@ -391,6 +405,7 @@ public class Managed_User {
 			while (rs.next()) {
 				listId.addElement(rs.getString(1).trim());
 			}
+			con.close();
 		} catch (SQLException e1) {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
 			e1.printStackTrace();

@@ -50,7 +50,7 @@ public class UserInfoViewDetail extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UserInfoViewDetail frame = new UserInfoViewDetail("0312614186");
+					UserInfoViewDetail frame = new UserInfoViewDetail("0191818716");
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
