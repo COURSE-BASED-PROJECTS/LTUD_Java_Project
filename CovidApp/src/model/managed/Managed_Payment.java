@@ -87,7 +87,20 @@ public class Managed_Payment extends Managed_General{
 		
 		return result;	
 	}
-	private void openConnection() {
-		
+
+	public static Double getTotalPaid() {
+		Double totalPaid = 0.0d;
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select SUM(SOTIENTRA) From LSTHANHTOAN";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				totalPaid = rs.getDouble(1);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN");
+			e1.printStackTrace();
+		}
+		return totalPaid;
 	}
 }

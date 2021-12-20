@@ -57,7 +57,6 @@ public class ManagerUsers extends JFrame {
 	private JTextField relativeText;
 	private JPanel utilities;
 	private JButton addButton;
-	private JButton delButton;
 	private JButton updateButton;
 	private JButton clearButton;
 	private JButton saveButton;
@@ -262,7 +261,7 @@ public class ManagerUsers extends JFrame {
 		utilities = new JPanel();
 		utilities.setBorder(
 				new TitledBorder(null, "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		utilities.setBounds(276, 324, 495, 117);
+		utilities.setBounds(294, 324, 495, 117);
 		userForm.add(utilities);
 		utilities.setLayout(null);
 
@@ -273,18 +272,11 @@ public class ManagerUsers extends JFrame {
 		utilities.add(addButton);
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
-		delButton = new JButton("Xóa");
-		delButton.addActionListener(action);
-		delButton.setBackground(Color.RED);
-		delButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		delButton.setBounds(135, 24, 95, 35);
-		utilities.add(delButton);
-
 		updateButton = new JButton("Sửa");
 		updateButton.addActionListener(action);
 		updateButton.setBackground(Color.ORANGE);
 		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		updateButton.setBounds(266, 24, 95, 35);
+		updateButton.setBounds(135, 24, 95, 35);
 		utilities.add(updateButton);
 
 		clearButton = new JButton("Đặt lại");
@@ -297,25 +289,25 @@ public class ManagerUsers extends JFrame {
 		saveButton.addActionListener(action);
 		saveButton.setBackground(Color.GREEN);
 		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		saveButton.setBounds(103, 72, 143, 35);
+		saveButton.setBounds(266, 24, 95, 35);
 		utilities.add(saveButton);
 
 		detailButton = new JButton("Xem chi tiết");
 		detailButton.addActionListener(action);
 		detailButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		detailButton.setBounds(256, 72, 143, 35);
+		detailButton.setBounds(176, 72, 143, 35);
 		utilities.add(detailButton);
 
 		yearText = new JTextField();
 		yearText.setEditable(false);
 		yearText.setColumns(10);
-		yearText.setBounds(887, 34, 119, 35);
+		yearText.setBounds(887, 34, 84, 35);
 		userForm.add(yearText);
 
 		manage = new JPanel();
 		manage.setBorder(
 				new TitledBorder(null, "Qua\u0309n li\u0301", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		manage.setBounds(10, 627, 1063, 153);
+		manage.setBounds(10, 627, 1063, 150);
 		contentPane.add(manage);
 		manage.setLayout(null);
 
@@ -400,7 +392,7 @@ public class ManagerUsers extends JFrame {
 
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBounds(764, 31, 18, 110);
+		separator_1.setBounds(768, 26, 18, 110);
 		manage.add(separator_1);
 
 		JButton outButton = new JButton("Thoát");
@@ -492,11 +484,6 @@ public class ManagerUsers extends JFrame {
 	public JButton getAddButton() {
 		return addButton;
 	}
-
-	public JButton getDelButton() {
-		return delButton;
-	}
-
 	public JButton getUpdateButton() {
 		return updateButton;
 	}

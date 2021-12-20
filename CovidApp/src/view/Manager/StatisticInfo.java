@@ -28,7 +28,9 @@ import org.jfree.data.general.DefaultPieDataset;
 import org.jfree.data.general.PieDataset;
 
 import controller.Manager.StatisticInfoController;
+import model.managed.Managed_Account;
 import model.managed.Managed_Package;
+import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
 
 public class StatisticInfo extends JFrame {
@@ -190,8 +192,12 @@ public class StatisticInfo extends JFrame {
 	}
 	private static PieDataset createPieDataset() {
         DefaultPieDataset dataset = new DefaultPieDataset();
-        dataset.setValue("Chưa thanh toán", new Double(66.0));
-        dataset.setValue("Đã thanh toán", new Double(34.0));
+        Double debt = Managed_Account.getTotalDebt();
+        Double paid = Managed_Payment.getTotalPaid();
+               
+        dataset.setValue("Chưa thanh toán", debt);
+        dataset.setValue("Đã thanh toán", paid);
+        
         return dataset;
     }
 }

@@ -225,6 +225,22 @@ public class Managed_Account {
 		}
 		return pass;
 	}
+
+	public static Double getTotalDebt() {
+		Double totalDebt = 0.0d;
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select SUM(DUNO) From TAIKHOAN";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				totalDebt = rs.getDouble(1);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN");
+			e1.printStackTrace();
+		}
+		return totalDebt;
+	}
 }
 
 

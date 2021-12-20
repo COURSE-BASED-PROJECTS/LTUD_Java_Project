@@ -47,11 +47,11 @@ public class ManagerUsersController implements ActionListener {
 			this.previousCm = cm;
 			modifyAction();
 
-		} else if (cm.equals("Xóa")) {
+		} /*else if (cm.equals("Xóa")) {
 			//delAction();
 			loadData();
 
-		} else if (cm.equals("Đặt lại")) {
+		} */else if (cm.equals("Đặt lại")) {
 			String ops[] = { "Có", "Không", "Thoát" };
 			int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn đặt lại?", "Xác nhận đặt lại", JOptionPane.NO_OPTION,
 					JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
@@ -128,7 +128,7 @@ public class ManagerUsersController implements ActionListener {
 
 	}
 
-	private void delAction() {
+	/*private void delAction() {
 		int i = this.view.getTableListUser().getSelectedRow();
 		// System.out.println(i);
 		if (i == -1) {
@@ -145,7 +145,7 @@ public class ManagerUsersController implements ActionListener {
 			Managed_User.delUser(id);
 		}
 
-	}
+	}*/
 
 	private void saveAction(String previousCm) {
 		String id = this.view.getIdText().getText().trim();
