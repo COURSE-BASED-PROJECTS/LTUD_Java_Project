@@ -225,7 +225,23 @@ public class Managed_Account {
 		}
 		return pass;
 	}
+	
+	public static String getDebt(String username) {
+		String debt = "";
 
+		String sql = "Select DUNO From TAIKHOAN  Where TAIKHOAN = '"+ username +"'";
+		ResultSet rs = DatabaseConnect.getResultSet(DatabaseConnect.openConnection(), sql);
+		try {
+			while (rs.next()) {
+				debt = rs.getString(1).trim();
+			}
+		} catch (SQLException e) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN từ DB_CovidApp");
+			e.printStackTrace();
+		}
+		return debt;
+	}
+	
 	public static Double getTotalDebt() {
 		Double totalDebt = 0.0d;
 		try {

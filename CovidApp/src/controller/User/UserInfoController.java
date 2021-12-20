@@ -17,7 +17,7 @@ public class UserInfoController implements ActionListener {
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
 		if (cm != null) {
-			view.setVisible(false);
+			view.dispose();
 		}
 		if (cm.equals("Thoát")) {
 			UserView uv = new UserView();
@@ -32,5 +32,5 @@ public class UserInfoController implements ActionListener {
 		}
 		
 	}
-
+	
 }

@@ -121,9 +121,21 @@ public class Managed_User {
 		user.setYearOfBirth(Integer.valueOf(row.get(2)));
 		user.setStatus(row.get(3).contains("F2") ? F.F2 : (row.get(3).contains("F1") ? F.F1 : F.F0));
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
-		user.setPlaceOfTreatment(Managed_Zone.LockDownPlace(row.get(8)));
-		user.setRelativesString(searchNameRelativeById(row.get(4)));
 		
+		System.out.println(row.get(8));
+		
+		if(row.get(8) != null){
+			user.setPlaceOfTreatment(Managed_Zone.LockDownPlace(row.get(8)));
+		}else {
+			user.setPlaceOfTreatment(new Zone("", "Không có", 0, 0));
+		}
+		
+		if(row.get(4) != null){
+			user.setRelativesString(searchNameRelativeById(row.get(4)));
+		}else {
+			user.setRelativesString("Không có");
+		}
+
 		String balance = null, debt = null;
 		try {
 			String sql = "Select SODU, DUNO From TAIKHOAN  Where TAIKHOAN = '"+ id +"'";
@@ -133,8 +145,7 @@ public class Managed_User {
 				debt = rs.getString(2).trim();
 			}
 		} catch (SQLException e) {
-			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN từ BD_CovidApp"
-					+ "");
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN từ BD_CovidApp");
 			e.printStackTrace();
 		}
 		user.setBalance(Double.parseDouble(balance));

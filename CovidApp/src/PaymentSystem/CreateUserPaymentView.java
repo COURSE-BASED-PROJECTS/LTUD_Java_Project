@@ -1,4 +1,4 @@
-package view.Admin;
+package PaymentSystem;
 
 import java.awt.Color;
 import java.awt.EventQueue;
@@ -15,9 +15,9 @@ import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-import controller.Admin.CreateAccountController;
+import controller.PaymentSystem.CreateUserPaymentController;
 
-public class CreateAccount extends JFrame {
+public class CreateUserPaymentView extends JFrame {
 
 	private JPanel contentPane;
 	private JLabel usernameLabel;
@@ -33,7 +33,7 @@ public class CreateAccount extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					CreateAccount frame = new CreateAccount();
+					CreateUserPaymentView frame = new CreateUserPaymentView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -46,8 +46,8 @@ public class CreateAccount extends JFrame {
 	 * Create the frame.
 	 */
 	@SuppressWarnings("unchecked")
-	public CreateAccount() {
-		ActionListener action = new CreateAccountController(this);
+	public CreateUserPaymentView() {
+		ActionListener action = new CreateUserPaymentController(this);
 		setTitle("Tạo tài khoản");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
@@ -100,7 +100,7 @@ public class CreateAccount extends JFrame {
 		contentPane.add(passText);
 		
 		district = new JComboBox();
-		district.setModel(new DefaultComboBoxModel(new String[] {"Quản lí", "Người được quản lí"}));
+		district.setModel(new DefaultComboBoxModel(new String[] {"Người được quản lí"}));
 		district.setToolTipText("");
 		district.setName("");
 		district.setFont(new Font("Tahoma", Font.PLAIN, 15));

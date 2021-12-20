@@ -65,7 +65,7 @@ public class Managed_Order extends Managed_General{
 	public static boolean insertBuyPackageHistory(Order_History orderHistory) {
 		Connection con = DatabaseConnect.openConnection();
 		boolean result = false;
-		String sql = "INSERT INTO LSMUAHANG(MAHD,CMND,LOAIHANG,SOLUONG,THOIGIAN) VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO LSMUAHANG(MAHD,CMND,LOAIHANG,SOLUONG, SOTIEN, THOIGIAN) VALUES(?,?,?,?,?,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
@@ -74,7 +74,8 @@ public class Managed_Order extends Managed_General{
 			stmt.setString(2, orderHistory.getCMND());
 			stmt.setString(3, orderHistory.getType());
 			stmt.setString(4, String.valueOf(orderHistory.getQuantity()));
-			stmt.setTimestamp(5, new Timestamp(System.currentTimeMillis()));
+			stmt.setString(5, String.valueOf(Double.valueOf(Managed_Package.getPrice(orderHistory.getType()))*Double.valueOf(orderHistory.getQuantity())));
+			stmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
 			
 			result = stmt.executeUpdate() > 0;
 			stmt.close();
@@ -157,6 +158,7 @@ public class Managed_Order extends Managed_General{
 			stmtP.setString(2, AccountCurrent.getUsernameCurrent());	
 			
 			result = stmtC.executeUpdate() > 0;
+			stmtP.executeUpdate();
 			
 			stmtC.close();
 			con_Covid.close();
@@ -168,8 +170,7 @@ public class Managed_Order extends Managed_General{
 			e.printStackTrace();
 		}
 		
-		return result;
-		
+		return result;	
 	}
 	
 }

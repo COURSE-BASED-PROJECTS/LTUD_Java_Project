@@ -62,6 +62,7 @@ public class BuyPackageController implements ActionListener {
 			
 			try {
 				quantity = Integer.parseInt(JOptionPane.showInputDialog(view,"Nhập số lượng cần mua"));
+				
 				if(Integer.parseInt((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),3))<quantity) {
 					JOptionPane.showMessageDialog(view, "Vui lòng nhập số lượng nhỏ hơn hoặc bằng giới hạn", "Số lượng không đủ", JOptionPane.CLOSED_OPTION, null);
 				}
@@ -72,8 +73,8 @@ public class BuyPackageController implements ActionListener {
 					orderHistory.setQuantity(quantity);
 					orderHistory.setType((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),0));
 					
-					if(Managed_Order.insertBuyPackageHistory(orderHistory) && 
-							Managed_Order.updateQuantityPackage((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),0)
+					if(Managed_Order.insertBuyPackageHistory(orderHistory) 
+							&& Managed_Order.updateQuantityPackage((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),0)
 									, (String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),3)
 									,String.valueOf(quantity))
 							&& Managed_Order.updateDebitAccount(String.valueOf(quantity),
@@ -91,7 +92,7 @@ public class BuyPackageController implements ActionListener {
 					JOptionPane.showMessageDialog(view, "Vui lòng chọn món hàng cần mua", "Chưa chọn nhu yếu phẩm", JOptionPane.CLOSED_OPTION, null);
 				else
 					try {
-						if(quantity>Integer.valueOf(Managed_Order.getQuantity((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),0)))) {
+						if(quantity > Integer.valueOf(Managed_Order.getQuantity((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),0)))) {
 							JOptionPane.showMessageDialog(view, "Nhu yếu phẩm đã hết hạn", "Hết hạn", JOptionPane.CLOSED_OPTION, null);
 						}
 						else {

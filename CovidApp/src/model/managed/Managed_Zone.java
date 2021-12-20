@@ -141,24 +141,24 @@ public class Managed_Zone {
 		}
 	}
 
-	public static void delZone(String id) {
-		Connection con = DatabaseConnect.openConnection();
-
-		String sql = "DELETE FROM KHUCACHLY WHERE MAKCL = ?";
-		PreparedStatement stmt;
-		try {
-			stmt = con.prepareStatement(sql);
-
-			stmt.setString(1, id);
-
-			stmt.executeUpdate();
-			stmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Xóa KHU CÁCH LY không thành công");
-			e.printStackTrace();
-		}
-	}
+//	public static void delZone(String id) {
+//		Connection con = DatabaseConnect.openConnection();
+//
+//		String sql = "DELETE FROM KHUCACHLY WHERE MAKCL = ?";
+//		PreparedStatement stmt;
+//		try {
+//			stmt = con.prepareStatement(sql);
+//
+//			stmt.setString(1, id);
+//
+//			stmt.executeUpdate();
+//			stmt.close();
+//			con.close();
+//		} catch (SQLException e) {
+//			System.out.println("Xóa KHU CÁCH LY không thành công");
+//			e.printStackTrace();
+//		}
+//	}
 
 	public static Zone LockDownPlace(String idLockDown) {
 		Zone zone = new Zone(idLockDown);
@@ -180,7 +180,6 @@ public class Managed_Zone {
 			System.out.println("Lỗi trong khi load dữ liệu từ bảng KHUCACHLY");
 			e1.printStackTrace();
 		}
-
 		zone.setName(row.get(1));
 		zone.setCapacity(Integer.valueOf(row.get(2)));
 		zone.setEmptySlot(Integer.valueOf(row.get(3)));

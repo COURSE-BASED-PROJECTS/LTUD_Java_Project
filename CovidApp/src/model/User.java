@@ -109,7 +109,7 @@ public class User {
 	public void setPlaceOfTreatment(Zone placeOfTreatment) {
 		this.placeOfTreatment = placeOfTreatment;
 	}
-
+	
 	public Double getBalance() {
 		return balance;
 	}

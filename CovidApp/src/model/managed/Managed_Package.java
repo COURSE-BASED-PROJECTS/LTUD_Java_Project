@@ -26,7 +26,23 @@ public class Managed_Package extends Managed_General {
 	public void getAllPackage() {
 
 	}
+	
+	public static Double getPrice(String id) {
+		String price = "";
 
+		String sql = "Select GIATIEN From NHUYEUPHAM  Where MANYP = '" +id+ "'";
+		ResultSet rs = DatabaseConnect.getResultSet(DatabaseConnect.openConnection(), sql);
+		try {
+			while (rs.next()) {
+				price = rs.getString(1).trim();
+			}
+		} catch (SQLException e) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NHUYEUPHAM từ DB_CovidApp");
+			e.printStackTrace();
+		}
+		return Double.parseDouble(price);
+	}
+	
 	public static DefaultTableModel showPackages(DefaultTableModel tabelModel, boolean ASC, boolean sort) {
 		String order = "";
 		String sql = "";

@@ -9,6 +9,7 @@ public class Order_History extends History{
 	private String CMND;
 	private String type;
 	private int quantity;
+	private double price;
 	
 	public String getMaHD() {
 		return MaHD;
@@ -19,8 +20,8 @@ public class Order_History extends History{
 	public String getCMND() {
 		return CMND;
 	}
-	public void setCMND(String cMND) {
-		CMND = cMND;
+	public void setCMND(String cmnd) {
+		CMND = cmnd;
 	}
 	public String getType() {
 		return type;
@@ -34,28 +35,17 @@ public class Order_History extends History{
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	public double getPricey() {
+		return price;
+	}
+	public void setPrice(double pr) {
+		this.price = pr;
+	}
 	
 	public static String randomCodeHistory() {
 		char letterCode = (char)Math.floor(Math.random()*(90-65+1)+65);
 		int numberCode = (int)Math.floor(Math.random()*(9999-1111+1)+1111);
 		
-		return letterCode + String.valueOf(numberCode);
-		
+		return letterCode + String.valueOf(numberCode);	
 	}
-	
-
-	
-//	private ArrayList<Package> listOrder;
-//	
-//	public Order_History() {
-//		listOrder = new ArrayList<Package>();
-//	}
-//
-//	public Order_History(ArrayList<Package> listOrder) {
-//		this.listOrder = listOrder;
-//	}
-//
-//
-//	public void showOrderHistory() {
-//	}
 }

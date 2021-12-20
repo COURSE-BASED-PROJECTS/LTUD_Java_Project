@@ -21,6 +21,7 @@ import javax.swing.table.DefaultTableModel;
 import controller.User.UserInfoController;
 import model.AccountCurrent;
 import model.User;
+import model.managed.Managed_Account;
 import model.managed.Managed_Order;
 import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
@@ -35,7 +36,7 @@ public class UserInfoView extends JFrame {
 	private String [] columnNamesManaged = new String [] {"STT","CMND",
              "Trạng thái cũ", "Trạng thái mới", "Thời gian"};
 	private String [] columnNamesComsume = new String [] {
-            "Mã HD", "CMND", "Loại hàng","Số lượng","Thời gian"};
+            "Mã HD", "CMND", "Loại hàng","Số lượng", "Số tiền","Thời gian"};
 	private String [] columnNamesDebit = new String [] {
             "Mã GD", "CMND", "Dư nợ","Số tiền trả","Thời gian"};
 	private JLabel idText;
@@ -95,7 +96,7 @@ public class UserInfoView extends JFrame {
 		idText = new JLabel("User_ID");
 		idText.setHorizontalAlignment(SwingConstants.LEFT);
 		idText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		idText.setBounds(82, 36, 137, 35);
+		idText.setBounds(93, 36, 126, 35);
 		
 		Info.add(idText);
 		
@@ -108,7 +109,7 @@ public class UserInfoView extends JFrame {
 		nameText = new JLabel("User_Name");
 		nameText.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		nameText.setBounds(286, 36, 218, 35);
+		nameText.setBounds(295, 36, 209, 35);
 		
 		Info.add(nameText);
 		
@@ -121,7 +122,7 @@ public class UserInfoView extends JFrame {
 		idText_1 = new JLabel("YearOfBirth");
 		idText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		idText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		idText_1.setBounds(609, 36, 75, 35);
+		idText_1.setBounds(618, 36, 66, 35);
 		
 		Info.add(idText_1);
 		
@@ -134,7 +135,7 @@ public class UserInfoView extends JFrame {
 		addrText = new JLabel("User_Address");
 		addrText.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		addrText.setBounds(82, 99, 436, 35);
+		addrText.setBounds(93, 99, 425, 35);
 		
 		Info.add(addrText);
 		
@@ -147,7 +148,7 @@ public class UserInfoView extends JFrame {
 		statusText = new JLabel("F");
 		statusText.setHorizontalAlignment(SwingConstants.LEFT);
 		statusText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		statusText.setBounds(609, 99, 75, 35);
+		statusText.setBounds(618, 99, 66, 35);
 		
 		Info.add(statusText);
 		
@@ -165,7 +166,7 @@ public class UserInfoView extends JFrame {
 		debitText = new JLabel("User_Debit");
 		debitText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitText.setBounds(82, 159, 137, 35);
+		debitText.setBounds(93, 159, 126, 35);
 		Info.add(debitText);
 		
 		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
@@ -177,7 +178,7 @@ public class UserInfoView extends JFrame {
 		addrText_1 = new JLabel("User_Zone");
 		addrText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		addrText_1.setBounds(792, 36, 342, 35);
+		addrText_1.setBounds(810, 36, 324, 35);
 		
 		Info.add(addrText_1);
 		
@@ -190,7 +191,7 @@ public class UserInfoView extends JFrame {
 		nameText_1 = new JLabel("User_Relative");
 		nameText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		nameText_1.setBounds(825, 99, 218, 35);
+		nameText_1.setBounds(827, 99, 216, 35);
 		
 		Info.add(nameText_1);
 		
@@ -228,7 +229,7 @@ public class UserInfoView extends JFrame {
 		tableConsume = new JTable();
 		scrollPaneConsume.setViewportView(tableConsume);
 		tableConsume.setModel(initialRow(columnNamesComsume));
-		tableConsume.setModel(Managed_Order.showHistoryOrder(user.getId(), initialRow(columnNamesManaged)));
+		tableConsume.setModel(Managed_Order.showHistoryOrder(user.getId(), initialRow(columnNamesComsume)));
 		
 		JPanel managedDebit = new JPanel();
 		managedDebit.setLayout(null);
@@ -270,13 +271,8 @@ public class UserInfoView extends JFrame {
 		String dob = String.valueOf(user.getYearOfBirth());
 		String adrr = user.getAddress().toString();
 		String status = user.getStatus().toString();
-		
-		double debt = 0;
-		if(user.getDebt() != null)
-			debt = user.getDebt();
 		String zone = user.getPlaceOfTreatment().getName();
 		String relative = user.getRelativesString();
-		
 		
 		idText.setText(id.equals("") ?"không có dữ liệu":id);
 		nameText.setText(name.equals("") ? "không có dữ liệu":name);
@@ -284,7 +280,7 @@ public class UserInfoView extends JFrame {
 		addrText.setText(adrr.equals("") ? "không có dữ liệu":adrr);
 		statusText.setText(status.equals("") ? "không có dữ liệu":status);
 		
-		debitText.setText(String.valueOf(debt));
+		debitText.setText(Managed_Account.getDebt(id));
 		addrText_1.setText(zone.equals("") ?"không có dữ liệu":zone);
 		nameText_1.setText(relative.equals("") ? "không có dữ liệu":relative);
 		
