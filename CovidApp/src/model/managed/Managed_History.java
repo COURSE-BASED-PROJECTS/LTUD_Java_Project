@@ -20,7 +20,7 @@ public class Managed_History {
 	public static TableModel showManagerHistory(String id, DefaultTableModel tableModel) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From LSHOATDONG Where MATK = '" + id + "'";
+			String sql = "Select * From LSHOATDONGQLQL Where MATK = '" + id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 			int stt = 0;
@@ -34,7 +34,7 @@ public class Managed_History {
 				tableModel.addRow(row);
 			}
 		} catch (SQLException e1) {
-			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSHOATDONG");
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSHOATDONGQL");
 			e1.printStackTrace();
 		}
 		return tableModel;
@@ -88,7 +88,7 @@ public class Managed_History {
 
 	public static void addManagerHistory(String action, String table, String id) {
 		Connection con = DatabaseConnect.openConnection();
-		String sql = "INSERT INTO LSHOATDONG(MATK,HANHDONG,BANG,MADT,THOIGIAN) VALUES(?,?,?,?,?)";
+		String sql = "INSERT INTO LSHOATDONGQL(MATK,HANHDONG,BANG,MADT,THOIGIAN) VALUES(?,?,?,?,?)";
 		
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);

@@ -11,54 +11,6 @@ import java.util.Vector;
 import javax.swing.SpinnerListModel;
 
 public class DatabaseConnect {
-/*	
-	public static void main(String args[]) {
-		
-		DatabaseConnect dbConnect = new DatabaseConnect();
-		Connection con = dbConnect.openConnection();
-		dbConnect.query(con, "INSERT INTO Account(username,password) VALUES ('huy','huy123')");
-		
-		dbConnect.query(con, "DELETE FROM Account WHERE username='admin'");
-	
-		dbConnect.query(con, "UPDATE Account SET password = 'huy456' WHERE username='huy'");
-		
-		
-		ResultSet rs = getResultSet(con, "SELECT * FROM Account");
-		
-		Vector<String> row = new Vector<String>();
-		int numberColumn = 0;
-		try {
-			ResultSetMetaData metaData = rs.getMetaData();
-			numberColumn = metaData.getColumnCount();
-			
-			while(rs.next()) {
-				String temp="";
-				
-				for(int i=1;i<=numberColumn;i++) {
-					temp += rs.getString(i) + " ";
-				}
-				row.addElement(temp);
-			}
-			
-			
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Failed Query!");
-			e.printStackTrace();
-		}
-		
-		for (String account : row) {
-			String info[] = account.split("\t");
-			
-			for(int i=0;i<row.size();i++) {
-				System.out.print(info[i]);
-			}
-			
-			System.out.print("\n");
-		}
-	}
-*/
-
 	public static Connection openConnection() {
 		Connection con = null;
 		
@@ -68,7 +20,6 @@ public class DatabaseConnect {
 			
 			try {
 				con = DriverManager.getConnection(ConnectionUrl);
-				//System.out.println("Successful Connection!");
 				
 			} catch (SQLException e) {
 				System.out.println("Failed Connection!");

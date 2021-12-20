@@ -14,40 +14,47 @@ import java.util.logging.Logger;
 
 import javax.swing.JOptionPane;
 
-import PaymentSystem.PaymentSystemView;
 import model.Payment_History;
 import model.managed.Managed_PaymentSystem;
+import PaymentSystem.PaymentSystemView;
 
 public class ServerThread extends Thread implements Runnable{
     Socket socket;
     Payment_History paymentHistory = new Payment_History();
-    PaymentSystemView psview;
-
-    public ServerThread(Socket sock, PaymentSystemView psv){
+    
+	public static ServerSocket serversocket;
+	public static PaymentSystemView view = new PaymentSystemView();
+	
+    public ServerThread(Socket sock, PaymentSystemView ps){
         this.socket = sock;
-        this.psview = psv;
+        ServerThread.view = ps;
     }
     
     public static void startServer() {
     	try {
-			PaymentSystemView psv = new PaymentSystemView();
-			psv.setVisible(true);
-			
-			@SuppressWarnings("resource")
-			ServerSocket serversocket = new ServerSocket(1314);
+			serversocket = new ServerSocket(1314);
 			System.out.println("Server start " + InetAddress.getLocalHost().getHostAddress());
 			
 			while(true){
 				Socket sock = serversocket.accept();
-				ServerThread serverThread = new ServerThread(sock, psv);
+				ServerThread serverThread = new ServerThread(sock, view);
 				
 				serverThread.start();
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Sorry, cannot start the server!","Error",1);
         }
-    }
+    }    
     
+	public static void closeServer() {
+		try {
+			serversocket.close();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
     @Override
     public void run(){
     	String admin = "Admin_Payment";
@@ -65,12 +72,12 @@ public class ServerThread extends Thread implements Runnable{
             
             Double balance_Admin = Double.parseDouble(Managed_PaymentSystem.getBalance(admin)) + paymentHistory.getMinDebt();
             Double balance_User = Double.parseDouble(Managed_PaymentSystem.getBalance(id)) - paymentHistory.getMinDebt();
-            Double debt_User = Double.parseDouble(Managed_PaymentSystem.getDebt(id)) - paymentHistory.getDebit();
+            Double debt_User = Double.parseDouble(Managed_PaymentSystem.getDebt(id)) - paymentHistory.getMinDebt();
             
             if(Managed_PaymentSystem.updateBalance(balance_Admin, admin) && Managed_PaymentSystem.updateBalance(balance_User, id)
             && Managed_PaymentSystem.updateDebt(debt_User,id) && Managed_PaymentSystem.insertPayment(paymentHistory) ){
             	
-            	psview.setBalanceCurrentText(Managed_PaymentSystem.getBalance(admin));
+            	PaymentSystemView.setBalanceCurrentText(Managed_PaymentSystem.getBalance(admin));
             	writer.write("Successful!");
                 writer.write("\r\n");
                 writer.flush();

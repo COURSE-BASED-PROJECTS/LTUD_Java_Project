@@ -95,8 +95,23 @@ public class Managed_Account {
 			e.printStackTrace();
 		}
 	}
+	public static void activeAcc(String id) {
+		Connection con = DatabaseConnect.openConnection();
 
-	// Thông viết thêm
+		String sql = "UPDATE TAIKHOAN SET TINHTRANG = 1 WHERE TAIKHOAN = ?";
+		PreparedStatement stmt;
+		try {
+			stmt = con.prepareStatement(sql);
+
+			stmt.setString(1, id);
+
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			System.out.println("Kích hoạt tài khoản không thành công");
+			e.printStackTrace();
+		}
+	}
+
 	public static boolean isEmpty() {
 		try {
 			Connection con = DatabaseConnect.openConnection();
@@ -175,12 +190,6 @@ public class Managed_Account {
 		
 		return account;
 	}
-	
-	// static public void changePassword(String id, String password) throws SQLException {
-	// 	Connection con = DatabaseConnect.openConnection();
-	// 	String sql = "UPDATE TAIKHOAN SET MATKHAU='"+password+"' WHERE TAIKHOAN='"+id+"'";
-	// 	DatabaseConnect.query(con, sql);
-	// }
 
 	public static void changePassword(String username, String newPass) {
 		Connection con = DatabaseConnect.openConnection();

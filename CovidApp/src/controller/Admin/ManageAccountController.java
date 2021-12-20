@@ -32,10 +32,13 @@ public class ManageAccountController implements ActionListener {
 			
 		} else if (cm.equals("Khóa tài khoản")) {
 			lockAction();
-			clearForm();
 			this.view.loadData();
 			
-		} else if (cm.equals("Xem lịch sử hoạt động")) {
+		}  else if (cm.equals("Kích hoạt tài khoản")) {
+			activeAction();
+			this.view.loadData();
+			
+		}else if (cm.equals("Xem lịch sử hoạt động")) {
 			viewHistoryAction();			
 		}
 	}
@@ -61,10 +64,14 @@ public class ManageAccountController implements ActionListener {
 	}
 
 	private void lockAction() {		
-		String id = this.view.getTextField().getText();
-		if (id.length() == 0) {
-			JOptionPane.showMessageDialog(view, "Chưa nhập mã tài khoản");
+		int i = this.view.getAccountTable().getSelectedRow();
+		if (i == -1) {
+			JOptionPane.showMessageDialog(view, "Chưa chọn tài khoản để khoá");
+			return;
 		}
+		TableModel model = this.view.getAccountTable().getModel();
+		String id = model.getValueAt(i, 0).toString().trim();
+		
 		String ops[] = { "Có", "Không", "Thoát" };
 		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn khoá", "Xác nhận khoá", JOptionPane.NO_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
@@ -73,7 +80,20 @@ public class ManageAccountController implements ActionListener {
 		}
 	}
 	
-	private void clearForm() {
-		this.view.getTextField().setText(null);
+	private void activeAction() {		
+		int i = this.view.getAccountTable().getSelectedRow();
+		if (i == -1) {
+			JOptionPane.showMessageDialog(view, "Chưa chọn tài khoản để kích hoạt");
+			return;
+		}
+		TableModel model = this.view.getAccountTable().getModel();
+		String id = model.getValueAt(i, 0).toString().trim();
+		
+		String ops[] = { "Có", "Không", "Thoát" };
+		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn kích hoạt?", "Xác nhận kích hoạt", JOptionPane.NO_OPTION,
+				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
+		if (op == 0) {
+			Managed_Account.activeAcc(id);
+		}
 	}
 }

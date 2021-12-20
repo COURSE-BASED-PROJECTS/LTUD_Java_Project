@@ -3,6 +3,7 @@ package controller.PaymentSystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+import PaymentSystem.DetailView;
 import PaymentSystem.PaymentSystemView;
 import view.LoginView;
 import view.Admin.CreateAccount;
@@ -28,8 +29,10 @@ public class PaymentSystemController implements ActionListener {
 			CreateAccount ca = new CreateAccount();
 			ca.setVisible(true);
 			
-		}else if (cm.equals("...")) {
-			//Bảng tài khoản + bảng giao dịch của DB_Payment
+		}else if (cm.equals("Lịch sử thanh toán")) {
+			this.view.dispose();
+			DetailView dv = new DetailView();
+			dv.setVisible(true);
 		}
 	}
 }

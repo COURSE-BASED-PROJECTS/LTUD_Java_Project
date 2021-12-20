@@ -4,6 +4,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Vector;
+
+import javax.swing.table.DefaultTableModel;
 
 import model.Payment_History;
 import utils.DatabaseConnect;
@@ -96,7 +99,6 @@ public class Managed_PaymentSystem{
 		boolean result = false;
 		String sql = "UPDATE TAIKHOAN SET DUNO=?"
 				+ " WHERE TAIKHOAN=?";
-		
 		try {
 			PreparedStatement stmt = con_Payment.prepareStatement(sql);
 			stmt.setDouble(1, debt);
@@ -111,5 +113,48 @@ public class Managed_PaymentSystem{
 		}
 		
 		return result;	
+	}
+	public static DefaultTableModel showTransactionTable(DefaultTableModel tableModel) {
+		try {
+			Connection con = DatabaseConnect.connectDB_Payment();
+			String sql = "Select * From LSTHANHTOAN";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+				
+				for (int i = 1; i <= numberColumn; i++) {
+						row.addElement(rs.getString(i));
+				}
+				
+				tableModel.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSTHANHTOAN");
+			e1.printStackTrace();
+		}
+		return tableModel;
+	}
+	public static DefaultTableModel showAccountTable(DefaultTableModel tabelModel) {
+		try {
+			Connection con = DatabaseConnect.connectDB_Payment();
+			String sql = "Select * From TAIKHOAN";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+
+				for (int i = 1; i <= numberColumn; i++) {
+					row.addElement(rs.getString(i));
+				}
+				tabelModel.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN");
+			e1.printStackTrace();
+		}
+		return tabelModel;
 	}
 }

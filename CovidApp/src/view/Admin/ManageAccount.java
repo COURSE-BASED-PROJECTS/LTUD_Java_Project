@@ -28,7 +28,6 @@ public class ManageAccount extends JFrame {
 	private Managed_Account ma;
 	private JPanel contentPane;
 	private JTable AccountTable;
-	private JTextField textField;
 	private String [] columnNames = new String [] {
             "Tài khoản", "Mật khẩu", "Phân quyền","Số dư","Dư nợ", "Trạng thái"};
 	/**
@@ -55,7 +54,7 @@ public class ManageAccount extends JFrame {
 		setTitle("Thông tin tài khoản");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 1097, 686);
+		setBounds(100, 100, 996, 631);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -63,12 +62,12 @@ public class ManageAccount extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ta\u0300i khoa\u0309n", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		panel.setBounds(10, 10, 1063, 452);
+		panel.setBounds(10, 10, 962, 452);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
 		JScrollPane scrollPaneAccount = new JScrollPane();
-		scrollPaneAccount.setBounds(10, 23, 1043, 419);
+		scrollPaneAccount.setBounds(10, 23, 942, 419);
 		panel.add(scrollPaneAccount);
 		
 		AccountTable = new JTable();
@@ -80,12 +79,12 @@ public class ManageAccount extends JFrame {
 		outButton.addActionListener(action);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
-		outButton.setBounds(883, 549, 142, 50);
+		outButton.setBounds(778, 500, 142, 50);
 		contentPane.add(outButton);
 		
 		JPanel panel_1 = new JPanel();
 		panel_1.setBorder(new TitledBorder(null, "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel_1.setBounds(21, 472, 692, 167);
+		panel_1.setBounds(20, 474, 692, 110);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 		
@@ -93,41 +92,22 @@ public class ManageAccount extends JFrame {
 		lockButton.addActionListener(action);
 		lockButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		lockButton.setBackground(Color.ORANGE);
-		lockButton.setBounds(437, 33, 131, 38);
+		lockButton.setBounds(45, 34, 131, 38);
 		panel_1.add(lockButton);
+		
+		JButton activeButton = new JButton("Kích hoạt tài khoản");
+		activeButton.addActionListener(action);
+		activeButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		activeButton.setBackground(Color.GREEN);
+		activeButton.setBounds(251, 34, 137, 38);
+		panel_1.add(activeButton);
 		
 		JButton activityButton = new JButton("Xem lịch sử hoạt động");
 		activityButton.addActionListener(action);
 		activityButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		activityButton.setBackground(Color.CYAN);
-		activityButton.setBounds(420, 98, 168, 38);
+		activityButton.setBounds(467, 34, 168, 38);
 		panel_1.add(activityButton);
-		
-		JSeparator separator_1_1 = new JSeparator();
-		separator_1_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1_1.setBounds(340, 21, 18, 125);
-		panel_1.add(separator_1_1);
-		
-		JLabel lblNewLabel = new JLabel("Tên tài khoản:");
-		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		lblNewLabel.setBounds(58, 74, 83, 31);
-		panel_1.add(lblNewLabel);
-		
-		textField = new JTextField();
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		textField.setHorizontalAlignment(SwingConstants.LEFT);
-		textField.setColumns(10);
-		textField.setBounds(151, 74, 145, 31);
-		panel_1.add(textField);
-		
-		JSeparator separator_1 = new JSeparator();
-		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBounds(855, 529, 18, 110);
-		contentPane.add(separator_1);
-		
-		JSeparator separator_2 = new JSeparator();
-		separator_2.setBounds(869, 517, 173, 2);
-		contentPane.add(separator_2);
 	}
 	
 	private DefaultTableModel initialRow() {
@@ -147,9 +127,6 @@ public class ManageAccount extends JFrame {
 	}
 	public JTable getAccountTable() {
 		return AccountTable;
-	}
-	public JTextField getTextField() {
-		return textField;
 	}
     public void loadData() {
 		AccountTable.setModel(Managed_Account.showAccountTable(initialRow()));

@@ -23,11 +23,11 @@ public class LoginView extends JFrame {
 
 	private JPanel contentPane;
 	private Account account;
-	private JTextField tf_username;
+	private static JTextField tf_username;
 	private JPasswordField passwordField;
 	static final Logger logger = LogManager.getLogger(LoginView.class);
 	
-	public String get_username() {
+	public static String get_username() {
 		return tf_username.getText();
 	}
 
