@@ -47,11 +47,7 @@ public class ManagerZonesController implements ActionListener {
 				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để sửa");
 			} else {
 				enabledForm();
-			}
-			
-		} else if (cm.equals("Xóa")) {
-			delAction();
-			this.view.loadData();
+			}	
 			
 		} else if (cm.equals("Đặt lại")) {
 			clearForm();
@@ -137,20 +133,20 @@ public class ManagerZonesController implements ActionListener {
 		
 		return new Zone(name, id, capacity, receivedSlot);
 	}
-	
-	private void delAction() {
-		int i = this.view.getTableListZone().getSelectedRow();
-		if (i == -1) {
-			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xóa");
-		}
-		String id = this.view.getIdText().getText().toString().trim();
-		String ops[] = { "Có", "Không", "Thoát" };
-		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
-		if (op == 0) {
-			Managed_Zone.delZone(id);
-		}
-	}	
+	//DELETE ZONE
+//	private void delAction() {
+//		int i = this.view.getTableListZone().getSelectedRow();
+//		if (i == -1) {
+//			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xóa");
+//		}
+//		String id = this.view.getIdText().getText().toString().trim();
+//		String ops[] = { "Có", "Không", "Thoát" };
+//		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
+//				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
+//		if (op == 0) {
+//			Managed_Zone.delZone(id);
+//		}
+//	}	
 
 	public void displayData() {
 		disabledForm();

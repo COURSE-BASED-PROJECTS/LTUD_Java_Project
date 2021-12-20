@@ -37,6 +37,28 @@ public class Managed_Payment extends Managed_General{
 		}
 		return tableModel;
 	}
+	public static DefaultTableModel showHistoryPayment(String id, DefaultTableModel tableModel) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From LSTHANHTOAN Where CMND = '" + id + "'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+				
+				for (int i = 1; i <= numberColumn; i++) {
+						row.addElement(rs.getString(i));
+				}
+				
+				tableModel.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSTHANHTOAN");
+			e1.printStackTrace();
+		}
+		return tableModel;
+	}
 	
 	public static boolean insertPayment(Payment_History paymentHistory) {
 		Connection con = DatabaseConnect.openConnection();

@@ -1,22 +1,20 @@
 package model;
 
 public class Admin_Payment {
-	private String id;
+	private static String id = "Admin_Payment";
 	private Double balance;
-	private Account account;
 	
-	public Admin_Payment(String id, Double balance, Account account) {
-		this.id = id;
+	public Admin_Payment(String id, Double balance) {
+		Admin_Payment.id = id;
 		this.balance = balance;
-		this.account = account;
 	}
 
-	public String getId() {
+	public static String getId() {
 		return id;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		Admin_Payment.id = id;
 	}
 
 	public Double getBalance() {
@@ -25,17 +23,5 @@ public class Admin_Payment {
 
 	public void setBalance(Double balance) {
 		this.balance = balance;
-	}
-
-	public Account getAccount() {
-		return account;
-	}
-
-	public void setAccount(Account account) {
-		this.account = account;
-	}
-
-	public void addAccountUser() {
-		
 	}
 }

@@ -54,8 +54,6 @@ public class User {
 		this.id = id;
 	}
 
-	
-	
 	public String getRelativesString() {
 		return relativesString;
 	}

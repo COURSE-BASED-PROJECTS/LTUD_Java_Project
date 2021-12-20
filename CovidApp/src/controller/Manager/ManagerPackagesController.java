@@ -135,7 +135,6 @@ public class ManagerPackagesController implements ActionListener {
 
 	private void searchAction() {
 		String keyword = this.view.getSearchPackageText().getText().trim();
-		// System.out.println(keyword);
 		if (keyword.length() == 0) {
 			JOptionPane.showMessageDialog(view, "Cần nhập tên nhu yếu phẩm trước khi tìm kiếm");
 		} else {
@@ -146,14 +145,14 @@ public class ManagerPackagesController implements ActionListener {
 
 	private void delAction() {
 		int i = this.view.getTableListPackage().getSelectedRow();
-		// System.out.println(i);
+
 		if (i == -1) {
 			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xóa");
 		}
 		String ops[] = { "Có", "Không", "Thoát" };
 		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
 				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
-		// System.out.println(op);
+
 		if (op == 0) {
 			TableModel model = this.view.getTableListPackage().getModel();
 			String id = model.getValueAt(i, 0).toString().trim();
@@ -199,10 +198,6 @@ public class ManagerPackagesController implements ActionListener {
 				Managed_Package.modifyPackage(pk);
 			}
 		}
-//		System.out.println(name);
-//		System.out.println(limit);
-//		System.out.println(time);
-//		System.out.println(price);
 	}
 
 	private Package validatedData(String id, String name, String limit, String timeLimit, String price) {
@@ -269,7 +264,7 @@ public class ManagerPackagesController implements ActionListener {
 		disabledForm();
 
 		int i = this.view.getTableListPackage().getSelectedRow();
-		// System.out.println(i);
+
 		TableModel model = this.view.getTableListPackage().getModel();
 		this.view.getIdText().setText(model.getValueAt(i, 0).toString());
 		this.view.getNamePackageText().setText(model.getValueAt(i, 1).toString());

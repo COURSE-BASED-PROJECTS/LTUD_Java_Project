@@ -8,8 +8,10 @@ import java.sql.Timestamp;
 import java.util.Vector;
 
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 import model.AccountCurrent;
+import model.Admin_Payment;
 import model.Order_History;
 import utils.DatabaseConnect;
 
@@ -18,6 +20,29 @@ public class Managed_Order extends Managed_General{
 		try {
 			Connection con = DatabaseConnect.openConnection();
 			String sql = "Select * From LSMUAHANG";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			int numberColumn = rs.getMetaData().getColumnCount();
+
+			while (rs.next()) {
+				Vector<String> row = new Vector<String>();
+				
+				for (int i = 1; i <= numberColumn; i++) {
+						row.addElement(rs.getString(i));
+				}
+				
+				tableModel.addRow(row);
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng LSMUAHANG");
+			e1.printStackTrace();
+		}
+		return tableModel;
+	}
+	
+	public static TableModel showHistoryOrder(String id, DefaultTableModel tableModel) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select * From LSMUAHANG Where CMND = '" + id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 
@@ -111,23 +136,34 @@ public class Managed_Order extends Managed_General{
 	}
 	
 	public static boolean updateDebitAccount(String quantity, String price) {
-		
-		Connection con = DatabaseConnect.openConnection();
+		Connection con_Covid = DatabaseConnect.openConnection();
+		Connection con_Payment = DatabaseConnect.connectDB_Payment();
+
 		boolean result = false;
 		String sql = "UPDATE TAIKHOAN SET DUNO=DUNO+? "
 				+ "WHERE TAIKHOAN=? ";
 		
 		try {
-			PreparedStatement stmt = null;
+			PreparedStatement stmtC = null;
+			PreparedStatement stmtP = null;
 			
-			stmt = con.prepareStatement(sql);
+			stmtC = con_Covid.prepareStatement(sql);
+			stmtP = con_Payment.prepareStatement(sql);
 			
-			stmt.setDouble(1, Double.valueOf(price)*Double.valueOf(quantity));
-			stmt.setString(2, AccountCurrent.getUsernameCurrent());
+			stmtC.setDouble(1, Double.valueOf(price)*Double.valueOf(quantity));
+			stmtC.setString(2, AccountCurrent.getUsernameCurrent());
 			
-			result = stmt.executeUpdate() > 0;
-			stmt.close();
-			con.close();
+			stmtP.setDouble(1, Double.valueOf(price)*Double.valueOf(quantity));
+			stmtP.setString(2, AccountCurrent.getUsernameCurrent());	
+			
+			result = stmtC.executeUpdate() > 0;
+			
+			stmtC.close();
+			con_Covid.close();
+			
+			stmtP.close();
+			con_Payment.close();
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

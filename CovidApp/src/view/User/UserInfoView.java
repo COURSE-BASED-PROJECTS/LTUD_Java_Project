@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.User.UserInfoController;
 import model.AccountCurrent;
-import model.managed.Managed_Account;
+import model.User;
 import model.managed.Managed_Order;
 import model.managed.Managed_Payment;
 import model.managed.Managed_Status;
@@ -47,7 +47,8 @@ public class UserInfoView extends JFrame {
 	private JLabel addrText_1;
 	private JLabel nameText_1;
 	private JLabel debitText;
-
+	
+	private static User user = Managed_User.setUser(AccountCurrent.getUsernameCurrent());
 	/**
 	 * Launch the application.
 	 */
@@ -91,7 +92,7 @@ public class UserInfoView extends JFrame {
 		idLabel.setBounds(10, 36, 95, 35);
 		Info.add(idLabel);
 		
-		idText = new JLabel("19127422");
+		idText = new JLabel("User_ID");
 		idText.setHorizontalAlignment(SwingConstants.LEFT);
 		idText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idText.setBounds(82, 36, 137, 35);
@@ -104,7 +105,7 @@ public class UserInfoView extends JFrame {
 		nameLabel.setBounds(212, 36, 95, 35);
 		Info.add(nameLabel);
 		
-		nameText = new JLabel("Nguyễn Đức Huy");
+		nameText = new JLabel("User_Name");
 		nameText.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameText.setBounds(286, 36, 218, 35);
@@ -117,7 +118,7 @@ public class UserInfoView extends JFrame {
 		yearLabel.setBounds(524, 36, 95, 35);
 		Info.add(yearLabel);
 		
-		idText_1 = new JLabel("2001");
+		idText_1 = new JLabel("YearOfBirth");
 		idText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		idText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idText_1.setBounds(609, 36, 75, 35);
@@ -130,7 +131,7 @@ public class UserInfoView extends JFrame {
 		addrLabel.setBounds(10, 99, 95, 35);
 		Info.add(addrLabel);
 		
-		addrText = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
+		addrText = new JLabel("User_Address");
 		addrText.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		addrText.setBounds(82, 99, 436, 35);
@@ -161,11 +162,10 @@ public class UserInfoView extends JFrame {
 		debitLabel.setBounds(10, 159, 95, 35);
 		Info.add(debitLabel);
 		
-		debitText = new JLabel("200.000");
+		debitText = new JLabel("User_Debit");
 		debitText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitText.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		debitText.setBounds(82, 159, 137, 35);
-		
 		Info.add(debitText);
 		
 		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
@@ -174,7 +174,7 @@ public class UserInfoView extends JFrame {
 		lockdownLabel.setBounds(705, 36, 95, 35);
 		Info.add(lockdownLabel);
 		
-		addrText_1 = new JLabel("123 Nguyễn Văn Cừ, Q.5 TPHCM");
+		addrText_1 = new JLabel("User_Zone");
 		addrText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		addrText_1.setBounds(792, 36, 342, 35);
@@ -187,7 +187,7 @@ public class UserInfoView extends JFrame {
 		relateUser.setBounds(705, 99, 126, 35);
 		Info.add(relateUser);
 		
-		nameText_1 = new JLabel("Nguyễn Đức Huy");
+		nameText_1 = new JLabel("User_Relative");
 		nameText_1.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameText_1.setBounds(825, 99, 218, 35);
@@ -213,7 +213,7 @@ public class UserInfoView extends JFrame {
 		tableManaged = new JTable();
 		scrollPaneManaged.setViewportView(tableManaged);
 		tableManaged.setModel(initialRow(columnNamesManaged));
-		tableManaged.setModel(Managed_Status.showListHistory(initialRow(columnNamesManaged)));
+		tableManaged.setModel(Managed_Status.showHistoryStatus(user.getId(), initialRow(columnNamesManaged)));
 		
 		JPanel managedConsume = new JPanel();
 		managedConsume.setLayout(null);
@@ -228,7 +228,7 @@ public class UserInfoView extends JFrame {
 		tableConsume = new JTable();
 		scrollPaneConsume.setViewportView(tableConsume);
 		tableConsume.setModel(initialRow(columnNamesComsume));
-		tableConsume.setModel(Managed_Order.showListHistory(initialRow(columnNamesComsume)));
+		tableConsume.setModel(Managed_Order.showHistoryOrder(user.getId(), initialRow(columnNamesManaged)));
 		
 		JPanel managedDebit = new JPanel();
 		managedDebit.setLayout(null);
@@ -243,7 +243,7 @@ public class UserInfoView extends JFrame {
 		tableDebit = new JTable();
 		scrollPaneDebit.setViewportView(tableDebit);
 		tableDebit.setModel(initialRow(columnNamesDebit));
-		tableDebit.setModel(Managed_Payment.showListHistory(initialRow(columnNamesDebit)));
+		tableDebit.setModel(Managed_Payment.showHistoryPayment(user.getId(), initialRow(columnNamesDebit)));
 		
 		JButton logoutButton = new JButton("Thoát");
 		logoutButton.addActionListener(action);
@@ -265,17 +265,17 @@ public class UserInfoView extends JFrame {
 		return defaultTableModel;
 	}
 	private void showInfo() {
-		String id = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getId();
-		String name = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getName();
-		String dob = String.valueOf(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getYearOfBirth());
-		String adrr = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getAddress().toString();
-		String status = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getStatus().toString();
+		String id = user.getId();
+		String name = user.getName();
+		String dob = String.valueOf(user.getYearOfBirth());
+		String adrr = user.getAddress().toString();
+		String status = user.getStatus().toString();
 		
 		double debt = 0;
-		if(Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt() != null)
-			debt = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getDebt();
-		String zone = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getPlaceOfTreatment().getName();
-		String relative = Managed_User.setUser(AccountCurrent.getUsernameCurrent()).getRelativesString();
+		if(user.getDebt() != null)
+			debt = user.getDebt();
+		String zone = user.getPlaceOfTreatment().getName();
+		String relative = user.getRelativesString();
 		
 		
 		idText.setText(id.equals("") ?"không có dữ liệu":id);

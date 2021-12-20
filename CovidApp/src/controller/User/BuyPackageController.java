@@ -27,7 +27,6 @@ public class BuyPackageController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
 		if (cm.equals("Thoát")) {
 			UserView uv = new UserView();
 			uv.setVisible(true);
@@ -51,7 +50,7 @@ public class BuyPackageController implements ActionListener {
 			}
 		}  else if (cm.equals("Tìm kiếm")) {
 			if(!view.getSearchPackageText().getText().equals("")) {
-				view.getTableListPackage().setModel(Managed_Package.searchPackage(view.getDefaultTableModel(),view.getSearchPackageText().getText()));
+				view.getTableListPackage().setModel(Managed_Package.showPackageByName(view.getDefaultTableModel(),view.getSearchPackageText().getText()));
 				view.getSearchPackageText().setText(null);
 			}
 			else {
@@ -79,6 +78,7 @@ public class BuyPackageController implements ActionListener {
 									,String.valueOf(quantity))
 							&& Managed_Order.updateDebitAccount(String.valueOf(quantity),
 									(String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),4))) {
+						
 						JOptionPane.showConfirmDialog(view, "Đã mua thành công", "Mua hàng thành công", JOptionPane.CLOSED_OPTION, 1);
 					}
 					else {

@@ -33,15 +33,6 @@ public class Managed_User {
 		listUser = new ArrayList<User>();
 	}
 
-	public static void main(String[] args) {
-		// System.out.println(findById("123456789"));
-		// test hàm findListId
-		Vector<String> id = findListIdRelativeUser("031261418");
-		for (String string : id) {
-			System.out.println(string);
-		}
-	}
-
 	public static void showPaymentUser(JLabel debitCurrentText, JLabel balanceCurrentText, Account account) {
 		debitCurrentText.setText(account.getDebit() == null ? "0" : account.getDebit());
 		balanceCurrentText.setText(account.getBalance() == null ? "0" : account.getBalance());
@@ -78,9 +69,6 @@ public class Managed_User {
 
 	public static void addUser(User user) {
 		Connection con = DatabaseConnect.openConnection();
-		// INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH)
-		// VALUES ('0312614186', N'Nguyễn Văn An',1997,'F0',N'Phường 4',N'Quận
-		// 5',N'TP.HCM')
 		String sql = "INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH,NGUOILIENQUAN,NOICACHLY)"
 				+ "	VALUES  (?,?,?,?,?,?,?,?,?)";
 
@@ -135,6 +123,23 @@ public class Managed_User {
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
 		user.setPlaceOfTreatment(Managed_Zone.LockDownPlace(row.get(8)));
 		user.setRelativesString(searchNameRelativeById(row.get(4)));
+		
+		String balance = null, debt = null;
+		try {
+			String sql = "Select SODU, DUNO From TAIKHOAN  Where TAIKHOAN = '"+ id +"'";
+			ResultSet rs = DatabaseConnect.getResultSet(DatabaseConnect.openConnection(), sql);
+			while (rs.next()) {
+				balance = rs.getString(1).trim();
+				debt = rs.getString(2).trim();
+			}
+		} catch (SQLException e) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN từ BD_CovidApp"
+					+ "");
+			e.printStackTrace();
+		}
+		user.setBalance(Double.parseDouble(balance));
+		user.setDebt(Double.parseDouble(debt));
+		
 		return user;
 	}
 
@@ -163,11 +168,6 @@ public class Managed_User {
 
 	public static void modifyUser(User user, String idModify) {
 		Connection con = DatabaseConnect.openConnection();
-		// UPDATE NGUOIDUNG
-		// SET CMND = '123456', HOTEN = 'TÈO', NAMSINH = 2003, TRANGTHAI = 'F1',
-		// NGUOILIENQUAN = '',XA = 'Phường 10', HUYEN = 'Huyện Bắc Ninh', TINH =
-		// 'TP.HCM', NOICACHLY = 'KS002'
-		// WHERE CMND = '123';
 		String sql = "UPDATE NGUOIDUNG "
 				+ "SET CMND = ?, HOTEN = ?, NAMSINH = ?, TRANGTHAI = ?, NGUOILIENQUAN = ?, XA = ?, HUYEN = ?, TINH = ?, NOICACHLY = ?"
 				+ " WHERE CMND = ?";
@@ -206,32 +206,11 @@ public class Managed_User {
 		}
 
 	}
-
-	public static void delUser(String id) {
-		Connection con = DatabaseConnect.openConnection();
-
-		String sql = "DELETE FROM NGUOIDUNG WHERE CMND = ?";
-		PreparedStatement stmt;
-		try {
-			stmt = con.prepareStatement(sql);
-
-			stmt.setString(1, id);
-
-			stmt.executeUpdate();
-			stmt.close();
-			con.close();
-		} catch (SQLException e) {
-			System.out.println("Xóa NGUOI DUNG không thành công");
-			e.printStackTrace();
-		}
-
-	}
-
 	public static DefaultTableModel sortBy(String col, String type, DefaultTableModel dftm) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
 			String sql = "SELECT * FROM NGUOIDUNG ORDER BY " + col + type;
-			//System.out.println(sql);
+
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 
