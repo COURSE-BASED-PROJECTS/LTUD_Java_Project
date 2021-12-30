@@ -8,6 +8,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -74,6 +75,7 @@ public class ManagerZones extends JFrame {
 	public ManagerZones() {
 		ActionListener action = new ManagerZonesController(this);
 		setTitle("Quản lí địa điểm điều trị/cách li");
+		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 893, 705);
 		setResizable(false);

@@ -2,8 +2,10 @@ package view;
 
 import java.awt.EventQueue;
 import java.awt.Font;
+import java.awt.Toolkit;
 import java.awt.event.ActionListener;
 
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -55,6 +57,7 @@ public class LoginView extends JFrame {
 		this.account = new Account();
 		ActionListener action = new LoginController(this);
 		setTitle("Đăng nhập");	
+		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 627, 342);
 		contentPane = new JPanel();

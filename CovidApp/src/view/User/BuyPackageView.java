@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -69,6 +70,7 @@ public class BuyPackageView extends JFrame {
 	public BuyPackageView() {
 		ActionListener action = new BuyPackageController(this);
 		setTitle("Mua nhu yếu phẩm");
+		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 540);
 		setResizable(false);

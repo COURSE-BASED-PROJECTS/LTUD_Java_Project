@@ -6,6 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -49,6 +50,7 @@ public class CreateAccount extends JFrame {
 	public CreateAccount() {
 		ActionListener action = new CreateAccountController(this);
 		setTitle("Tạo tài khoản");
+		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setBounds(100, 100, 724, 481);

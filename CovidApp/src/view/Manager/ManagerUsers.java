@@ -11,6 +11,7 @@ import java.awt.event.MouseEvent;
 
 import javax.swing.ButtonGroup;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
@@ -91,6 +92,7 @@ public class ManagerUsers extends JFrame {
 	public ManagerUsers() {
 		ActionListener action = new ManagerUsersController(this);
 		setTitle("Quản lí người dùng");
+		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 1097, 815);
 		setResizable(false);

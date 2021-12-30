@@ -4,9 +4,13 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.io.IOException;
 
-import javax.swing.AbstractButton;
+import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -24,9 +28,6 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.Manager.ManagerPackagesController;
 import model.managed.Managed_Package;
-import javax.swing.JFormattedTextField;
-import java.awt.event.MouseAdapter;
-import java.awt.event.MouseEvent;
 
 public class ManagerPackages extends JFrame {
 
@@ -88,8 +89,9 @@ public class ManagerPackages extends JFrame {
 	public ManagerPackages() {
 		ActionListener action = new ManagerPackagesController(this);
 		setTitle("Quản lí gói nhu yếu phẩm");
+		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1097, 767);
+		setBounds(100, 100, 1039, 720);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();
@@ -102,12 +104,12 @@ public class ManagerPackages extends JFrame {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
 				"Danh sa\u0301ch ca\u0301c go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 0, 0)));
-		listPackage.setBounds(10, 10, 1073, 146);
+		listPackage.setBounds(10, 10, 1008, 146);
 		contentPane.add(listPackage);
 		listPackage.setLayout(null);
 
 		scrollPanePackage = new JScrollPane();
-		scrollPanePackage.setBounds(10, 22, 1043, 114);
+		scrollPanePackage.setBounds(10, 22, 979, 114);
 		listPackage.add(scrollPanePackage);
 
 		tableListPackage = new JTable();
@@ -126,7 +128,7 @@ public class ManagerPackages extends JFrame {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
 				"Th\u00F4ng tin go\u0301i nhu y\u00EA\u0301u ph\u00E2\u0309m", TitledBorder.LEADING, TitledBorder.TOP,
 				null, new Color(0, 0, 0)));
-		packageForm.setBounds(20, 166, 1063, 385);
+		packageForm.setBounds(10, 166, 1008, 348);
 		contentPane.add(packageForm);
 		packageForm.setLayout(null);
 
@@ -138,7 +140,7 @@ public class ManagerPackages extends JFrame {
 
 		namePackageText = new JTextField();
 		namePackageText.setEnabled(false);
-		namePackageText.setBounds(402, 33, 240, 42);
+		namePackageText.setBounds(402, 33, 240, 35);
 		packageForm.add(namePackageText);
 		namePackageText.setColumns(10);
 
@@ -151,29 +153,32 @@ public class ManagerPackages extends JFrame {
 		limitText = new JTextField();
 		limitText.setEnabled(false);
 		limitText.setColumns(10);
-		limitText.setBounds(821, 33, 95, 42);
+		limitText.setBounds(821, 33, 95, 35);
 		packageForm.add(limitText);
 
 		timeLabel = new JLabel("Thời gian:");
 		timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timeLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		timeLabel.setBounds(10, 150, 81, 35);
+		timeLabel.setBounds(10, 110, 81, 35);
 		packageForm.add(timeLabel);
 
 		timeText = new JTextField();
 		timeText.setEnabled(false);
 		timeText.setColumns(10);
-		timeText.setBounds(93, 149, 190, 42);
+		timeText.setBounds(93, 110, 190, 35);
 		packageForm.add(timeText);
 
 		utilities = new JPanel();
 		utilities.setBorder(
 				new TitledBorder(null, "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		utilities.setBounds(10, 251, 495, 117);
+		utilities.setBounds(10, 200, 495, 117);
 		packageForm.add(utilities);
 		utilities.setLayout(null);
 
 		addButton = new JButton("Thêm");
+		
+		addButton.setIcon(new ImageIcon("icons/icons8-add-64.png"));
+		
 		addButton.addActionListener(action);
 		addButton.setBackground(Color.CYAN);
 		addButton.setBounds(10, 24, 95, 35);
@@ -181,6 +186,9 @@ public class ManagerPackages extends JFrame {
 		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 
 		delButton = new JButton("Xóa");
+		
+		delButton.setIcon(new ImageIcon("icons/icons8-delete-64.png"));
+		
 		delButton.addActionListener(action);
 		delButton.setBackground(Color.RED);
 		delButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -188,6 +196,9 @@ public class ManagerPackages extends JFrame {
 		utilities.add(delButton);
 
 		updateButton = new JButton("Sửa");
+		
+		updateButton.setIcon(new ImageIcon("icons/icons8-edit-64.png"));
+		
 		updateButton.addActionListener(action);
 		updateButton.setBackground(Color.ORANGE);
 		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
@@ -210,40 +221,40 @@ public class ManagerPackages extends JFrame {
 		lblnGia = new JLabel("Đơn giá:");
 		lblnGia.setHorizontalAlignment(SwingConstants.CENTER);
 		lblnGia.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblnGia.setBounds(460, 150, 68, 35);
+		lblnGia.setBounds(460, 110, 68, 35);
 		packageForm.add(lblnGia);
 
 		priceText = new JTextField();
 		priceText.setEnabled(false);
 		priceText.setColumns(10);
-		priceText.setBounds(538, 149, 166, 42);
+		priceText.setBounds(538, 110, 166, 35);
 		packageForm.add(priceText);
 
 		separator_2 = new JSeparator();
-		separator_2.setBounds(48, 232, 432, 2);
+		separator_2.setBounds(48, 178, 432, 2);
 		packageForm.add(separator_2);
 
 		separator_3 = new JSeparator();
 		separator_3.setOrientation(SwingConstants.VERTICAL);
-		separator_3.setBounds(550, 258, 18, 110);
+		separator_3.setBounds(548, 198, 18, 110);
 		packageForm.add(separator_3);
 
 		searchPackageLabel = new JLabel("Tên gói:");
 		searchPackageLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		searchPackageLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		searchPackageLabel.setBounds(578, 275, 95, 35);
+		searchPackageLabel.setBounds(578, 240, 95, 35);
 		packageForm.add(searchPackageLabel);
 
 		searchPackageText = new JTextField();
 		searchPackageText.setColumns(10);
-		searchPackageText.setBounds(659, 273, 166, 42);
+		searchPackageText.setBounds(659, 240, 166, 35);
 		packageForm.add(searchPackageText);
 
 		searchButton = new JButton("Tìm kiếm");
 		searchButton.addActionListener(action);
 		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		searchButton.setBackground(Color.CYAN);
-		searchButton.setBounds(851, 272, 105, 42);
+		searchButton.setBounds(851, 235, 105, 42);
 		packageForm.add(searchButton);
 
 		JLabel lblPackage = new JLabel("Mã gói:");
@@ -255,13 +266,13 @@ public class ManagerPackages extends JFrame {
 		idText = new JTextField();
 		idText.setEnabled(false);
 		idText.setColumns(10);
-		idText.setBounds(93, 33, 95, 42);
+		idText.setBounds(93, 33, 95, 35);
 		packageForm.add(idText);
 
 		manage = new JPanel();
 		manage.setBorder(
 				new TitledBorder(null, "Qua\u0309n li\u0301", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		manage.setBounds(10, 561, 1073, 153);
+		manage.setBounds(10, 524, 1008, 153);
 		contentPane.add(manage);
 		manage.setLayout(null);
 
@@ -315,7 +326,7 @@ public class ManagerPackages extends JFrame {
 		outButton.addActionListener(action);
 		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		outButton.setBackground(Color.RED);
-		outButton.setBounds(880, 42, 143, 70);
+		outButton.setBounds(855, 47, 120, 60);
 		manage.add(outButton);
 
 		JRadioButton radioWaranty = new JRadioButton("Còn thời hạn");
