@@ -78,24 +78,26 @@ public class PaymentSystemView extends JFrame {
 		contentPane.add(balanceLabel);
 		
 		JButton paymentButton = new JButton("Thêm người được quản lí");
+		paymentButton.setForeground(new Color(0, 0, 0));
 		paymentButton.addActionListener(action);
-		paymentButton.setBackground(Color.ORANGE);
-		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		paymentButton.setBackground(new Color(255, 204, 51));
+		paymentButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		paymentButton.setBounds(54, 174, 223, 77);
 		contentPane.add(paymentButton);
 		
 		JButton btnLchSThanh = new JButton("Lịch sử thanh toán");
 		btnLchSThanh.addActionListener(action);
-		btnLchSThanh.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		btnLchSThanh.setBackground(Color.GREEN);
+		btnLchSThanh.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		btnLchSThanh.setBackground(new Color(0, 204, 51));
 		btnLchSThanh.setBounds(369, 174, 223, 77);
 		contentPane.add(btnLchSThanh);
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setBackground(Color.RED);
-		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		logoutButton.setBounds(250, 306, 165, 77);
+		logoutButton.setBackground(new Color(255, 0, 51));
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		logoutButton.setBounds(243, 308, 165, 77);
 		contentPane.add(logoutButton);
 		
 		debitCurrentText = new JLabel("Admin_Payment");
@@ -107,5 +109,12 @@ public class PaymentSystemView extends JFrame {
 		balanceCurrentText.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		balanceCurrentText.setBounds(425, 87, 165, 35);
 		contentPane.add(balanceCurrentText);
+		
+		JLabel lblSystem = new JLabel("HỆ THỐNG QUẢN LÝ THANH TOÁN");
+		lblSystem.setBounds(51, 5, 522, 27);
+		contentPane.add(lblSystem);
+		lblSystem.setForeground(new Color(0, 102, 51));
+		lblSystem.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSystem.setFont(new Font("Segoe UI", Font.BOLD, 20));
 	}
 }

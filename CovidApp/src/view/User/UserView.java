@@ -8,7 +8,9 @@ import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -57,39 +59,47 @@ public class UserView extends JFrame {
 		
 		JPanel feature = new JPanel();
 		feature.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		feature.setBounds(10, 10, 622, 313);
+		feature.setBounds(10, 57, 622, 313);
 		contentPane.add(feature);
 		feature.setLayout(null);
 		
 		InfoButton = new JButton("Thông tin cá nhân");
 		InfoButton.addActionListener(action);
-		InfoButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		InfoButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		InfoButton.setBounds(80, 50, 180, 70);
 		feature.add(InfoButton);
 		
 		buyPackage = new JButton("Mua nhu yếu phẩm");
 		buyPackage.addActionListener(action);
-		buyPackage.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		buyPackage.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		buyPackage.setBounds(350, 50, 180, 70);
 		feature.add(buyPackage);
 		
 		paymentButton = new JButton("Thanh toán");
 		paymentButton.addActionListener(action);
-		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		paymentButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		paymentButton.setBounds(80, 170, 180, 70);
 		feature.add(paymentButton);
 		
 		changePassButton = new JButton("Đổi mật khẩu");
 		changePassButton.addActionListener(action);
-		changePassButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		changePassButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		changePassButton.setBounds(350, 170, 180, 70);
 		feature.add(changePassButton);
 		
 		logout = new JButton("Đăng xuất");
+		logout.setForeground(new Color(255, 255, 255));
 		logout.addActionListener(action);
-		logout.setBackground(Color.RED);
-		logout.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		logout.setBounds(238, 357, 165, 77);
+		logout.setBackground(new Color(255, 0, 51));
+		logout.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		logout.setBounds(233, 398, 165, 50);
 		contentPane.add(logout);
+		
+		JLabel lblSystem = new JLabel("HỆ THỐNG QUẢN LÝ COVID-19");
+		lblSystem.setBounds(69, 5, 504, 27);
+		contentPane.add(lblSystem);
+		lblSystem.setForeground(new Color(0, 102, 51));
+		lblSystem.setHorizontalAlignment(SwingConstants.CENTER);
+		lblSystem.setFont(new Font("Segoe UI", Font.BOLD, 20));
 	}
 }

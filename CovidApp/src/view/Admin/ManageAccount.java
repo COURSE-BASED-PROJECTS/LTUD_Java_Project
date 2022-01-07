@@ -78,9 +78,10 @@ public class ManageAccount extends JFrame {
 		AccountTable.setModel(Managed_Account.showAccountTable(initialRow()));
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.setForeground(new Color(255, 255, 255));
 		outButton.addActionListener(action);
-		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		outButton.setBackground(Color.RED);
+		outButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		outButton.setBackground(new Color(255, 0, 51));
 		outButton.setBounds(778, 500, 142, 50);
 		contentPane.add(outButton);
 		
@@ -92,21 +93,21 @@ public class ManageAccount extends JFrame {
 		
 		JButton lockButton = new JButton("Khóa tài khoản");
 		lockButton.addActionListener(action);
-		lockButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		lockButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lockButton.setBackground(Color.ORANGE);
 		lockButton.setBounds(45, 34, 131, 38);
 		panel_1.add(lockButton);
 		
 		JButton activeButton = new JButton("Kích hoạt tài khoản");
 		activeButton.addActionListener(action);
-		activeButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		activeButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		activeButton.setBackground(Color.GREEN);
-		activeButton.setBounds(251, 34, 137, 38);
+		activeButton.setBounds(251, 34, 147, 38);
 		panel_1.add(activeButton);
 		
 		JButton activityButton = new JButton("Xem lịch sử hoạt động");
 		activityButton.addActionListener(action);
-		activityButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		activityButton.setFont(new Font("Tahoma", Font.BOLD, 12));
 		activityButton.setBackground(Color.CYAN);
 		activityButton.setBounds(467, 34, 168, 38);
 		panel_1.add(activityButton);

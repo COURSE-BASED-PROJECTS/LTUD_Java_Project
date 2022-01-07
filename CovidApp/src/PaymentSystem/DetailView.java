@@ -66,12 +66,12 @@ public class DetailView extends JFrame {
 		
 		JPanel AccountTable = new JPanel();
 		AccountTable.setBorder(new TitledBorder(null, "Ta\u0300i khoa\u0309n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		AccountTable.setBounds(10, 21, 822, 196);
+		AccountTable.setBounds(10, 21, 822, 254);
 		panel.add(AccountTable);
 		AccountTable.setLayout(null);
 		
 		JScrollPane scrollPaneManaged = new JScrollPane();
-		scrollPaneManaged.setBounds(10, 22, 802, 164);
+		scrollPaneManaged.setBounds(10, 22, 802, 222);
 		AccountTable.add(scrollPaneManaged);
 		
 		tableManaged = new JTable();
@@ -83,11 +83,11 @@ public class DetailView extends JFrame {
 		TransTable.setLayout(null);
 		TransTable.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
 				"Li\u0323ch s\u01B0\u0309 giao di\u0323ch", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		TransTable.setBounds(7, 227, 825, 254);
+		TransTable.setBounds(7, 285, 825, 196);
 		panel.add(TransTable);
 		
 		JScrollPane scrollPaneConsume = new JScrollPane();
-		scrollPaneConsume.setBounds(10, 23, 805, 221);
+		scrollPaneConsume.setBounds(10, 22, 805, 164);
 		TransTable.add(scrollPaneConsume);
 		
 		tableConsume = new JTable();
@@ -96,8 +96,9 @@ public class DetailView extends JFrame {
 		tableConsume.setModel(Managed_PaymentSystem.showTransactionTable(initialRow(columnNamesTrans)));
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		logoutButton.setBackground(Color.RED);
 		logoutButton.setBounds(271, 491, 292, 35);
 		panel.add(logoutButton);
