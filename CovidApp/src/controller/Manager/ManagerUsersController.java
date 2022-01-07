@@ -32,7 +32,7 @@ public class ManagerUsersController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
+		// System.out.println(cm);
 		if (cm.equals("Thoát")) {
 			view.dispose();
 			ManagerView mv = new ManagerView();
@@ -47,14 +47,14 @@ public class ManagerUsersController implements ActionListener {
 			this.previousCm = cm;
 			modifyAction();
 
-		} /*else if (cm.equals("Xóa")) {
-			//delAction();
-			loadData();
-
-		} */else if (cm.equals("Đặt lại")) {
+		} /*
+			 * else if (cm.equals("Xóa")) { //delAction(); loadData();
+			 * 
+			 * }
+			 */else if (cm.equals("Đặt lại")) {
 			String ops[] = { "Có", "Không", "Thoát" };
-			int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn đặt lại?", "Xác nhận đặt lại", JOptionPane.NO_OPTION,
-					JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
+			int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn đặt lại?", "Xác nhận đặt lại",
+					JOptionPane.NO_OPTION, JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
 			// System.out.println(op);
 			if (op == 0) {
 				clearForm();
@@ -113,7 +113,7 @@ public class ManagerUsersController implements ActionListener {
 
 	private void sortAction(String type) {
 		String col = this.view.getSortGroup().getSelection().getActionCommand();
-		//System.out.println(col);
+		// System.out.println(col);
 		if (col.equals("CMND")) {
 			this.view.getTableListUser().setModel(Managed_User.sortBy("CMND", type, this.view.initialRow()));
 		} else if (col.equals("Họ tên")) {
@@ -128,30 +128,27 @@ public class ManagerUsersController implements ActionListener {
 
 	}
 
-	/*private void delAction() {
-		int i = this.view.getTableListUser().getSelectedRow();
-		// System.out.println(i);
-		if (i == -1) {
-			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xóa");
-		}
-		String id = this.view.getIdText().getText().toString().trim();
-		String ops[] = { "Có", "Không", "Thoát" };
-		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
-				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
-		// System.out.println(op);
-		if (op == 0) {
-			TableModel model = this.view.getTableListUser().getModel();
-			Managed_History.addManagerHistory("Xóa", "NGUOIDUNG", model.getValueAt(i, 0).toString().trim());
-			Managed_User.delUser(id);
-		}
-
-	}*/
+	/*
+	 * private void delAction() { int i =
+	 * this.view.getTableListUser().getSelectedRow(); // System.out.println(i); if
+	 * (i == -1) { JOptionPane.showMessageDialog(view,
+	 * "Chưa chọn đối tượng để xóa"); } String id =
+	 * this.view.getIdText().getText().toString().trim(); String ops[] = { "Có",
+	 * "Không", "Thoát" }; int op = JOptionPane.showOptionDialog(view,
+	 * "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
+	 * JOptionPane.PLAIN_MESSAGE, null, ops, "Không"); // System.out.println(op); if
+	 * (op == 0) { TableModel model = this.view.getTableListUser().getModel();
+	 * Managed_History.addManagerHistory("Xóa", "NGUOIDUNG", model.getValueAt(i,
+	 * 0).toString().trim()); Managed_User.delUser(id); }
+	 * 
+	 * }
+	 */
 
 	private void saveAction(String previousCm) {
 		String id = this.view.getIdText().getText().trim();
 		String name = this.view.getNameText().getText().trim();
 		String year = this.view.getYearText().getText().trim();
-		String relative = this.view.getRelativeText().getText().trim();
+		String relative = this.view.getRelative().getSelectedItem().toString().trim();
 		String ward = this.view.getTown().getSelectedItem().toString().trim();
 		String district = this.view.getDistrict().getSelectedItem().toString().trim();
 		String city = this.view.getCity().getSelectedItem().toString().trim();
@@ -170,7 +167,7 @@ public class ManagerUsersController implements ActionListener {
 				int i = this.view.getTableListUser().getSelectedRow();
 				TableModel model = this.view.getTableListUser().getModel();
 				String idModify = model.getValueAt(i, 0).toString().trim();
-				//System.out.println(idModify);
+				// System.out.println(idModify);
 				String oldZone = model.getValueAt(i, 6).toString().trim();
 				String newZone = user.getPlaceOfTreatment().getId();
 				if (!oldZone.equals(newZone)) {
@@ -255,14 +252,14 @@ public class ManagerUsersController implements ActionListener {
 			try {
 				relativeId = Integer.parseInt(relative);
 			} catch (Exception e) {
-				JOptionPane.showMessageDialog(view, "Nhập số CMND/CCCD ở ô người liên quan");
+				JOptionPane.showMessageDialog(view, "Chọn số CMND/CCCD ở ô người liên quan");
 				return null;
 			}
-			relativeUser = Managed_User.findById(relative);
-			if (relativeUser == null) {
-				JOptionPane.showMessageDialog(view, "Người liên quan không tồn tại");
-				return null;
-			}
+			relativeUser = new User(relative);
+//			if (relativeUser == null) {
+//				JOptionPane.showMessageDialog(view, "Người liên quan không tồn tại");
+//				return null;
+//			}
 		}
 		return new User(name, id, yob, addr, status, zone, relativeUser);
 	}
@@ -270,37 +267,35 @@ public class ManagerUsersController implements ActionListener {
 	private void enabledForm() {
 		this.view.getIdText().setEditable(true);
 		this.view.getNameText().setEditable(true);
-		;
+
 		this.view.getYearText().setEditable(true);
-		;
-		this.view.getRelativeText().setEditable(true);
 
 		this.view.getTown().setEnabled(true);
 		this.view.getDistrict().setEnabled(true);
 		this.view.getCity().setEnabled(true);
 		this.view.getStatus().setEnabled(true);
 		this.view.getTreatment().setEnabled(true);
+		this.view.getRelative().setEnabled(true);
 	}
 
 	private void disabledForm() {
 		this.view.getIdText().setEditable(false);
 		this.view.getNameText().setEditable(false);
 		this.view.getYearText().setEditable(false);
-		this.view.getRelativeText().setEditable(false);
 
 		this.view.getTown().setEnabled(false);
 		this.view.getDistrict().setEnabled(false);
 		this.view.getCity().setEnabled(false);
 		this.view.getStatus().setEnabled(false);
 		this.view.getTreatment().setEnabled(false);
-
+		this.view.getRelative().setEnabled(false);
 	}
 
 	private void clearForm() {
 		this.view.getIdText().setText("");
 		this.view.getNameText().setText("");
 		this.view.getYearText().setText("");
-		this.view.getRelativeText().setText("");
+		this.view.getRelative().setSelectedItem("");
 
 		this.view.getCity().setSelectedIndex(0);
 		this.view.getDistrict().setSelectedIndex(0);
@@ -343,15 +338,25 @@ public class ManagerUsersController implements ActionListener {
 			this.view.getStatus().setSelectedIndex(0);
 			break;
 		}
-		this.view.getRelativeText().setText(model.getValueAt(i, 4).toString().trim());
+		if (model.getValueAt(i, 4) != null) {
+			this.view.getRelative().addItem(model.getValueAt(i, 4).toString().trim());
+			this.view.getRelative().setSelectedItem(model.getValueAt(i, 4).toString().trim());
+		} else {
+			this.view.getRelative().setSelectedItem("");
+		}
 
 		String[] addr = model.getValueAt(i, 5).toString().split(",");
 		this.view.getCity().setSelectedItem(addr[2].trim());
 		this.view.getDistrict().setSelectedItem(addr[1].trim());
 		this.view.getTown().setSelectedItem(addr[0].trim());
+		
+		if (model.getValueAt(i, 6) != null) {
+			String zoneName = Managed_Zone.getZoneNameFromId(model.getValueAt(i, 6).toString().trim());
+			this.view.getTreatment().setSelectedItem(zoneName);
+		} else {
+			this.view.getTreatment().setSelectedItem("Nơi điều trị/cách ly");
+		}
 
-		String zoneName = Managed_Zone.getZoneNameFromId(model.getValueAt(i, 6).toString().trim());
-		this.view.getTreatment().setSelectedItem(zoneName);
 	}
 
 	public void loadData() {
@@ -375,6 +380,20 @@ public class ManagerUsersController implements ActionListener {
 				.setModel(new DefaultComboBoxModel(
 						Managed_Address.getListWard(this.view.getCity().getSelectedItem().toString().trim(),
 								this.view.getDistrict().getSelectedItem().toString().trim())));
+	}
+
+	@SuppressWarnings("unchecked")
+	public void loadRelative(String st) {
+		String status = "";
+		if (st.equals("F1")) {
+			status = "F0";
+		} else if (st.equals("F2")) {
+			status = "F1";
+		} else if (st.equals("F3")) {
+			status = "F2";
+		}
+		this.view.getRelative().setModel(new DefaultComboBoxModel(Managed_User.getListRelative(status)));
+
 	}
 
 }

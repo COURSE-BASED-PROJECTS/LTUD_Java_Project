@@ -402,4 +402,22 @@ public class Managed_User {
 		}
 		return listId;
 	}
+
+	public static Vector<String> getListRelative(String status) {
+		Vector<String> relativeId = new Vector<String>();
+		relativeId.addElement("");
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select CMND From NGUOIDUNG Where TRANGTHAI = '" + status + "'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				relativeId.addElement(rs.getString(1));
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng NGUOIDUNG");
+			e1.printStackTrace();
+		}
+
+		return relativeId;
+	}
 }

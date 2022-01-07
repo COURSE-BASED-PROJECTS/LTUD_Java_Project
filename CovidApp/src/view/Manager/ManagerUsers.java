@@ -55,7 +55,6 @@ public class ManagerUsers extends JFrame {
 	private JComboBox status;
 	private JComboBox treatment;
 	private JLabel relateLabel;
-	private JTextField relativeText;
 	private JPanel utilities;
 	private JButton addButton;
 	private JButton updateButton;
@@ -69,6 +68,7 @@ public class ManagerUsers extends JFrame {
 	private JTextField searchNameText;
 	private JTextField yearText;
 	private final ButtonGroup sortGroup = new ButtonGroup();
+	private JComboBox relative;
 
 	/**
 	 * Launch the application.
@@ -216,17 +216,23 @@ public class ManagerUsers extends JFrame {
 		status = new JComboBox();
 		status.addItemListener(new ItemListener() {
 			public void itemStateChanged(ItemEvent e) {
-				if (status.getSelectedItem().toString().trim().equals("F0")
-						|| status.getSelectedItem().toString().trim().equals("Khỏi bệnh")) {
-					relativeText.setText("");
-					relativeText.setEnabled(false);
+				String s = status.getSelectedItem().toString().trim();
+				if (s.equals("F0")) {
+					relative.setSelectedItem("");
+					relative.setEnabled(false);
 				} else {
-					relativeText.setEnabled(true);
+					((ManagerUsersController) action).loadRelative(s);
+				}
+				if (s.equals("Khỏi bệnh")) {
+					relative.setSelectedItem("");
+					relative.setEnabled(false);
+					treatment.setSelectedItem("Nơi điều trị/cách ly");
+					treatment.setEnabled(false);
 				}
 			}
 		});
-		status.setEnabled(false);
 		status.setModel(new DefaultComboBoxModel(new String[] { "Status", "F0", "F1", "F2", "F3", "Khỏi bệnh" }));
+		status.setEnabled(false);
 		status.setToolTipText("");
 		status.setName("");
 		status.setFont(new Font("Tahoma", Font.PLAIN, 15));
@@ -253,12 +259,15 @@ public class ManagerUsers extends JFrame {
 		relateLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		relateLabel.setBounds(633, 254, 113, 35);
 		userForm.add(relateLabel);
-
-		relativeText = new JTextField();
-		relativeText.setEditable(false);
-		relativeText.setColumns(10);
-		relativeText.setBounds(756, 254, 166, 35);
-		userForm.add(relativeText);
+		
+		relative = new JComboBox();
+		relative.setModel(new DefaultComboBoxModel(new String[] {""}));
+		relative.setToolTipText("");
+		relative.setName("");
+		relative.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		relative.setEnabled(false);
+		relative.setBounds(756, 254, 152, 35);
+		userForm.add(relative);
 
 		utilities = new JPanel();
 		utilities.setBorder(
@@ -305,6 +314,7 @@ public class ManagerUsers extends JFrame {
 		yearText.setColumns(10);
 		yearText.setBounds(887, 34, 84, 35);
 		userForm.add(yearText);
+		
 
 		manage = new JPanel();
 		manage.setBorder(
@@ -470,19 +480,10 @@ public class ManagerUsers extends JFrame {
 	public JComboBox getDistrict() {
 		return district;
 	}
-
-	public JLabel getRelateLabel() {
-		return relateLabel;
+	
+	public JComboBox getRelative() {
+		return relative;
 	}
-
-	public JTextField getRelativeText() {
-		return relativeText;
-	}
-
-	public JPanel getUtilities() {
-		return utilities;
-	}
-
 	public JButton getAddButton() {
 		return addButton;
 	}
@@ -500,10 +501,6 @@ public class ManagerUsers extends JFrame {
 
 	public JButton getDetailButton() {
 		return detailButton;
-	}
-
-	public JPanel getManage() {
-		return manage;
 	}
 
 	public JButton getSortAsc() {
@@ -537,5 +534,4 @@ public class ManagerUsers extends JFrame {
 	public ButtonGroup getSortGroup() {
 		return sortGroup;
 	}
-
 }

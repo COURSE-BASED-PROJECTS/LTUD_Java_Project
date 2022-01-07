@@ -196,7 +196,7 @@ public class StatisticInfo extends JFrame {
         DefaultPieDataset dataset = new DefaultPieDataset();
         Double debt = Managed_Account.getTotalDebt();
         Double paid = Managed_Payment.getTotalPaid();
-               
+       
         dataset.setValue("Chưa thanh toán", debt);
         dataset.setValue("Đã thanh toán", paid);
         
