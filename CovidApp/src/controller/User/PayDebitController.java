@@ -118,8 +118,8 @@ class ClientThread extends Thread implements Runnable {
 
 				if (Managed_Payment.insertPayment(paymentHistory)
 						&& Managed_Payment.updateBalance(Double.parseDouble(pdview.getDebitCurrentText().getText()),
-								Double.parseDouble(pdview.getBalanceCurrentText().getText()),
-								Double.parseDouble(pdview.getPaymentMinimumText().getText()))) {
+														 Double.parseDouble(pdview.getBalanceCurrentText().getText()),
+														 Double.parseDouble(pdview.getPaymentMinimumText().getText()))) {
 
 					JOptionPane.showConfirmDialog(pdview, "Đã thanh toán thành công", "Thanh toán thành công",
 							JOptionPane.CLOSED_OPTION, 1);

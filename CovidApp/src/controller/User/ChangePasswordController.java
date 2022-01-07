@@ -46,6 +46,11 @@ public class ChangePasswordController implements ActionListener {
 			JOptionPane.showMessageDialog(view, "Mật khẩu mới không được trùng mật khẩu cũ");
 			return;
 		}
+		String defaultPass = Password.encrypt(username);
+		if (defaultPass.equals(newPass)) {
+			JOptionPane.showMessageDialog(view, "Mật khẩu mới không được trùng mật khẩu mặc định");
+			return;
+		}
 		if (newPass.equals(newAgainPass)) {
 			Managed_Account.changePassword(username, newPass);
 			JOptionPane.showMessageDialog(view, "Đổi mật khẩu thành công");

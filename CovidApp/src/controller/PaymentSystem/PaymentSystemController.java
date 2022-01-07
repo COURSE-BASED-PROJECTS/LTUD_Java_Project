@@ -2,11 +2,23 @@ package controller.PaymentSystem;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.net.Socket;
 
+import javax.swing.JOptionPane;
+
+import PaymentSystem.CreateUserPaymentView;
 import PaymentSystem.DetailView;
 import PaymentSystem.PaymentSystemView;
+import model.AccountCurrent;
+import model.Payment_History;
+import model.managed.Managed_Account;
+import model.managed.Managed_Payment;
+import model.managed.Managed_User;
 import view.LoginView;
-import view.Admin.CreateAccount;
+import view.User.PayDebitView;
 
 public class PaymentSystemController implements ActionListener {
 	public PaymentSystemView view;
@@ -26,8 +38,8 @@ public class PaymentSystemController implements ActionListener {
 			lv.setVisible(true);
 			
 		} else if (cm.equals("Thêm người được quản lí")) {
-			CreateAccount ca = new CreateAccount();
-			ca.setVisible(true);
+			CreateUserPaymentView cup = new CreateUserPaymentView();
+			cup.setVisible(true);
 			
 		}else if (cm.equals("Lịch sử thanh toán")) {
 			this.view.dispose();

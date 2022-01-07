@@ -1,10 +1,14 @@
 package view;
 
+import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
-import java.awt.Toolkit;
 import java.awt.event.ActionListener;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 
+import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -19,7 +23,7 @@ import org.apache.logging.log4j.Logger;
 
 import controller.LoginController;
 import model.Account;
-import java.awt.Color;
+import javax.swing.SwingConstants;
 
 public class LoginView extends JFrame {
 
@@ -59,40 +63,61 @@ public class LoginView extends JFrame {
 		setTitle("Đăng nhập");	
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 627, 342);
+		setBounds(100, 100, 776, 537);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
+		JLabel lblLogin = new JLabel("Đăng nhập");
+		lblLogin.setHorizontalAlignment(SwingConstants.CENTER);
+		lblLogin.setForeground(Color.BLACK);
+		lblLogin.setFont(new Font("Segoe UI", Font.BOLD, 25));
+		lblLogin.setBounds(140, 64, 140, 37);
+		contentPane.add(lblLogin);
+		
 		JLabel lblUsername = new JLabel("Tài khoản");
 		lblUsername.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		lblUsername.setBounds(55, 71, 84, 37);
+		lblUsername.setBounds(37, 145, 84, 37);
 		contentPane.add(lblUsername);
 		
 		JLabel lblPassword = new JLabel("Mật khẩu");
 		lblPassword.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		lblPassword.setBounds(55, 140, 84, 37);
+		lblPassword.setBounds(37, 239, 84, 37);
 		contentPane.add(lblPassword);
 		
 		tf_username = new JTextField();
 		tf_username.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		tf_username.setBounds(196, 71, 313, 37);
+		tf_username.setBounds(37, 192, 348, 37);
 		contentPane.add(tf_username);
 		tf_username.setColumns(10);
 		
 		JButton btnLogin = new JButton("Đăng nhập");
-		btnLogin.setBackground(Color.GREEN);
-		btnLogin.setForeground(Color.BLACK);
+		btnLogin.setBackground(new Color(102, 0, 255));
+		btnLogin.setForeground(new Color(255, 255, 255));
 		btnLogin.addActionListener(action);
 		btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 25));
-		btnLogin.setBounds(253, 215, 167, 43);
+		btnLogin.setBounds(37, 374, 348, 43);
 		contentPane.add(btnLogin);
 		
 		passwordField = new JPasswordField();
 		passwordField.setFont(new Font("Segoe UI", Font.PLAIN, 16));
-		passwordField.setBounds(197, 140, 312, 37);
+		passwordField.setBounds(38, 286, 347, 37);
 		contentPane.add(passwordField);
+		
+
+		BufferedImage myPicture;
+		try {
+			myPicture = ImageIO.read(new File("icons/5K-1.png"));
+			JLabel picLabel = new JLabel(new ImageIcon(myPicture));
+			picLabel.setBounds(430, 0, 332, 500);
+			getContentPane().add(picLabel);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+
 	}
 
 	public Account getAccount() {

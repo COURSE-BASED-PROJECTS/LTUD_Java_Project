@@ -177,7 +177,7 @@ public class ManagerPackages extends JFrame {
 
 		addButton = new JButton("Thêm");
 		
-		addButton.setIcon(new ImageIcon("icons/icons8-add-64.png"));
+//		addButton.setIcon(new ImageIcon("icons/icons8-add-64.png"));
 		
 		addButton.addActionListener(action);
 		addButton.setBackground(Color.CYAN);
@@ -187,7 +187,7 @@ public class ManagerPackages extends JFrame {
 
 		delButton = new JButton("Xóa");
 		
-		delButton.setIcon(new ImageIcon("icons/icons8-delete-64.png"));
+//		delButton.setIcon(new ImageIcon("icons/icons8-delete-64.png"));
 		
 		delButton.addActionListener(action);
 		delButton.setBackground(Color.RED);
@@ -197,7 +197,7 @@ public class ManagerPackages extends JFrame {
 
 		updateButton = new JButton("Sửa");
 		
-		updateButton.setIcon(new ImageIcon("icons/icons8-edit-64.png"));
+//		updateButton.setIcon(new ImageIcon("icons/icons8-edit-64.png"));
 		
 		updateButton.addActionListener(action);
 		updateButton.setBackground(Color.ORANGE);

@@ -40,10 +40,13 @@ public class Managed_Account {
 	}
 
 	public static void addAccount(Account acc) {
-		Connection con = DatabaseConnect.openConnection();
-		String sql = "INSERT INTO TAIKHOAN(TAIKHOAN,MATKHAU,PHANHE,TINHTRANG)" + "	VALUES  (?,?,?,?)";
+		Connection con_Covid = DatabaseConnect.openConnection();
+		Connection con_Payment = DatabaseConnect.connectDB_Payment();
+		String sql = "INSERT INTO TAIKHOAN(TAIKHOAN,MATKHAU,PHANHE,SODU,TINHTRANG)" + "	VALUES  (?,?,?,?,?)";
 		try {
-			PreparedStatement stmt = con.prepareStatement(sql);
+			PreparedStatement stmt = con_Covid.prepareStatement(sql);
+			PreparedStatement stmt1 = con_Payment.prepareStatement(sql);
+
 
 			stmt.setString(1, acc.getUserName());
 			stmt.setString(2, Password.encrypt(acc.getPassword()));
@@ -55,24 +58,35 @@ public class Managed_Account {
 				switch (acc.getRole()) {
 				case MANAGER:
 					stmt.setString(3, "QUANLY");
+					stmt.setString(4, "0");
 					break;
-				case USER:
+				case USER:{
 					stmt.setString(3, "NGUOIDUNG");
+					stmt.setString(4, "1000000");
+					
+					stmt1.setString(1, acc.getUserName());
+					stmt1.setString(2, Password.encrypt(acc.getPassword()));
+					stmt1.setString(3, "NGUOIDUNG");
+					stmt1.setString(4, "1000000");
+					stmt1.setString(5, "1");
 					break;
+				}
 				case ADMIN_COVID:
 					stmt.setString(3, "QUANTRI");
+					stmt.setString(4, "0");
 					break;
 				case ADMIN_PAYMENT:
 					stmt.setString(3, "QUANTRI");
+					stmt.setString(4, "0");
 					break;
 				default:
 					stmt.setString(3, "");
 					break;
 				}
-
-			stmt.setString(4, "1");
+			stmt.setString(5, "1");
 
 			stmt.executeUpdate();
+			stmt1.executeUpdate();
 		} catch (SQLException e) {
 			System.out.println("Thêm mới TÀI KHOẢN không thành công");
 			e.printStackTrace();
@@ -95,6 +109,7 @@ public class Managed_Account {
 			e.printStackTrace();
 		}
 	}
+	
 	public static void activeAcc(String id) {
 		Connection con = DatabaseConnect.openConnection();
 
@@ -127,6 +142,23 @@ public class Managed_Account {
 			e1.printStackTrace();
 		}
 		return false;
+	}
+	
+	public static boolean isExist(String username) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select count(*) From TAIKHOAN Where TAIKHOAN = '" + username + "'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				if (rs.getInt(1) == 0) {
+					return false;
+				}
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi truy xuất từ bảng TAIKHOAN");
+			e1.printStackTrace();
+		}
+		return true;
 	}
 
 	public static String getRole(String username) {
