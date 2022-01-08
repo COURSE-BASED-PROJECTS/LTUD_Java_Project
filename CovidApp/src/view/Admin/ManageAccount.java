@@ -104,7 +104,7 @@ public class ManageAccount extends JFrame {
 		activeButton.addActionListener(action);
 		activeButton.setBackground(new Color(0, 204, 0));
 		activeButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		activeButton.setBounds(236, 34, 169, 38);
+		activeButton.setBounds(236, 34, 172, 38);
 		panel_1.add(activeButton);
 		
 		JButton activityButton = new JButton("Xem lịch sử hoạt động");
@@ -112,7 +112,7 @@ public class ManageAccount extends JFrame {
 		activityButton.setForeground(new Color(255, 255, 255));
 		activityButton.setBackground(new Color(0, 153, 255));
 		activityButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		activityButton.setBounds(448, 34, 191, 38);
+		activityButton.setBounds(448, 34, 195, 38);
 		panel_1.add(activityButton);
 	}
 	

@@ -23,7 +23,6 @@ public class DetailView extends JFrame {
 	private JPanel contentPane;
 	private JTable tableManaged;
 	private JTable tableConsume;
-	private String [] columnNamesAccount = new String [] {"Tài khoản", "Mật khẩu", "Phân quyền","Số dư","Dư nợ", "Trạng thái"};
 	private String [] columnNamesTrans = new String [] {
             "Mã GD", "CMND", "Dư nợ","Số tiền trả","Thời gian"};
 
@@ -48,11 +47,11 @@ public class DetailView extends JFrame {
 	 */
 	public DetailView() {
 		ActionListener action = new DetailController(this);
-		setTitle("Thông tin giao dịch");
+		setTitle("Lịch sử thanh toán");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 867, 602);
+		setBounds(100, 100, 776, 537);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
@@ -60,35 +59,13 @@ public class DetailView extends JFrame {
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new TitledBorder(null, "", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		panel.setBounds(11, 10, 842, 555);
+		panel.setBounds(11, 10, 741, 480);
 		contentPane.add(panel);
 		panel.setLayout(null);
 		
-		JPanel AccountTable = new JPanel();
-		AccountTable.setBorder(new TitledBorder(null, "Ta\u0300i khoa\u0309n", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		AccountTable.setBounds(10, 21, 822, 254);
-		panel.add(AccountTable);
-		AccountTable.setLayout(null);
-		
-		JScrollPane scrollPaneManaged = new JScrollPane();
-		scrollPaneManaged.setBounds(10, 22, 802, 222);
-		AccountTable.add(scrollPaneManaged);
-		
-		tableManaged = new JTable();
-		scrollPaneManaged.setViewportView(tableManaged);
-		tableManaged.setModel(initialRow(columnNamesAccount));
-		tableManaged.setModel(Managed_PaymentSystem.showAccountTable(initialRow(columnNamesAccount)));
-		
-		JPanel TransTable = new JPanel();
-		TransTable.setLayout(null);
-		TransTable.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
-				"Li\u0323ch s\u01B0\u0309 giao di\u0323ch", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		TransTable.setBounds(7, 285, 825, 196);
-		panel.add(TransTable);
-		
 		JScrollPane scrollPaneConsume = new JScrollPane();
-		scrollPaneConsume.setBounds(10, 22, 805, 164);
-		TransTable.add(scrollPaneConsume);
+		scrollPaneConsume.setBounds(10, 22, 721, 354);
+		panel.add(scrollPaneConsume);
 		
 		tableConsume = new JTable();
 		scrollPaneConsume.setViewportView(tableConsume);
@@ -100,7 +77,7 @@ public class DetailView extends JFrame {
 		logoutButton.addActionListener(action);
 		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		logoutButton.setBackground(Color.RED);
-		logoutButton.setBounds(271, 491, 292, 35);
+		logoutButton.setBounds(216, 409, 292, 50);
 		panel.add(logoutButton);
 		
 	}

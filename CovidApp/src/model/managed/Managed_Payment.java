@@ -109,6 +109,29 @@ public class Managed_Payment extends Managed_General{
 		
 		return result;	
 	}
+	
+	public static boolean setNewBalance(Double money, String username) {
+		Connection con = DatabaseConnect.openConnection();
+		
+		boolean result = false;
+		String sql = "UPDATE TAIKHOAN SET SODU=?"
+				+ " WHERE TAIKHOAN=?";
+		
+		try {
+			PreparedStatement stmt = con.prepareStatement(sql);
+			stmt.setDouble(1, money);
+			stmt.setString(2, username);
+
+			result = stmt.executeUpdate() > 0;
+			stmt.close();
+			con.close();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;	
+	}
 
 	public static Double getTotalPaid() {
 		Double totalPaid = 0.0d;

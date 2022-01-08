@@ -11,6 +11,7 @@ import model.Address;
 import model.F;
 import model.User;
 import model.Zone;
+import model.managed.Managed_Account;
 import model.managed.Managed_User;
 import model.managed.Managed_Zone;
 import view.Admin.AdminView;
@@ -27,7 +28,7 @@ public class ManagerZonesController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		
+		System.out.println(cm);
 		if (cm.equals("Thoát")) {
 			view.dispose();
 
@@ -39,6 +40,18 @@ public class ManagerZonesController implements ActionListener {
 			enabledForm();
 			clearForm();
 			
+		} else if (cm.equals("Xóa")) {
+			this.previousCm = cm;
+			int i = this.view.getTableListZone().getSelectedRow();
+
+			if (i == -1) {
+				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xoá");
+			} else {
+				delAction();
+				clearForm();
+				this.view.loadData();
+			}
+			
 		} else if (cm.equals("Sửa")) {
 			this.previousCm = cm;
 			int i = this.view.getTableListZone().getSelectedRow();
@@ -47,7 +60,7 @@ public class ManagerZonesController implements ActionListener {
 				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để sửa");
 			} else {
 				enabledForm();
-			}	
+			}
 			
 		} else if (cm.equals("Đặt lại")) {
 			clearForm();
@@ -89,12 +102,16 @@ public class ManagerZonesController implements ActionListener {
 		if (zone != null) {
 			if (previousCm.equals("Thêm")) {
 				Managed_Zone.addZone(zone);
+				JOptionPane.showMessageDialog(view, "Thêm Khu cách ly mới thành công!");
+
 			} else {
 				int i = this.view.getTableListZone().getSelectedRow();
 				TableModel model = this.view.getTableListZone().getModel();
 				String idModify = model.getValueAt(i, 0).toString().trim();
-				System.out.println(idModify);
 				Managed_Zone.updateZone(zone, idModify);
+
+				JOptionPane.showMessageDialog(view, "Cập nhật thành công!");
+
 			}
 		}
 	}
@@ -134,19 +151,23 @@ public class ManagerZonesController implements ActionListener {
 		return new Zone(name, id, capacity, receivedSlot);
 	}
 	//DELETE ZONE
-//	private void delAction() {
-//		int i = this.view.getTableListZone().getSelectedRow();
-//		if (i == -1) {
-//			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xóa");
-//		}
-//		String id = this.view.getIdText().getText().toString().trim();
-//		String ops[] = { "Có", "Không", "Thoát" };
-//		int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa", "Xác nhận xóa", JOptionPane.NO_OPTION,
-//				JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
-//		if (op == 0) {
-//			Managed_Zone.delZone(id);
-//		}
-//	}	
+	private void delAction() {
+		String id = this.view.getIdText().getText().toString().trim();
+		
+		if(Managed_Zone.isEmpty(id)) {
+			String ops[] = { "Có", "Không", "Thoát" };
+			int op = JOptionPane.showOptionDialog(view, "Bạn có chắc muốn xóa?", "Xác nhận xóa", JOptionPane.NO_OPTION,
+					JOptionPane.PLAIN_MESSAGE, null, ops, "Không");
+			if (op == 0) {
+				Managed_Zone.delZone(id);
+			}
+
+			JOptionPane.showMessageDialog(view, "Xoá KCL thành công");
+		}
+		else {
+			JOptionPane.showMessageDialog(view, "Không thể xoá KHU CÁCH LY đang tiếp nhận người");
+		}
+	}	
 
 	public void displayData() {
 		disabledForm();

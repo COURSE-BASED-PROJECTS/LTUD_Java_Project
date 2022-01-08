@@ -50,6 +50,7 @@ public class ManagerZones extends JFrame {
     private JPanel utilities;
     private JButton addButton;
     private JButton updateButton;
+    private JButton delButton;
     private JButton clearButton;
     private JButton saveButton;
     private JSeparator separator_Exit;
@@ -168,7 +169,7 @@ public class ManagerZones extends JFrame {
 		
 		utilities = new JPanel();
 		utilities.setBorder(new TitledBorder(null, "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		utilities.setBounds(29, 233, 502, 129);
+		utilities.setBounds(29, 233, 573, 129);
 		utilities.setLayout(null);
 		zoneForm.add(utilities);
 
@@ -185,15 +186,23 @@ public class ManagerZones extends JFrame {
 		updateButton.addActionListener(action);
 		updateButton.setBackground(new Color(255, 204, 51));
 		updateButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		updateButton.setBounds(194, 24, 95, 35);
+		updateButton.setBounds(298, 24, 95, 35);
 		utilities.add(updateButton);
+		
+		delButton = new JButton("Xóa");
+		delButton.setForeground(new Color(255, 255, 255));		
+		delButton.addActionListener(action);
+		delButton.setBackground(new Color(255, 0, 51));
+		delButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		delButton.setBounds(170, 24, 95, 35);
+		utilities.add(delButton);
 		
 		clearButton = new JButton("Đặt lại");
 		clearButton.setForeground(new Color(255, 255, 255));
 		clearButton.setBackground(new Color(153, 153, 153));
 		clearButton.addActionListener(action);
 		clearButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		clearButton.setBounds(342, 24, 95, 35);
+		clearButton.setBounds(427, 24, 95, 35);
 		utilities.add(clearButton);
 		
 		saveButton = new JButton("Lưu");
@@ -201,7 +210,7 @@ public class ManagerZones extends JFrame {
 		saveButton.addActionListener(action);
 		saveButton.setBackground(new Color(0, 204, 0));
 		saveButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		saveButton.setBounds(174, 84, 143, 35);
+		saveButton.setBounds(174, 84, 219, 35);
 		utilities.add(saveButton);
 		
 		separator_Exit = new JSeparator();
@@ -271,6 +280,9 @@ public class ManagerZones extends JFrame {
     }
     public JButton getUpdateButton() {
     	return updateButton;
+    }
+    public JButton getDelButton() {
+    	return delButton;
     }
     public JButton getClearButton() {
     	return clearButton;

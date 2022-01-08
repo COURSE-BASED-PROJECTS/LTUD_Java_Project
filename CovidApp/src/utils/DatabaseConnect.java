@@ -20,6 +20,8 @@ public class DatabaseConnect {
 			
 			try {
 				con = DriverManager.getConnection(ConnectionUrl);
+				System.out.println("Successful Connection DB_CovidApp!");
+
 				
 			} catch (SQLException e) {
 				System.out.println("Failed Connection!");
