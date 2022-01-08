@@ -105,7 +105,7 @@ public class CreateAccount extends JFrame {
 		district.setToolTipText("");
 		district.setName("");
 		district.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		district.setBounds(223, 218, 132, 51);
+		district.setBounds(223, 218, 170, 51);
 		contentPane.add(district);
 	}
 	

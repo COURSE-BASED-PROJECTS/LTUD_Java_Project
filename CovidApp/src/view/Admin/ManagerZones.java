@@ -174,30 +174,33 @@ public class ManagerZones extends JFrame {
 
 		addButton = new JButton("Thêm");
 		addButton.addActionListener(action);
-		addButton.setBackground(Color.CYAN);
+		addButton.setForeground(new Color(255, 255, 255));
+		addButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		addButton.setBackground(new Color(0, 153, 255));
 		addButton.setBounds(50, 24, 95, 35);
 		utilities.add(addButton);
-		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		
 		updateButton = new JButton("Sửa");
+		updateButton.setForeground(new Color(255, 255, 255));
 		updateButton.addActionListener(action);
-		updateButton.setBackground(Color.ORANGE);
-		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		updateButton.setBackground(new Color(255, 204, 51));
+		updateButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		updateButton.setBounds(194, 24, 95, 35);
 		utilities.add(updateButton);
 		
 		clearButton = new JButton("Đặt lại");
-		clearButton.setBackground(Color.BLUE);
-		clearButton.setForeground(Color.BLACK);
+		clearButton.setForeground(new Color(255, 255, 255));
+		clearButton.setBackground(new Color(153, 153, 153));
 		clearButton.addActionListener(action);
-		clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		clearButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		clearButton.setBounds(342, 24, 95, 35);
 		utilities.add(clearButton);
 		
 		saveButton = new JButton("Lưu");
+		saveButton.setForeground(new Color(255, 255, 255));
 		saveButton.addActionListener(action);
-		saveButton.setBackground(Color.GREEN);
-		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		saveButton.setBackground(new Color(0, 204, 0));
+		saveButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		saveButton.setBounds(174, 84, 143, 35);
 		utilities.add(saveButton);
 		
@@ -207,10 +210,11 @@ public class ManagerZones extends JFrame {
 		zoneForm.add(separator_Exit);
 		
 		JButton outButton = new JButton("Thoát");
+		outButton.setForeground(new Color(255, 255, 255));
 		outButton.addActionListener(action);
+		outButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		outButton.setBackground(new Color(255, 0, 51));
 		outButton.setBounds(652, 260, 143, 70);
-		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		outButton.setBackground(Color.RED);
 		zoneForm.add(outButton);
 	}
 	

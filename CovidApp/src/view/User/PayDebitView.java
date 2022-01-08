@@ -80,60 +80,59 @@ public class PayDebitView extends JFrame {
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
-		setBounds(100, 100, 724, 481);
+		setBounds(100, 100, 776, 537);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
 		JLabel debitCurrentLabel = new JLabel("Số tiền nợ:");
-		debitCurrentLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		debitCurrentLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		debitCurrentLabel.setBounds(118, 77, 95, 35);
+		debitCurrentLabel.setBounds(141, 74, 95, 35);
 		contentPane.add(debitCurrentLabel);
 		
 		JLabel balanceLabel = new JLabel("Số tiền trong tài khoản:");
-		balanceLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		balanceLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		balanceLabel.setBounds(128, 148, 159, 35);
+		balanceLabel.setBounds(141, 145, 159, 35);
 		contentPane.add(balanceLabel);
 		
 		JLabel paymentMinimumLabel = new JLabel("Mức thanh toán:");
-		paymentMinimumLabel.setHorizontalAlignment(SwingConstants.LEFT);
 		paymentMinimumLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		paymentMinimumLabel.setBounds(130, 234, 121, 35);
+		paymentMinimumLabel.setBounds(141, 232, 121, 35);
 		contentPane.add(paymentMinimumLabel);
 		
 		JButton paymentButton = new JButton("Thanh toán");
+		paymentButton.setForeground(new Color(255, 255, 255));
 		paymentButton.addActionListener(action);
-		paymentButton.setBackground(Color.GREEN);
-		paymentButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		paymentButton.setBounds(162, 325, 165, 77);
+		paymentButton.setBackground(new Color(0, 204, 0));
+		paymentButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		paymentButton.setBounds(164, 345, 165, 77);
 		contentPane.add(paymentButton);
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setBackground(Color.RED);
-		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		logoutButton.setBounds(398, 325, 165, 77);
+		logoutButton.setBackground(new Color(255, 0, 51));
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		logoutButton.setBounds(400, 345, 165, 77);
 		contentPane.add(logoutButton);
 		
 		paymentMinimumText = new JTextField();
 		paymentMinimumText.setFont(new Font("Tahoma", Font.BOLD, 12));
 		paymentMinimumText.setColumns(10);
-		paymentMinimumText.setBounds(261, 228, 281, 51);
+		paymentMinimumText.setBounds(310, 225, 276, 51);
 		contentPane.add(paymentMinimumText);
 		
 		debitCurrentText = new JLabel("Debit");
 		debitCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
 		debitCurrentText.setFont(new Font("Tahoma", Font.BOLD, 15));
-		debitCurrentText.setBounds(204, 77, 123, 35);
+		debitCurrentText.setBounds(310, 74, 123, 35);
 		contentPane.add(debitCurrentText);
 		
 		balanceCurrentText = new JLabel("Balance");
 		balanceCurrentText.setHorizontalAlignment(SwingConstants.LEFT);
 		balanceCurrentText.setFont(new Font("Tahoma", Font.BOLD, 15));
-		balanceCurrentText.setBounds(292, 148, 143, 35);
+		balanceCurrentText.setBounds(310, 145, 143, 35);
 		contentPane.add(balanceCurrentText);
 		
 		((AbstractDocument)paymentMinimumText.getDocument()).setDocumentFilter(new DocumentFilter(){

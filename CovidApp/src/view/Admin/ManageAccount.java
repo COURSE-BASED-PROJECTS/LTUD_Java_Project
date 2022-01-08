@@ -92,24 +92,27 @@ public class ManageAccount extends JFrame {
 		panel_1.setLayout(null);
 		
 		JButton lockButton = new JButton("Khóa tài khoản");
+		lockButton.setForeground(new Color(255, 255, 255));		
 		lockButton.addActionListener(action);
-		lockButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		lockButton.setBackground(Color.ORANGE);
-		lockButton.setBounds(45, 34, 131, 38);
+		lockButton.setBackground(new Color(255, 204, 51));
+		lockButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		lockButton.setBounds(45, 34, 147, 38);
 		panel_1.add(lockButton);
 		
 		JButton activeButton = new JButton("Kích hoạt tài khoản");
+		activeButton.setForeground(new Color(255, 255, 255));
 		activeButton.addActionListener(action);
-		activeButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		activeButton.setBackground(Color.GREEN);
-		activeButton.setBounds(251, 34, 147, 38);
+		activeButton.setBackground(new Color(0, 204, 0));
+		activeButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		activeButton.setBounds(236, 34, 169, 38);
 		panel_1.add(activeButton);
 		
 		JButton activityButton = new JButton("Xem lịch sử hoạt động");
 		activityButton.addActionListener(action);
-		activityButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		activityButton.setBackground(Color.CYAN);
-		activityButton.setBounds(467, 34, 168, 38);
+		activityButton.setForeground(new Color(255, 255, 255));
+		activityButton.setBackground(new Color(0, 153, 255));
+		activityButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		activityButton.setBounds(448, 34, 191, 38);
 		panel_1.add(activityButton);
 	}
 	

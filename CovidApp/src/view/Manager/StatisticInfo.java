@@ -127,10 +127,11 @@ public class StatisticInfo extends JFrame {
 		chartPanelDebt.validate();
 
 		JButton outButton = new JButton("Thoát");
+		outButton.setForeground(new Color(255, 255, 255));
 		outButton.addActionListener(action);
-		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		outButton.setBackground(Color.RED);
-		outButton.setBounds(1052, 734, 125, 35);
+		outButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		outButton.setBackground(new Color(255, 0, 51));
+		outButton.setBounds(525, 735, 153, 35);
 		contentPane.add(outButton);
 	}
 

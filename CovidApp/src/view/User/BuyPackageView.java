@@ -105,13 +105,13 @@ public class BuyPackageView extends JFrame {
 		
 		sortAsc = new JButton("Sắp xếp giá tăng");
 		sortAsc.addActionListener(action);
-		sortAsc.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		sortAsc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		sortAsc.setBounds(10, 31, 143, 35);
 		manage.add(sortAsc);
 		
 		sortDes = new JButton("Sắp xếp giá giảm");
 		sortDes.addActionListener(action);
-		sortDes.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		sortDes.setFont(new Font("Tahoma", Font.BOLD, 12));
 		sortDes.setBounds(10, 90, 143, 35);
 		manage.add(sortDes);
 		
@@ -134,22 +134,24 @@ public class BuyPackageView extends JFrame {
 		
 		JButton filterButton = new JButton("Lọc");
 		filterButton.addActionListener(action);
-		filterButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		filterButton.setBackground(Color.CYAN);
+		filterButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		filterButton.setBackground(new Color(51, 255, 255));
 		filterButton.setBounds(345, 51, 105, 52);
 		manage.add(filterButton);
 		
 		buyButton = new JButton("Mua");
+		buyButton.setForeground(new Color(255, 255, 255));
 		buyButton.addActionListener(action);
-		buyButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		buyButton.setBackground(Color.GREEN);
+		buyButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		buyButton.setBackground(new Color(0, 204, 0));
 		buyButton.setBounds(866, 45, 143, 35);
 		manage.add(buyButton);
 		
 		logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		logoutButton.setBackground(Color.RED);
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		logoutButton.setBackground(new Color(255, 0, 51));
 		logoutButton.setBounds(866, 90, 143, 35);
 		manage.add(logoutButton);
 		
@@ -174,7 +176,7 @@ public class BuyPackageView extends JFrame {
 		
 		JLabel searchPackageLabel_1 = new JLabel("Tên gói");
 		searchPackageLabel_1.setHorizontalAlignment(SwingConstants.CENTER);
-		searchPackageLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		searchPackageLabel_1.setFont(new Font("Tahoma", Font.BOLD, 15));
 		searchPackageLabel_1.setBounds(475, 51, 95, 35);
 		manage.add(searchPackageLabel_1);
 		
@@ -187,8 +189,8 @@ public class BuyPackageView extends JFrame {
 		searchButton.addActionListener(action);
 		searchButton.setBounds(574, 106, 143, 35);
 		manage.add(searchButton);
-		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		searchButton.setBackground(Color.CYAN);
+		searchButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		searchButton.setBackground(new Color(51, 255, 255));
 	}
 	
 	public JRadioButton getRadio() {

@@ -19,9 +19,8 @@ public class ManagerController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		//System.out.println(cm);
+
 		if (cm != null) {
-			//view.setVisible(false);
 			view.dispose();
 		}
 		if (cm.equals("Đăng xuất")) {

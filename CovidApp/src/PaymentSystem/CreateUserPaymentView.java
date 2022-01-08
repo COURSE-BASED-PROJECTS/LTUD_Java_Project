@@ -59,33 +59,35 @@ public class CreateUserPaymentView extends JFrame {
 		
 		usernameLabel = new JLabel("Tài khoản:");
 		usernameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		usernameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		usernameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		usernameLabel.setBounds(128, 77, 95, 35);
 		contentPane.add(usernameLabel);
 		
 		passLabel = new JLabel("Mật khẩu:");
 		passLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		passLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		passLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		passLabel.setBounds(128, 148, 95, 35);
 		contentPane.add(passLabel);
 		
 		JLabel ClassLabel = new JLabel("Phân hệ:");
 		ClassLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		ClassLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		ClassLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
 		ClassLabel.setBounds(128, 234, 95, 35);
 		contentPane.add(ClassLabel);
 		
 		JButton createButton = new JButton("Tạo tài khoản");
+		createButton.setForeground(new Color(255, 255, 255));
 		createButton.addActionListener(action);
-		createButton.setBackground(Color.GREEN);
-		createButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		createButton.setBackground(new Color(0, 204, 51));
+		createButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		createButton.setBounds(111, 325, 165, 77);
 		contentPane.add(createButton);
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setBackground(Color.RED);
-		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		logoutButton.setBackground(new Color(255, 0, 51));
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
 		logoutButton.setBounds(398, 325, 165, 77);
 		contentPane.add(logoutButton);
 		
@@ -104,7 +106,7 @@ public class CreateUserPaymentView extends JFrame {
 		district.setToolTipText("");
 		district.setName("");
 		district.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		district.setBounds(223, 226, 132, 51);
+		district.setBounds(223, 226, 170, 51);
 		contentPane.add(district);
 	}
 	

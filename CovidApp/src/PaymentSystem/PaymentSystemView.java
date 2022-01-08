@@ -78,16 +78,17 @@ public class PaymentSystemView extends JFrame {
 		contentPane.add(balanceLabel);
 		
 		JButton paymentButton = new JButton("Thêm người được quản lí");
-		paymentButton.setForeground(new Color(0, 0, 0));
+		paymentButton.setForeground(new Color(255, 255, 255));
 		paymentButton.addActionListener(action);
 		paymentButton.setBackground(new Color(255, 204, 51));
-		paymentButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		paymentButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		paymentButton.setBounds(54, 174, 223, 77);
 		contentPane.add(paymentButton);
 		
 		JButton btnLchSThanh = new JButton("Lịch sử thanh toán");
+		btnLchSThanh.setForeground(new Color(255, 255, 255));
 		btnLchSThanh.addActionListener(action);
-		btnLchSThanh.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		btnLchSThanh.setFont(new Font("Segoe UI", Font.BOLD, 16));
 		btnLchSThanh.setBackground(new Color(0, 204, 51));
 		btnLchSThanh.setBounds(369, 174, 223, 77);
 		contentPane.add(btnLchSThanh);

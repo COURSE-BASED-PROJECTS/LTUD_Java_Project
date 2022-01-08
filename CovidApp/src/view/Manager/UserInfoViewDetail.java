@@ -84,98 +84,92 @@ public class UserInfoViewDetail extends JFrame {
 		Info.setLayout(null);
 		
 		JLabel idLabel = new JLabel("CMND/CCCD:");
-		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		idLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		idLabel.setBounds(10, 36, 108, 35);
+		idLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		idLabel.setBounds(21, 36, 97, 35);
 		Info.add(idLabel);
 		
 		idText = new JLabel("");
 		idText.setHorizontalAlignment(SwingConstants.LEFT);
 		idText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		idText.setBounds(125, 36, 108, 35);
+		idText.setBounds(125, 36, 125, 35);
 		
 		Info.add(idText);
 		
 		JLabel nameLabel = new JLabel("Họ tên:");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		nameLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		nameLabel.setBounds(260, 36, 64, 35);
 		Info.add(nameLabel);
 		
 		nameText = new JLabel("");
 		nameText.setHorizontalAlignment(SwingConstants.LEFT);
 		nameText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		nameText.setBounds(340, 36, 185, 35);
+		nameText.setBounds(334, 36, 180, 35);
 		
 		Info.add(nameText);
 		
 		JLabel yearLabel = new JLabel("Năm sinh:");
-		yearLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		yearLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		yearLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		yearLabel.setBounds(524, 36, 95, 35);
 		Info.add(yearLabel);
 		
 		yearText = new JLabel("2001");
 		yearText.setHorizontalAlignment(SwingConstants.LEFT);
 		yearText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		yearText.setBounds(615, 36, 53, 35);
+		yearText.setBounds(615, 36, 92, 35);
 		
 		Info.add(yearText);
 		
 		JLabel addrLabel = new JLabel("Địa chỉ:");
-		addrLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		addrLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		addrLabel.setBounds(10, 99, 75, 35);
+		addrLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		addrLabel.setBounds(21, 99, 64, 35);
 		Info.add(addrLabel);
 		
 		addrText = new JLabel("");
 		addrText.setHorizontalAlignment(SwingConstants.LEFT);
 		addrText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		addrText.setBounds(90, 99, 409, 35);
+		addrText.setBounds(125, 99, 389, 35);
 		
 		Info.add(addrText);
 		
 		JLabel statusLabel = new JLabel("Trạng thái:");
-		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		statusLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
+		statusLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		statusLabel.setBounds(524, 99, 95, 35);
 		Info.add(statusLabel);
 		
 		statusText = new JLabel("");
 		statusText.setHorizontalAlignment(SwingConstants.LEFT);
 		statusText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		statusText.setBounds(620, 99, 53, 35);
+		statusText.setBounds(615, 99, 92, 35);
 		
 		Info.add(statusText);
 		
 		JSeparator separator_1 = new JSeparator();
 		separator_1.setOrientation(SwingConstants.VERTICAL);
-		separator_1.setBounds(659, 36, 18, 98);
+		separator_1.setBounds(717, 36, 2, 98);
 		Info.add(separator_1);
 		
 		JLabel lockdownLabel = new JLabel("Nơi điều trị:");
-		lockdownLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		lockdownLabel.setFont(new Font("Tahoma", Font.BOLD, 15));
-		lockdownLabel.setBounds(687, 36, 95, 35);
+		lockdownLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		lockdownLabel.setBounds(729, 36, 79, 35);
 		Info.add(lockdownLabel);
 		
 		zoneText = new JLabel("");
 		zoneText.setHorizontalAlignment(SwingConstants.LEFT);
 		zoneText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		zoneText.setBounds(795, 36, 354, 35);
+		zoneText.setBounds(822, 36, 301, 35);
 		
 		Info.add(zoneText);
 		
 		JLabel relateUser = new JLabel("Người liên quan:");
-		relateUser.setHorizontalAlignment(SwingConstants.CENTER);
-		relateUser.setFont(new Font("Tahoma", Font.BOLD, 15));
-		relateUser.setBounds(678, 99, 132, 35);
+		relateUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		relateUser.setBounds(729, 81, 108, 35);
 		Info.add(relateUser);
 		
 		relativeText = new JLabel("");
 		relativeText.setHorizontalAlignment(SwingConstants.LEFT);
 		relativeText.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		relativeText.setBounds(818, 99, 218, 35);
+		relativeText.setBounds(847, 81, 166, 35);
 		
 		Info.add(relativeText);
 		
@@ -186,13 +180,14 @@ public class UserInfoViewDetail extends JFrame {
 		panel.setLayout(null);
 		
 		JPanel managedHistory = new JPanel();
-		managedHistory.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Li\u0323ch s\u01B0\u0309 tr\u1EA1ng th\u00E1i", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		managedHistory.setBounds(10, 21, 1124, 119);
+		managedHistory.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), 
+				"Li\u0323ch s\u01B0\u0309 tr\u1EA1ng th\u00E1i", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		managedHistory.setBounds(10, 21, 1124, 132);
 		panel.add(managedHistory);
 		managedHistory.setLayout(null);
 		
 		JScrollPane scrollPaneManaged = new JScrollPane();
-		scrollPaneManaged.setBounds(10, 22, 1104, 91);
+		scrollPaneManaged.setBounds(10, 22, 1104, 100);
 		managedHistory.add(scrollPaneManaged);
 		
 		tableManaged = new JTable();
@@ -202,12 +197,12 @@ public class UserInfoViewDetail extends JFrame {
 		
 		JPanel managedConsume = new JPanel();
 		managedConsume.setLayout(null);
-		managedConsume.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Danh s\u00E1ch ng\u01B0\u1EDDi li\u00EAn \u0111\u1EDBi", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		managedConsume.setBounds(10, 150, 1124, 119);
+		managedConsume.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Danh s\u00E1ch ng\u01B0\u1EDDi li\u00EAn quan", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
+		managedConsume.setBounds(10, 163, 1124, 150);
 		panel.add(managedConsume);
 		
 		JScrollPane scrollPaneConsume = new JScrollPane();
-		scrollPaneConsume.setBounds(10, 22, 1104, 89);
+		scrollPaneConsume.setBounds(10, 22, 1104, 118);
 		managedConsume.add(scrollPaneConsume);
 		
 		tableRelated = new JTable();
@@ -217,10 +212,11 @@ public class UserInfoViewDetail extends JFrame {
 
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		logoutButton.setBackground(Color.RED);
-		logoutButton.setBounds(428, 299, 292, 35);
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		logoutButton.setBackground(new Color(255, 0, 51));
+		logoutButton.setBounds(429, 323, 292, 40);
 		panel.add(logoutButton);
 		
 		showInfo();

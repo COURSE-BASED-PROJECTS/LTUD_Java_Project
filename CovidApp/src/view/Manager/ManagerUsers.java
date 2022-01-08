@@ -278,34 +278,41 @@ public class ManagerUsers extends JFrame {
 
 		addButton = new JButton("Thêm");
 		addButton.addActionListener(action);
-		addButton.setBackground(Color.CYAN);
+		addButton.setForeground(new Color(255, 255, 255));
+		addButton.setBackground(new Color(0, 153, 255));
 		addButton.setBounds(10, 24, 95, 35);
 		utilities.add(addButton);
-		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 
 		updateButton = new JButton("Sửa");
+		updateButton.setForeground(new Color(255, 255, 255));		
 		updateButton.addActionListener(action);
-		updateButton.setBackground(Color.ORANGE);
-		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		updateButton.setBackground(new Color(255, 204, 51));
+		updateButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		updateButton.setBounds(135, 24, 95, 35);
 		utilities.add(updateButton);
 
 		clearButton = new JButton("Đặt lại");
+		clearButton.setForeground(new Color(255, 255, 255));
+		clearButton.setBackground(new Color(153, 153, 153));
 		clearButton.addActionListener(action);
-		clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		clearButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		clearButton.setBounds(390, 24, 95, 35);
 		utilities.add(clearButton);
 
 		saveButton = new JButton("Lưu");
+		saveButton.setForeground(new Color(255, 255, 255));
 		saveButton.addActionListener(action);
-		saveButton.setBackground(Color.GREEN);
-		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		saveButton.setBackground(new Color(0, 204, 0));
+		saveButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		saveButton.setBounds(266, 24, 95, 35);
 		utilities.add(saveButton);
 
 		detailButton = new JButton("Xem chi tiết");
+		detailButton.setForeground(new Color(255, 255, 255));
+		detailButton.setBackground(new Color(0, 102, 255));
 		detailButton.addActionListener(action);
-		detailButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		detailButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		detailButton.setBounds(176, 72, 143, 35);
 		utilities.add(detailButton);
 
@@ -395,10 +402,10 @@ public class ManagerUsers extends JFrame {
 		manage.add(searchNameText);
 
 		JButton searchButton = new JButton("Tìm kiếm");
-
-		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		searchButton.setForeground(new Color(255, 255, 255));
 		searchButton.addActionListener(action);
-		searchButton.setBackground(Color.CYAN);
+		searchButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		searchButton.setBackground(new Color(0, 204, 255));
 		searchButton.setBounds(618, 22, 105, 52);
 		manage.add(searchButton);
 
@@ -408,10 +415,11 @@ public class ManagerUsers extends JFrame {
 		manage.add(separator_1);
 
 		JButton outButton = new JButton("Thoát");
+		outButton.setForeground(new Color(255, 255, 255));
 		outButton.addActionListener(action);
-		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		outButton.setBackground(new Color(255, 0, 0));
-		outButton.setBounds(878, 51, 143, 61);
+		outButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		outButton.setBackground(new Color(255, 0, 51));
+		outButton.setBounds(836, 51, 143, 61);
 		manage.add(outButton);
 	}
 

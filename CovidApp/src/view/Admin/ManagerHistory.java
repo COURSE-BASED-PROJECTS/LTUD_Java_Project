@@ -77,11 +77,12 @@ public class ManagerHistory extends JFrame {
 		tableHistory.setModel(Managed_History.showManagerHistory(id, initialRow()));
 
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		logoutButton.setBackground(new Color(255, 0, 51));
 		logoutButton.addActionListener(action);
 		logoutButton.setBounds(278, 356, 292, 35);
 		contentPane.add(logoutButton);
-		logoutButton.setFont(new Font("Tahoma", Font.BOLD, 12));
-		logoutButton.setBackground(Color.RED);
 
 	}
 

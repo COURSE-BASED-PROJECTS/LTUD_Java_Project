@@ -176,45 +176,51 @@ public class ManagerPackages extends JFrame {
 		utilities.setLayout(null);
 
 		addButton = new JButton("Thêm");
+		addButton.setForeground(new Color(255, 255, 255));
 		
 //		addButton.setIcon(new ImageIcon("icons/icons8-add-64.png"));
 		
 		addButton.addActionListener(action);
-		addButton.setBackground(Color.CYAN);
+		addButton.setBackground(new Color(0, 153, 255));
 		addButton.setBounds(10, 24, 95, 35);
 		utilities.add(addButton);
-		addButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		addButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 
 		delButton = new JButton("Xóa");
+		delButton.setForeground(new Color(255, 255, 255));
 		
 //		delButton.setIcon(new ImageIcon("icons/icons8-delete-64.png"));
 		
 		delButton.addActionListener(action);
-		delButton.setBackground(Color.RED);
-		delButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		delButton.setBackground(new Color(255, 0, 51));
+		delButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		delButton.setBounds(135, 24, 95, 35);
 		utilities.add(delButton);
 
 		updateButton = new JButton("Sửa");
+		updateButton.setForeground(new Color(255, 255, 255));
 		
 //		updateButton.setIcon(new ImageIcon("icons/icons8-edit-64.png"));
 		
 		updateButton.addActionListener(action);
-		updateButton.setBackground(Color.ORANGE);
-		updateButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		updateButton.setBackground(new Color(255, 204, 51));
+		updateButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		updateButton.setBounds(266, 24, 95, 35);
 		utilities.add(updateButton);
 
 		clearButton = new JButton("Đặt lại");
+		clearButton.setForeground(new Color(255, 255, 255));
+		clearButton.setBackground(new Color(153, 153, 153));
 		clearButton.addActionListener(action);
-		clearButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		clearButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		clearButton.setBounds(390, 24, 95, 35);
 		utilities.add(clearButton);
 
 		saveButton = new JButton("Lưu");
+		saveButton.setForeground(new Color(255, 255, 255));
 		saveButton.addActionListener(action);
-		saveButton.setBackground(Color.GREEN);
-		saveButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		saveButton.setBackground(new Color(0, 204, 0));
+		saveButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
 		saveButton.setBounds(176, 72, 143, 35);
 		utilities.add(saveButton);
 
@@ -251,9 +257,10 @@ public class ManagerPackages extends JFrame {
 		packageForm.add(searchPackageText);
 
 		searchButton = new JButton("Tìm kiếm");
+		searchButton.setForeground(new Color(255, 255, 255));
 		searchButton.addActionListener(action);
-		searchButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		searchButton.setBackground(Color.CYAN);
+		searchButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		searchButton.setBackground(new Color(0, 204, 255));
 		searchButton.setBounds(851, 235, 105, 42);
 		packageForm.add(searchButton);
 
@@ -278,13 +285,13 @@ public class ManagerPackages extends JFrame {
 
 		sortAsc = new JButton("Sắp xếp tăng");
 		sortAsc.addActionListener(action);
-		sortAsc.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		sortAsc.setFont(new Font("Tahoma", Font.BOLD, 12));
 		sortAsc.setBounds(180, 31, 143, 35);
 		manage.add(sortAsc);
 
 		sortDes = new JButton("Sắp xếp giảm");
 		sortDes.addActionListener(action);
-		sortDes.setFont(new Font("Tahoma", Font.PLAIN, 12));
+		sortDes.setFont(new Font("Tahoma", Font.BOLD, 12));
 		sortDes.setBounds(180, 90, 143, 35);
 		manage.add(sortDes);
 
@@ -323,10 +330,11 @@ public class ManagerPackages extends JFrame {
 		manage.add(separator_1);
 
 		JButton outButton = new JButton("Thoát");
+		outButton.setForeground(new Color(255, 255, 255));
 		outButton.addActionListener(action);
-		outButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		outButton.setBackground(Color.RED);
-		outButton.setBounds(855, 47, 120, 60);
+		outButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
+		outButton.setBackground(new Color(255, 0, 51));
+		outButton.setBounds(856, 64, 120, 60);
 		manage.add(outButton);
 
 		JRadioButton radioWaranty = new JRadioButton("Còn thời hạn");
@@ -377,13 +385,12 @@ public class ManagerPackages extends JFrame {
 		radioLimitLess.setBounds(519, 64, 135, 27);
 		manage.add(radioLimitLess);
 
-		
-
 		JButton filterButton = new JButton("Lọc");
+		filterButton.setForeground(new Color(255, 255, 255));
 		filterButton.addActionListener(action);
-		filterButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		filterButton.setBackground(Color.CYAN);
-		filterButton.setBounds(678, 51, 105, 52);
+		filterButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
+		filterButton.setBackground(new Color(0, 204, 255));
+		filterButton.setBounds(678, 50, 105, 50);
 		manage.add(filterButton);
 	}
 

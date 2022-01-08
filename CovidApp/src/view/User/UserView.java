@@ -59,7 +59,7 @@ public class UserView extends JFrame {
 		
 		JPanel feature = new JPanel();
 		feature.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		feature.setBounds(10, 57, 622, 313);
+		feature.setBounds(10, 57, 622, 297);
 		contentPane.add(feature);
 		feature.setLayout(null);
 		
@@ -92,11 +92,11 @@ public class UserView extends JFrame {
 		logout.addActionListener(action);
 		logout.setBackground(new Color(255, 0, 51));
 		logout.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		logout.setBounds(233, 398, 165, 50);
+		logout.setBounds(233, 385, 165, 50);
 		contentPane.add(logout);
 		
 		JLabel lblSystem = new JLabel("HỆ THỐNG QUẢN LÝ COVID-19");
-		lblSystem.setBounds(69, 5, 504, 27);
+		lblSystem.setBounds(87, 5, 451, 27);
 		contentPane.add(lblSystem);
 		lblSystem.setForeground(new Color(0, 102, 51));
 		lblSystem.setHorizontalAlignment(SwingConstants.CENTER);

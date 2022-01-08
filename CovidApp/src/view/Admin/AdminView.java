@@ -50,7 +50,7 @@ public class AdminView extends JFrame {
 		setTitle("Admin");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 650, 466);
+		setBounds(100, 100, 776, 537);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -59,41 +59,42 @@ public class AdminView extends JFrame {
 		
 		JPanel feature = new JPanel();
 		feature.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)), "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 0)));
-		feature.setBounds(10, 37, 615, 312);
+		feature.setBounds(10, 52, 742, 317);
 		contentPane.add(feature);
 		feature.setLayout(null);
 		
 		createButton = new JButton("Tạo tài khoản");
 		createButton.addActionListener(action);
-		createButton.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		createButton.setBounds(83, 55, 165, 77);
+		createButton.setFont(new Font("Tahoma", Font.BOLD, 15));
+		createButton.setBounds(146, 43, 165, 77);
 		feature.add(createButton);
 		
 		manageAccount = new JButton("Quản lí tài khoản");
 		manageAccount.addActionListener(action);
-		manageAccount.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		manageAccount.setBounds(357, 55, 165, 77);
+		manageAccount.setFont(new Font("Tahoma", Font.BOLD, 15));
+		manageAccount.setBounds(420, 43, 165, 77);
 		feature.add(manageAccount);
 		
 		manageLockdown = new JButton("Quản lí nơi điều trị/cách li");
 		manageLockdown.addActionListener(action);
-		manageLockdown.setFont(new Font("Segoe UI", Font.BOLD, 15));
-		manageLockdown.setBounds(83, 172, 439, 77);
+		manageLockdown.setFont(new Font("Tahoma", Font.BOLD, 15));
+		manageLockdown.setBounds(146, 181, 439, 77);
 		feature.add(manageLockdown);
 		
+		
 		logout = new JButton("Đăng xuất");
-		logout.setForeground(Color.WHITE);
+		logout.setForeground(new Color(255, 255, 255));
 		logout.addActionListener(action);
 		logout.setBackground(new Color(255, 0, 51));
-		logout.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		logout.setBounds(240, 359, 165, 50);
+		logout.setFont(new Font("Tahoma", Font.BOLD, 20));
+		logout.setBounds(292, 395, 178, 66);
 		contentPane.add(logout);
 		
 		JLabel lblSystem = new JLabel("HỆ THỐNG QUẢN LÝ COVID-19");
-		lblSystem.setBounds(51, 5, 522, 27);
+		lblSystem.setBounds(157, 5, 436, 38);
 		contentPane.add(lblSystem);
 		lblSystem.setForeground(new Color(0, 102, 51));
 		lblSystem.setHorizontalAlignment(SwingConstants.CENTER);
-		lblSystem.setFont(new Font("Segoe UI", Font.BOLD, 20));
+		lblSystem.setFont(new Font("Tahoma", Font.BOLD, 20));
 	}
 }

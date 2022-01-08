@@ -249,10 +249,11 @@ public class UserInfoView extends JFrame {
 		tableDebit.setModel(Managed_Payment.showHistoryPayment(user.getId(), initialRow(columnNamesDebit)));
 		
 		JButton logoutButton = new JButton("Thoát");
+		logoutButton.setForeground(new Color(255, 255, 255));
 		logoutButton.addActionListener(action);
-		logoutButton.setFont(new Font("Tahoma", Font.PLAIN, 12));
-		logoutButton.setBackground(Color.RED);
-		logoutButton.setBounds(427, 415, 292, 35);
+		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
+		logoutButton.setBackground(new Color(255, 0, 51));
+		logoutButton.setBounds(425, 408, 292, 40);
 		panel.add(logoutButton);
 		
 		showInfo();
