@@ -72,7 +72,7 @@ public class LoginController implements ActionListener {
 				ServerThread.view.setVisible(true);
 				
 			}else {
-				JOptionPane.showMessageDialog(view, "Tài khoản không tồn tại hoặc đã bị khóa");
+				JOptionPane.showMessageDialog(view, "Thông tin đăng nhập chưa đúng hoặc tài khoản đã bị khóa");
 			}
 
 		}

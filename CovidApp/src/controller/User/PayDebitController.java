@@ -58,7 +58,12 @@ public class PayDebitController implements ActionListener {
 					.parseDouble(view.getDebitCurrentText().getText()) * 0.1) {
 				JOptionPane.showMessageDialog(view, "Vui lòng thanh toán ít nhất 10% dư nợ", "Lỗi",
 						JOptionPane.WARNING_MESSAGE, null);
-			} else {
+			}else if(Double.parseDouble(view.getPaymentMinimumText().getText()) > 
+						Double.parseDouble(view.getDebitCurrentText().getText())  ) {
+				
+				JOptionPane.showMessageDialog(view, "Vui lòng nhập trong khoảng dư nợ", "Lỗi",JOptionPane.WARNING_MESSAGE, null);
+				
+			}else {
 				try {
 					Double debt = paymentHistory.getDebit();
 					Double min_debt = paymentHistory.getMinDebt();

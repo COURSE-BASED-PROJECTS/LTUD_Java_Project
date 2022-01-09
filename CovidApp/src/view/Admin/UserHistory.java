@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -75,6 +76,9 @@ public class UserHistory extends JFrame {
 		buyPackageHistory.add(sPBuyPackageHistory);
 
 		tbBuyPackageHistory = new JTable();
+		tbBuyPackageHistory.getTableHeader().setReorderingAllowed(false);
+		tbBuyPackageHistory.setDefaultEditor(Object.class,null);
+		tbBuyPackageHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sPBuyPackageHistory.setViewportView(tbBuyPackageHistory);
 		tbBuyPackageHistory.setModel(Managed_History.showBuyPackageHistory(id, initialRow(columnsNameBuyPkHis)));
 
@@ -93,6 +97,9 @@ public class UserHistory extends JFrame {
 		paymentHistory.add(sPPaymentHistory);
 		
 		tbPaymentHistory = new JTable();
+		tbPaymentHistory.getTableHeader().setReorderingAllowed(false);
+		tbPaymentHistory.setDefaultEditor(Object.class,null);
+		tbPaymentHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		sPPaymentHistory.setViewportView(tbPaymentHistory);
 		tbPaymentHistory.setModel(Managed_History.showPaymentHistory(id, initialRow(columnsNamePaymentHis)));
 

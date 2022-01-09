@@ -20,7 +20,7 @@ public class Managed_History {
 	public static TableModel showManagerHistory(String id, DefaultTableModel tableModel) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From LSHOATDONGQLQL Where MATK = '" + id + "'";
+			String sql = "Select * From LSHOATDONGQL Where MATK = '" + id + "'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 			int stt = 0;

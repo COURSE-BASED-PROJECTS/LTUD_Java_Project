@@ -46,7 +46,7 @@ public class BuyPackageController implements ActionListener {
 				view.getTableListPackage().setModel(Managed_Package.filterPackages(view.getDefaultTableModel(),3));
 			}
 			else {
-				JOptionPane.showMessageDialog(view, "Please choose 1 criteria to filter", "Invalid chooser", JOptionPane.WARNING_MESSAGE, null);
+				JOptionPane.showMessageDialog(view, "Vui lòng chỉ chọn một tiêu chí", "Lựa chọn không đúng", JOptionPane.WARNING_MESSAGE, null);
 			}
 		}  else if (cm.equals("Tìm kiếm")) {
 			if(!view.getSearchPackageText().getText().equals("")) {
@@ -54,7 +54,7 @@ public class BuyPackageController implements ActionListener {
 				view.getSearchPackageText().setText(null);
 			}
 			else {
-				JOptionPane.showMessageDialog(view, "Please enter name of the package", "Invalid", JOptionPane.WARNING_MESSAGE, null);
+				JOptionPane.showMessageDialog(view, "Vui lòng nhập tên gói Nhu Yếu Phẩm", "Không hợp lệ", JOptionPane.WARNING_MESSAGE, null);
 			}
 			
 		}else if (cm.equals("Mua")) {
@@ -62,8 +62,10 @@ public class BuyPackageController implements ActionListener {
 			
 			try {
 				quantity = Integer.parseInt(JOptionPane.showInputDialog(view,"Nhập số lượng cần mua"));
-				
-				if(Integer.parseInt((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),3))<quantity) {
+				if(quantity <= 0) {
+					JOptionPane.showMessageDialog(view, "Vui lòng nhập số lượng lớn hơn 0");
+					
+				}else if(Integer.parseInt((String) view.getTableListPackage().getModel().getValueAt(view.getTableListPackage().getSelectedRow(),3))<quantity) {
 					JOptionPane.showMessageDialog(view, "Vui lòng nhập số lượng nhỏ hơn hoặc bằng giới hạn", "Số lượng không đủ", JOptionPane.CLOSED_OPTION, null);
 				}
 				else {

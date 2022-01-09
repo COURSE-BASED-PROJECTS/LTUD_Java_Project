@@ -14,6 +14,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -73,6 +74,9 @@ public class ManageAccount extends JFrame {
 		panel.add(scrollPaneAccount);
 		
 		AccountTable = new JTable();
+		AccountTable.getTableHeader().setReorderingAllowed(false);
+		AccountTable.setDefaultEditor(Object.class,null);
+		AccountTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneAccount.setViewportView(AccountTable);
 		AccountTable.setModel(initialRow());
 		AccountTable.setModel(Managed_Account.showAccountTable(initialRow()));

@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -73,6 +74,9 @@ public class ManagerHistory extends JFrame {
 		managedHistory.add(scrollPaneHistory);
 		
 		tableHistory = new JTable();
+		tableHistory.getTableHeader().setReorderingAllowed(false);
+		tableHistory.setDefaultEditor(Object.class,null);
+		tableHistory.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneHistory.setViewportView(tableHistory);
 		tableHistory.setModel(Managed_History.showManagerHistory(id, initialRow()));
 

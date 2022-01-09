@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -21,7 +22,6 @@ import javax.swing.table.DefaultTableModel;
 
 import controller.Manager.DetailInfoController;
 import model.User;
-import model.Zone;
 import model.managed.Managed_Status;
 import model.managed.Managed_User;
 import model.managed.Managed_Zone;
@@ -191,6 +191,9 @@ public class UserInfoViewDetail extends JFrame {
 		managedHistory.add(scrollPaneManaged);
 		
 		tableManaged = new JTable();
+		tableManaged.getTableHeader().setReorderingAllowed(false);
+		tableManaged.setDefaultEditor(Object.class,null);
+		tableManaged.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneManaged.setViewportView(tableManaged);
 		//tableManaged.setModel(initialRow(columnNamesManaged));
 		tableManaged.setModel(Managed_Status.showHistoryStatus(id, initialRow(columnNamesManaged)));
@@ -206,6 +209,9 @@ public class UserInfoViewDetail extends JFrame {
 		managedConsume.add(scrollPaneConsume);
 		
 		tableRelated = new JTable();
+		tableRelated.getTableHeader().setReorderingAllowed(false);
+		tableRelated.setDefaultEditor(Object.class,null);
+		tableRelated.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneConsume.setViewportView(tableRelated);
 		//tableRelated.setModel(initialRow(columnNamesRelated));
 		tableRelated.setModel(Managed_User.showListUserRelative(id, initialRow(columnNamesRelated)));

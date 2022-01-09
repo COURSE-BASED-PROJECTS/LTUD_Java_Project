@@ -6,9 +6,7 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 
-import javax.imageio.ImageIO;
 import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
@@ -20,6 +18,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -113,6 +112,9 @@ public class ManagerPackages extends JFrame {
 		listPackage.add(scrollPanePackage);
 
 		tableListPackage = new JTable();
+		tableListPackage.getTableHeader().setReorderingAllowed(false);
+		tableListPackage.setDefaultEditor(Object.class,null);
+		tableListPackage.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableListPackage.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

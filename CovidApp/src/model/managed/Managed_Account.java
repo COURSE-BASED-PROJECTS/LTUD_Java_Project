@@ -20,7 +20,7 @@ public class Managed_Account {
 	public static DefaultTableModel showAccountTable(DefaultTableModel tabelModel) {
 		try {
 			Connection con = DatabaseConnect.openConnection();
-			String sql = "Select * From TAIKHOAN";
+			String sql = "Select * From TAIKHOAN Where PHANHE <> 'QUANTRI'";
 			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
 			int numberColumn = rs.getMetaData().getColumnCount();
 
@@ -51,14 +51,11 @@ public class Managed_Account {
 			stmt.setString(1, acc.getUserName());
 			stmt.setString(2, Password.encrypt(acc.getPassword()));
 
-			if (acc.getRole() == Role.MANAGER)
-				stmt.setString(3, "QUANLY");
-			else if (acc.getRole() == Role.USER)
-
 				switch (acc.getRole()) {
 				case MANAGER:
 					stmt.setString(3, "QUANLY");
-					stmt.setString(4, "0");
+					stmt.setString(4,  "0");
+					
 					break;
 				case USER:{
 					stmt.setString(3, "NGUOIDUNG");
@@ -69,6 +66,8 @@ public class Managed_Account {
 					stmt1.setString(3, "NGUOIDUNG");
 					stmt1.setString(4, "1000000");
 					stmt1.setString(5, "1");
+					stmt1.executeUpdate();
+
 					break;
 				}
 				case ADMIN_COVID:
@@ -86,7 +85,7 @@ public class Managed_Account {
 			stmt.setString(5, "1");
 
 			stmt.executeUpdate();
-			stmt1.executeUpdate();
+			
 		} catch (SQLException e) {
 			System.out.println("Thêm mới TÀI KHOẢN không thành công");
 			e.printStackTrace();

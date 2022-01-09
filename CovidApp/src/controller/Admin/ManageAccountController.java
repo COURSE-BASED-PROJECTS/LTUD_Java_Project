@@ -48,16 +48,22 @@ public class ManageAccountController implements ActionListener {
 		if (i == -1) {
 			JOptionPane.showMessageDialog(view, "Chưa chọn tài khoản để xem lịch sử hoạt động");
 		} else {
-			this.view.dispose();
+						
 			TableModel model = this.view.getAccountTable().getModel();
 			String id = model.getValueAt(i, 0).toString().trim();
 			String role = model.getValueAt(i, 2).toString().trim();
 			if (role.equals("QUANLY")) {
+				this.view.dispose();
+
 				ManagerHistory mh = new ManagerHistory(id);
 				mh.setVisible(true);
 			} else if (role.equals("NGUOIDUNG")) {
+				this.view.dispose();
+
 				UserHistory uh = new UserHistory(id);
 				uh.setVisible(true);
+			}else if (role.equals("QUANTRI")) {
+				JOptionPane.showMessageDialog(view, "Không thể xem lịch sử hoạt động của Quản trị");
 			}
 		}
 		

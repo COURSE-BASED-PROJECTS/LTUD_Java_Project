@@ -7,7 +7,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
-import javax.swing.ButtonGroup;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -17,6 +16,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -24,8 +24,6 @@ import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
 import controller.Admin.ManagerZonesController;
-import controller.Manager.ManagerUsersController;
-import model.managed.Managed_User;
 import model.managed.Managed_Zone;
 
 @SuppressWarnings("serial")
@@ -96,6 +94,9 @@ public class ManagerZones extends JFrame {
 		listZone.add(scrollPaneZone);
 		
 		tableListZone = new JTable();
+		tableListZone.getTableHeader().setReorderingAllowed(false);
+		tableListZone.setDefaultEditor(Object.class,null);
+		tableListZone.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableListZone.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

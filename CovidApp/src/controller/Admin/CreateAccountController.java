@@ -49,6 +49,7 @@ public class CreateAccountController implements ActionListener {
 			acc.setRole(Role.MANAGER);
 		else
 			acc.setRole(Role.USER);
+		System.out.println(acc.getRole());
 		
 		String username = acc.getUserName();
 		
@@ -61,11 +62,8 @@ public class CreateAccountController implements ActionListener {
 		else {
 			Managed_Account.addAccount(acc);
 			clearForm();
-			JOptionPane.showMessageDialog(view, "Đổi mật khẩu thành công");
+			JOptionPane.showMessageDialog(view, "Thêm tài khoản thành công");
 			
-			this.view.dispose();
-			AdminView av = new AdminView();
-			av.setVisible(true);
 		}
 	}
 }

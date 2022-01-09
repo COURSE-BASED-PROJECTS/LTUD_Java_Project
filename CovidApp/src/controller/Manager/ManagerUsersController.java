@@ -74,12 +74,16 @@ public class ManagerUsersController implements ActionListener {
 			searchAction();
 
 		} else if (cm.equals("Xem chi tiết")) {
-			this.view.dispose();
+			
+
 			int i = this.view.getTableListUser().getSelectedRow();
 
 			if (i == -1) {
 				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xem");
 			} else {
+				
+				this.view.dispose();
+				
 				String id = this.view.getTableListUser().getModel().getValueAt(i, 0).toString().trim();
 				UserInfoViewDetail uivd = new UserInfoViewDetail(id);
 				uivd.setVisible(true);
@@ -189,10 +193,14 @@ public class ManagerUsersController implements ActionListener {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD là dãy 9/10/12 chữ số ");
 			return null;
 		}
+
 		try {
-			int temp = Integer.parseInt(id);
+			long temp = Long.parseLong(id);
+//			System.out.println(temp);
+		
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD phải là dãy số");
+
 			return null;
 		}
 		if (Managed_User.findById(id) != null && previousCm.equals("Thêm")) {

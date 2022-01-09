@@ -14,16 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.Admin.ManagerZonesController;
 import controller.PaymentSystem.ManagedAccountController;
 import model.managed.Managed_PaymentSystem;
-import model.managed.Managed_Zone;
 
 public class ManagedAccountView extends JFrame {
 
@@ -81,6 +80,9 @@ public class ManagedAccountView extends JFrame {
 		AccountTable.add(scrollPaneManaged);
 		
 		tableManaged = new JTable();
+		tableManaged.getTableHeader().setReorderingAllowed(false);
+		tableManaged.setDefaultEditor(Object.class,null);
+		tableManaged.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableManaged.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
@@ -68,6 +68,9 @@ public class DetailView extends JFrame {
 		panel.add(scrollPaneConsume);
 		
 		tableConsume = new JTable();
+		tableConsume.getTableHeader().setReorderingAllowed(false);
+		tableConsume.setDefaultEditor(Object.class,null);
+		tableConsume.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneConsume.setViewportView(tableConsume);
 		tableConsume.setModel(initialRow(columnNamesTrans));
 		tableConsume.setModel(Managed_PaymentSystem.showTransactionTable(initialRow(columnNamesTrans)));

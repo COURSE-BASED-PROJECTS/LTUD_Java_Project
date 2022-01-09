@@ -22,6 +22,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -116,6 +117,9 @@ public class ManagerUsers extends JFrame {
 		listUser.add(scrollPaneUser);
 
 		tableListUser = new JTable();
+		tableListUser.getTableHeader().setReorderingAllowed(false);
+		tableListUser.setDefaultEditor(Object.class,null);
+		tableListUser.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		tableListUser.addMouseListener(new MouseAdapter() {
 			@Override
 			public void mouseClicked(MouseEvent e) {

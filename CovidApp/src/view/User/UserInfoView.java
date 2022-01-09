@@ -50,7 +50,7 @@ public class UserInfoView extends JFrame {
 	private JLabel nameText_1;
 	private JLabel debitText;
 	
-	private static User user = Managed_User.setUser(AccountCurrent.getUsernameCurrent());
+	private static User user = null;
 	/**
 	 * Launch the application.
 	 */
@@ -71,6 +71,9 @@ public class UserInfoView extends JFrame {
 	 * Create the frame.
 	 */
 	public UserInfoView() {
+		user = Managed_User.setUser(AccountCurrent.getUsernameCurrent());
+
+		
 		ActionListener action = new UserInfoController(this);
 		setTitle("Thông tin");
 		setIconImage(new ImageIcon("icons/main.png").getImage());

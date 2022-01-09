@@ -34,7 +34,7 @@ public class ManagerPackagesController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		String cm = e.getActionCommand();
-		System.out.println(cm);
+//		System.out.println(cm);
 
 		if (cm.equals("Thoát")) {
 			view.dispose();
@@ -68,7 +68,7 @@ public class ManagerPackagesController implements ActionListener {
 		} else if (cm.equals("Lưu")) {
 			// System.out.println(previousCm);
 			saveAction(previousCm);
-			clearForm();
+			//clearForm();
 			this.view.loadData();
 
 		} else if (cm.equals("Tìm kiếm")) {
@@ -194,9 +194,11 @@ public class ManagerPackagesController implements ActionListener {
 			Managed_History.addManagerHistory(previousCm, "NHUYEUPHAM", pk.getId());
 			if (previousCm.equals("Thêm")) {
 				Managed_Package.addPackage(pk);
+				
 			} else {
 				Managed_Package.modifyPackage(pk);
 			}
+			clearForm();
 		}
 	}
 
