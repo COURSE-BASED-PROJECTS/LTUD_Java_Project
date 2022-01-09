@@ -24,6 +24,7 @@ public class ManagerUsersController implements ActionListener {
 	public ManagerUsers view;
 
 	private String previousCm = null;
+	private String oldZone = "";
 
 	public ManagerUsersController(ManagerUsers view) {
 		this.view = view;
@@ -97,7 +98,14 @@ public class ManagerUsersController implements ActionListener {
 		if (i == -1) {
 			JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để sửa");
 		} else {
+			TableModel model = this.view.getTableListUser().getModel();
+			if (model.getValueAt(i, 6) != null) {
+				this.oldZone = model.getValueAt(i, 6).toString().trim();
+			} else {
+				this.oldZone = "";
+			}
 			enabledForm();
+			this.view.getIdText().setEditable(false);
 		}
 
 	}
@@ -157,15 +165,8 @@ public class ManagerUsersController implements ActionListener {
 		String city = this.view.getCity().getSelectedItem().toString().trim();
 		String f = this.view.getStatus().getSelectedItem().toString().trim();
 		String zoneName = this.view.getTreatment().getSelectedItem().toString().trim();
-		String oldZoneId = "";
-		if (previousCm.equals("Sửa")) {
-			int i = this.view.getTableListUser().getSelectedRow();
-			TableModel model = this.view.getTableListUser().getModel();
-			if (model.getValueAt(i, 6) != null) {
-				oldZoneId = model.getValueAt(i, 6).toString().trim();
-			}
-		}
-		User user = validateUser(name, id, year, ward, district, city, f, zoneName, relative, oldZoneId);
+		
+		User user = validateUser(name, id, year, ward, district, city, f, zoneName, relative, oldZone);
 		// System.out.println(user.toString());
 		if (user != null) {
 			Managed_History.addManagerHistory(previousCm, "NGUOIDUNG", user.getId());
@@ -177,14 +178,6 @@ public class ManagerUsersController implements ActionListener {
 				}
 				JOptionPane.showMessageDialog(view, "Thêm thành công");
 			} else {
-				int i = this.view.getTableListUser().getSelectedRow();
-				TableModel model = this.view.getTableListUser().getModel();
-				String idModify = model.getValueAt(i, 0).toString().trim();
-				// System.out.println(idModify);
-				String oldZone = "";
-				if (model.getValueAt(i, 6) != null) {
-					oldZone = model.getValueAt(i, 6).toString().trim();
-				}
 				String newZone = user.getPlaceOfTreatment().getId();
 				if (!oldZone.equals(newZone) && !oldZone.equals("") && !newZone.equals("")) {
 					int newReceivedSlot = Managed_Zone.getReceivedSlot(newZone) + 1;
@@ -204,17 +197,12 @@ public class ManagerUsersController implements ActionListener {
 					Managed_Zone.updateReceivedSlot(oldZone, oldReceivedSlot);
 				}
 
-				Managed_User.modifyUser(user, idModify);
+				Managed_User.modifyUser(user);
 				JOptionPane.showMessageDialog(view, "Sửa thành công");
 			}
 			clearForm();
 			disabledForm();
-		} else {
-			if (previousCm.equals("Sửa")) {
-				clearForm();
-				disabledForm();
-			}
-		}
+		} 
 	}
 
 	public User validateUser(String name, String id, String year, String ward, String district, String city, String f,
@@ -250,7 +238,7 @@ public class ManagerUsersController implements ActionListener {
 			return null;
 		}
 
-		if (yob <= 0 || yob > Calendar.getInstance().get(Calendar.YEAR)) {
+		if (yob <= Calendar.getInstance().get(Calendar.YEAR) - 200 || yob > Calendar.getInstance().get(Calendar.YEAR)) {
 			JOptionPane.showMessageDialog(view, "Năm sinh không hợp lệ");
 			return null;
 		}

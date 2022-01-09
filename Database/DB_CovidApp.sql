@@ -129,7 +129,7 @@ GO
 
 INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH) -- NGUOILIENQUAN,NOICACHLY
 	VALUES  ('0312614186', N'Nguyễn Văn An',1997,'F1',N'Phường 4',N'Quận 5',N'TP.HCM'),
-			('0191818716', N'Nguyễn Đức Quân',1976,'F1',N'Phường Cát Linh', N'Quận Đống Đa',N'TP.Hà Nội'),
+			('0191818716', N'Nguyễn Đức Quân',1976,'F1',N'Phường Cát Linh', N'Quận Đống Đa',N'Thủ Đô Hà Nội'),
 			('0137692698', N'Trần Văn Đức',1996, 'F1',N'Xã Ngọc Đường',N'TP. Hà Giang',N'Tỉnh Hà Giang'),
 			('0342107164', N'Phạm Đăng Phú',1992, N'Khỏi bệnh',N'Phường 21',N'Quận Bình Thạnh',N'TP.HCM'),
 			('0809669861', N'Hoàng Gia Bảo',1989, 'F1',N'Xã Quảng Văn',N'Thị Xã Ba Đồn',N'Tỉnh Quảng Bình'),

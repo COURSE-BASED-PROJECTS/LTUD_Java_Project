@@ -195,41 +195,40 @@ public class Managed_User {
 
 	}
 
-	public static void modifyUser(User user, String idModify) {
+	public static void modifyUser(User user) {
 		Connection con = DatabaseConnect.openConnection();
 		String sql = "UPDATE NGUOIDUNG "
-				+ "SET CMND = ?, HOTEN = ?, NAMSINH = ?, TRANGTHAI = ?, NGUOILIENQUAN = ?, XA = ?, HUYEN = ?, TINH = ?, NOICACHLY = ?"
+				+ "SET HOTEN = ?, NAMSINH = ?, TRANGTHAI = ?, NGUOILIENQUAN = ?, XA = ?, HUYEN = ?, TINH = ?, NOICACHLY = ?"
 				+ " WHERE CMND = ?";
 		PreparedStatement stmt;
 
-		String oldStatus = Managed_Status.getStatusFromId(idModify);
+		String oldStatus = Managed_Status.getStatusFromId(user.getId());
 		String newStatus = user.getStatus().getF();
 
 		if (!oldStatus.equals(newStatus)) {
-			Managed_Status.addStatusHistory(idModify, oldStatus, newStatus);
-			Managed_Status.updateStatusUser(idModify, newStatus);
+			Managed_Status.addStatusHistory(user.getId(), oldStatus, newStatus);
+			Managed_Status.updateStatusUser(user.getId(), newStatus);
 			if (!oldStatus.equals("F3")) {
-				Managed_Status.updateStatusRelativeUser(idModify, oldStatus, newStatus);
+				Managed_Status.updateStatusRelativeUser(user.getId(), oldStatus, newStatus);
 			}
 		}
 		try {
 			stmt = con.prepareStatement(sql);
 
-			stmt.setString(1, user.getId());
-			stmt.setString(2, user.getName());
-			stmt.setInt(3, user.getYearOfBirth());
-			stmt.setString(4, user.getStatus().getF());
-			stmt.setString(5, user.getRelative().getId());
-			stmt.setString(6, user.getAddress().getWard());
-			stmt.setString(7, user.getAddress().getDistrict());
-			stmt.setString(8, user.getAddress().getProvince());
+			stmt.setString(1, user.getName());
+			stmt.setInt(2, user.getYearOfBirth());
+			stmt.setString(3, user.getStatus().getF());
+			stmt.setString(4, user.getRelative().getId());
+			stmt.setString(5, user.getAddress().getWard());
+			stmt.setString(6, user.getAddress().getDistrict());
+			stmt.setString(7, user.getAddress().getProvince());
 			if (user.getPlaceOfTreatment().getId().equals("")) {
-				stmt.setNull(9, Types.NVARCHAR);
+				stmt.setNull(8, Types.NVARCHAR);
 			} else {
-				stmt.setString(9, user.getPlaceOfTreatment().getId());	
+				stmt.setString(8, user.getPlaceOfTreatment().getId());	
 			}
 			
-			stmt.setString(10, idModify);
+			stmt.setString(9, user.getId());
 
 			stmt.executeUpdate();
 			stmt.close();
