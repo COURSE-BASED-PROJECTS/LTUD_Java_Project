@@ -38,6 +38,8 @@ public class UserHistory extends JFrame {
 				try {
 					UserHistory frame = new UserHistory("0213489216");
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -51,7 +53,7 @@ public class UserHistory extends JFrame {
 	public UserHistory(String id) {
 		this.id = id;
 		ActionListener action = new UserHistoryController(this);
-		setTitle("Lịch sử");
+		setTitle("Lịch sử hoạt động");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

@@ -57,6 +57,8 @@ public class BuyPackageView extends JFrame {
 				try {
 					BuyPackageView frame = new BuyPackageView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -72,7 +74,7 @@ public class BuyPackageView extends JFrame {
 		setTitle("Mua nhu yếu phẩm");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1097, 540);
+		setBounds(10, 10, 1097, 540);
 		setResizable(false);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));

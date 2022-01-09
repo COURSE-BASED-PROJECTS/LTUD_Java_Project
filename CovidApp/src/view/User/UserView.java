@@ -35,6 +35,8 @@ public class UserView extends JFrame {
 				try {
 					UserView frame = new UserView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

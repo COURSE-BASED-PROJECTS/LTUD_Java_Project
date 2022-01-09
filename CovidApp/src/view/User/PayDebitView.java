@@ -64,6 +64,8 @@ public class PayDebitView extends JFrame {
 				try {
 					PayDebitView frame = new PayDebitView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

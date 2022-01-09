@@ -60,6 +60,8 @@ public class UserInfoView extends JFrame {
 				try {
 					UserInfoView frame = new UserInfoView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -80,7 +82,7 @@ public class UserInfoView extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 1178, 731);
+		setBounds(10, 10, 1178, 731);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

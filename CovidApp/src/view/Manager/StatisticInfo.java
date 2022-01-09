@@ -47,6 +47,8 @@ public class StatisticInfo extends JFrame {
 				try {
 					StatisticInfo frame = new StatisticInfo();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

@@ -33,6 +33,8 @@ public class ChangePasswordView extends JFrame {
 				try {
 					ChangePasswordView frame = new ChangePasswordView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

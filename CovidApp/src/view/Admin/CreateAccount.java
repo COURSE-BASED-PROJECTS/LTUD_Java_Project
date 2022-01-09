@@ -36,6 +36,8 @@ public class CreateAccount extends JFrame {
 				try {
 					CreateAccount frame = new CreateAccount();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

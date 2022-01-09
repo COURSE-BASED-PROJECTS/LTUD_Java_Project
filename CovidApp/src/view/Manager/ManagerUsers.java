@@ -80,6 +80,8 @@ public class ManagerUsers extends JFrame {
 				try {
 					ManagerUsers frame = new ManagerUsers();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -95,7 +97,7 @@ public class ManagerUsers extends JFrame {
 		setTitle("Quản lí người dùng");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1097, 815);
+		setBounds(10, 10, 1097, 815);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();

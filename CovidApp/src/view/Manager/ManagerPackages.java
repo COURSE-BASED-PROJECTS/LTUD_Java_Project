@@ -75,6 +75,8 @@ public class ManagerPackages extends JFrame {
 				try {
 					ManagerPackages frame = new ManagerPackages();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -90,7 +92,7 @@ public class ManagerPackages extends JFrame {
 		setTitle("Quản lí gói nhu yếu phẩm");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 1039, 720);
+		setBounds(10, 10, 1039, 720);
 		setResizable(false);
 		setLocationRelativeTo(null);
 		contentPane = new JPanel();

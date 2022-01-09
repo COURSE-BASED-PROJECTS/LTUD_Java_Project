@@ -46,6 +46,7 @@ public class LoginView extends JFrame {
 				try {
 					LoginView frame = new LoginView();
 					frame.setVisible(true);
+					frame.setResizable(false);
 					
 				} catch (Exception e) {
 					e.printStackTrace();

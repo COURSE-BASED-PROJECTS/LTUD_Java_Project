@@ -68,6 +68,8 @@ public class ManagerZones extends JFrame {
 				try {
 					ManagerZones frame = new ManagerZones();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

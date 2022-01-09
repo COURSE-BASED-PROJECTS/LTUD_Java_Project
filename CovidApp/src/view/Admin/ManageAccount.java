@@ -41,6 +41,8 @@ public class ManageAccount extends JFrame {
 				try {
 					ManageAccount frame = new ManageAccount();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}

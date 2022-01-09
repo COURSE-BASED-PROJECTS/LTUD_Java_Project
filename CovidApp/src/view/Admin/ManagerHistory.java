@@ -36,6 +36,8 @@ public class ManagerHistory extends JFrame {
 				try {
 					ManagerHistory frame = new ManagerHistory("QuanLyA");
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -49,7 +51,7 @@ public class ManagerHistory extends JFrame {
 	public ManagerHistory(String id) {
 		this.id = id;
 		ActionListener action = new ManagerHistoryController(this);
-		setTitle("Lịch sử");
+		setTitle("Lịch sử hoạt động");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

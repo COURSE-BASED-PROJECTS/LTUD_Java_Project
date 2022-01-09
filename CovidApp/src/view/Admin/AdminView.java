@@ -35,6 +35,8 @@ public class AdminView extends JFrame {
 				try {
 					AdminView frame = new AdminView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -47,7 +49,7 @@ public class AdminView extends JFrame {
 	 */
 	public AdminView() {
 		ActionListener action = new AdminController(this);
-		setTitle("Admin");
+		setTitle("Quản trị viên");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 776, 537);

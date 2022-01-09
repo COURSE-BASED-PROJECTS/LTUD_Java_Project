@@ -53,6 +53,8 @@ public class UserInfoViewDetail extends JFrame {
 				try {
 					UserInfoViewDetail frame = new UserInfoViewDetail("0191818716");
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -66,12 +68,12 @@ public class UserInfoViewDetail extends JFrame {
 	public UserInfoViewDetail(String id) {
 		this.id = id;
 		ActionListener action = new DetailInfoController(this);
-		setTitle("Thông tin");
+		setTitle("Thông tin chi tiết");
 		setIconImage(new ImageIcon("icons/main.png").getImage());
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);
 		setLocationRelativeTo(null);
-		setBounds(100, 100, 1178, 602);
+		setBounds(10, 10, 1178, 602);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);

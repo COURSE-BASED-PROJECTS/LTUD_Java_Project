@@ -37,6 +37,7 @@ public class ManagerZonesController implements ActionListener {
 			
 		} else if (cm.equals("Thêm")) {
 			this.previousCm = cm;
+			this.view.getIdText().setEditable(true);
 			enabledForm();
 			clearForm();
 			
@@ -73,7 +74,6 @@ public class ManagerZonesController implements ActionListener {
 		}
 	}
 	private void enabledForm() {
-		this.view.getIdText().setEditable(true);
 		this.view.getNameZoneText().setEditable(true);
 		this.view.getLimitText().setEditable(true);
 		this.view.getSlotText().setEditable(true);
@@ -143,8 +143,12 @@ public class ManagerZonesController implements ActionListener {
 			JOptionPane.showMessageDialog(view, "Số lượng đã tiếp nhận phải là số nguyên dương (>0)");
 			return null;
 		}
-		if (receivedSlot <= 0) {
+		if (receivedSlot < 0) {
 			JOptionPane.showMessageDialog(view, "Số lượng đã tiếp nhận không hợp lệ");
+			return null;
+		}
+		if (receivedSlot > capacity) {
+			JOptionPane.showMessageDialog(view, "Số lượng đã tiếp nhận không vượt quá sức chứa");
 			return null;
 		}
 		

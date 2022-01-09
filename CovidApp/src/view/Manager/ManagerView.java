@@ -34,6 +34,8 @@ public class ManagerView extends JFrame {
 				try {
 					ManagerView frame = new ManagerView();
 					frame.setVisible(true);
+					frame.setResizable(false);
+
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
