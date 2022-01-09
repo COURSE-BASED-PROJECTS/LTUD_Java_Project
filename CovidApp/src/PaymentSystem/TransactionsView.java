@@ -15,10 +15,10 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 
-import controller.PaymentSystem.DetailController;
+import controller.PaymentSystem.TransactionsController;
 import model.managed.Managed_PaymentSystem;
 
-public class DetailView extends JFrame {
+public class TransactionsView extends JFrame {
 
 	private JPanel contentPane;
 	private JTable tableManaged;
@@ -33,7 +33,7 @@ public class DetailView extends JFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					DetailView frame = new DetailView();
+					TransactionsView frame = new TransactionsView();
 					frame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
@@ -45,8 +45,8 @@ public class DetailView extends JFrame {
 	/**
 	 * Create the frame.
 	 */
-	public DetailView() {
-		ActionListener action = new DetailController(this);
+	public TransactionsView() {
+		ActionListener action = new TransactionsController(this);
 		setTitle("Lịch sử thanh toán");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setResizable(false);

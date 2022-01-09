@@ -3,13 +3,13 @@ package controller.PaymentSystem;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-import PaymentSystem.DetailView;
+import PaymentSystem.TransactionsView;
 import PaymentSystem.PaymentSystemView;
 
-public class DetailController implements ActionListener {
-	public DetailView view;
+public class TransactionsController implements ActionListener {
+	public TransactionsView view;
 
-	public DetailController(DetailView view) {
+	public TransactionsController(TransactionsView view) {
 		this.view = view;
 	}
 

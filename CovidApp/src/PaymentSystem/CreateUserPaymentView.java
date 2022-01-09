@@ -4,6 +4,8 @@ import java.awt.Color;
 import java.awt.EventQueue;
 import java.awt.Font;
 import java.awt.event.ActionListener;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
@@ -14,6 +16,11 @@ import javax.swing.JPanel;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.AttributeSet;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
+import javax.swing.text.DocumentFilter.FilterBypass;
 
 import controller.PaymentSystem.CreateUserPaymentController;
 
@@ -108,6 +115,19 @@ public class CreateUserPaymentView extends JFrame {
 		district.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		district.setBounds(223, 226, 170, 51);
 		contentPane.add(district);
+		
+		((AbstractDocument)usernameText.getDocument()).setDocumentFilter(new DocumentFilter(){
+	        Pattern regEx = Pattern.compile("\\d*");
+
+	        @Override
+	        public void replace(FilterBypass fb, int offset, int length, String text, AttributeSet attrs) throws BadLocationException {          
+	            Matcher matcher = regEx.matcher(text);
+	            if(!matcher.matches()){
+	                return;
+	            }
+	            super.replace(fb, offset, length, text, attrs);
+	        }
+	    });
 	}
 	
 	public JLabel getUsernameLabel() {
