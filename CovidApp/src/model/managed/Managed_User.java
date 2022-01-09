@@ -67,6 +67,23 @@ public class Managed_User {
 		return tableModel;
 	}
 
+	public static boolean isExist(String username) {
+		try {
+			Connection con = DatabaseConnect.openConnection();
+			String sql = "Select count(*) From NGUOIDUNG Where CMND = '" + username + "'";
+			ResultSet rs = DatabaseConnect.getResultSet(con, sql);
+			while (rs.next()) {
+				if (rs.getInt(1) == 0) {
+					return false;
+				}
+			}
+		} catch (SQLException e1) {
+			System.out.println("Lỗi trong khi truy xuất từ bảng NGUOIDUNG");
+			e1.printStackTrace();
+		}
+		return true;
+	}
+	
 	public static void addUser(User user) {
 		Connection con = DatabaseConnect.openConnection();
 		String sql = "INSERT INTO NGUOIDUNG(CMND,HOTEN,NAMSINH,TRANGTHAI,XA,HUYEN,TINH,NGUOILIENQUAN,NOICACHLY)"

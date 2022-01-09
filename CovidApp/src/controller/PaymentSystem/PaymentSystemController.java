@@ -4,7 +4,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import PaymentSystem.CreateUserPaymentView;
-import PaymentSystem.DetailView;
+import PaymentSystem.TransactionsView;
 import PaymentSystem.ManagedAccountView;
 import PaymentSystem.PaymentSystemView;
 import view.LoginView;
@@ -37,7 +37,7 @@ public class PaymentSystemController implements ActionListener {
 			
 		}else if (cm.equals("Lịch sử thanh toán")) {
 			this.view.dispose();
-			DetailView dv = new DetailView();
+			TransactionsView dv = new TransactionsView();
 			dv.setVisible(true);
 		}
 	}

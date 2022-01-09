@@ -6,7 +6,10 @@ import java.awt.Font;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
+import javax.print.attribute.AttributeSet;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -20,6 +23,9 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.text.AbstractDocument;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DocumentFilter;
 
 import controller.PaymentSystem.ManagedAccountController;
 import model.managed.Managed_PaymentSystem;
@@ -133,7 +139,7 @@ public class ManagedAccountView extends JFrame {
 		feature.add(saveButton);
 		saveButton.setForeground(Color.WHITE);
 		saveButton.setFont(new Font("Segoe UI", Font.BOLD, 16));
-		saveButton.setBackground(new Color(0, 204, 0));
+		saveButton.setBackground(new Color(0, 204, 0));	
 		
 		JButton logoutButton = new JButton("Thoát");
 		logoutButton.setForeground(new Color(255, 255, 255));

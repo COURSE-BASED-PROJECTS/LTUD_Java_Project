@@ -5,11 +5,11 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JOptionPane;
 
-import PaymentSystem.PaymentSystemView;
-import controller.LoginController;
 import model.Account;
 import model.Role;
 import model.managed.Managed_Account;
+import model.managed.Managed_User;
+import utils.Password;
 import view.Admin.AdminView;
 import view.Admin.CreateAccount;
 
@@ -55,15 +55,33 @@ public class CreateAccountController implements ActionListener {
 		
 		if(Managed_Account.isExist(username)) {
 			JOptionPane.showMessageDialog(view, "Tên tài khoản đã tồn tại!");
-			clearForm();
-
 			return;
-		}
-		else {
-			Managed_Account.addAccount(acc);
-			clearForm();
-			JOptionPane.showMessageDialog(view, "Thêm tài khoản thành công");
 			
+		}else{
+				switch (acc.getRole()) {
+				case MANAGER:{
+					Managed_Account.addAccount(acc);
+					
+					JOptionPane.showMessageDialog(view, "Thêm tài khoản thành công!");
+					clearForm();
+					break;
+				}
+				case USER:{
+					if(Managed_User.isExist(username)) {
+						
+						Managed_Account.addAccount(acc);
+						
+						JOptionPane.showMessageDialog(view, "Thêm tài khoản thành công!");
+						clearForm();
+
+					}else {
+						JOptionPane.showMessageDialog(view, "Chỉ tạo tài khoản cho người được quản lý có tồn tại!");
+						return;
+					}	
+					break;
+				} default:
+					break;
+				}
+			}
 		}
-	}
-}
+	}	
