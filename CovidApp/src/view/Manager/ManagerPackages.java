@@ -160,16 +160,16 @@ public class ManagerPackages extends JFrame {
 		limitText.setBounds(821, 33, 95, 35);
 		packageForm.add(limitText);
 
-		timeLabel = new JLabel("Thời gian:");
+		timeLabel = new JLabel("Thời gian giới hạn:");
 		timeLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		timeLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		timeLabel.setBounds(10, 110, 81, 35);
+		timeLabel.setBounds(20, 110, 126, 35);
 		packageForm.add(timeLabel);
 
 		timeText = new JTextField();
 		timeText.setEnabled(false);
 		timeText.setColumns(10);
-		timeText.setBounds(93, 110, 190, 35);
+		timeText.setBounds(150, 110, 190, 35);
 		packageForm.add(timeText);
 
 		utilities = new JPanel();
@@ -277,7 +277,7 @@ public class ManagerPackages extends JFrame {
 		idText = new JTextField();
 		idText.setEnabled(false);
 		idText.setColumns(10);
-		idText.setBounds(93, 33, 95, 35);
+		idText.setBounds(100, 33, 95, 35);
 		packageForm.add(idText);
 
 		manage = new JPanel();

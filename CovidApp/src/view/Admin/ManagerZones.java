@@ -131,7 +131,7 @@ public class ManagerZones extends JFrame {
 		idText.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		idText.setHorizontalAlignment(SwingConstants.LEFT);
 		idText.setEditable(false);
-		idText.setBounds(138, 50, 124, 50);
+		idText.setBounds(138, 50, 124, 45);
 		zoneForm.add(idText);
 		idText.setColumns(10);
 		
@@ -145,7 +145,7 @@ public class ManagerZones extends JFrame {
 		nameZoneText.setFont(new Font("Tahoma", Font.PLAIN, 12));
 		nameZoneText.setHorizontalAlignment(SwingConstants.LEFT);
 		nameZoneText.setEditable(false);
-		nameZoneText.setBounds(431, 50, 350, 50);
+		nameZoneText.setBounds(431, 50, 350, 45);
 		nameZoneText.setColumns(10);
 		zoneForm.add(nameZoneText);
 		
@@ -160,7 +160,7 @@ public class ManagerZones extends JFrame {
 		limitText.setHorizontalAlignment(SwingConstants.LEFT);
 		limitText.setEditable(false);
 		limitText.setColumns(10);
-		limitText.setBounds(138, 130, 124, 50);
+		limitText.setBounds(138, 130, 124, 45);
 		zoneForm.add(limitText);
 		
 		slotLabel = new JLabel("Sức chứa:");
@@ -174,7 +174,7 @@ public class ManagerZones extends JFrame {
 		slotText.setHorizontalAlignment(SwingConstants.LEFT);
 		slotText.setEditable(false);
 		slotText.setColumns(10);
-		slotText.setBounds(541, 129, 124, 50);
+		slotText.setBounds(541, 129, 124, 45);
 		zoneForm.add(slotText);
 		
 		utilities = new JPanel();

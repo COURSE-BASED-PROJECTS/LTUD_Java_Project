@@ -94,12 +94,12 @@ public class CreateAccount extends JFrame {
 		
 		usernameText = new JTextField();
 		usernameText.setColumns(10);
-		usernameText.setBounds(223, 58, 281, 50);
+		usernameText.setBounds(223, 62, 281, 40);
 		contentPane.add(usernameText);
 		
 		passText = new JTextField();
 		passText.setColumns(10);
-		passText.setBounds(223, 139, 281, 50);
+		passText.setBounds(223, 142, 281, 40);
 		contentPane.add(passText);
 		
 		district = new JComboBox();
@@ -107,7 +107,7 @@ public class CreateAccount extends JFrame {
 		district.setToolTipText("");
 		district.setName("");
 		district.setFont(new Font("Segoe UI", Font.PLAIN, 15));
-		district.setBounds(223, 218, 170, 51);
+		district.setBounds(223, 222, 170, 40);
 		contentPane.add(district);
 	}
 	
