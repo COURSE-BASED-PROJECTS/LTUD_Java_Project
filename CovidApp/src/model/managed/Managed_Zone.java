@@ -83,7 +83,7 @@ public class Managed_Zone {
 	}
 
 	public static String getIdFromZoneName(String zoneName) {
-		String id = null;
+		String id = "";
 		try {
 			Connection con = DatabaseConnect.openConnection();
 			String sql = "SELECT MAKCL FROM KHUCACHLY WHERE TENKCL = N'" + zoneName + "'";

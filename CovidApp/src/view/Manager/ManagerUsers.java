@@ -224,14 +224,16 @@ public class ManagerUsers extends JFrame {
 				if (s.equals("F0")) {
 					relative.setSelectedItem("");
 					relative.setEnabled(false);
-				} else {
-					((ManagerUsersController) action).loadRelative(s);
-				}
-				if (s.equals("Khỏi bệnh")) {
+					treatment.setEnabled(true);
+				} else if (s.equals("Khỏi bệnh")) {
 					relative.setSelectedItem("");
-					relative.setEnabled(false);
 					treatment.setSelectedItem("Nơi điều trị/cách ly");
 					treatment.setEnabled(false);
+					relative.setEnabled(false);
+				} else {
+					((ManagerUsersController) action).loadRelative(s);
+					relative.setEnabled(true);
+					treatment.setEnabled(true);
 				}
 			}
 		});

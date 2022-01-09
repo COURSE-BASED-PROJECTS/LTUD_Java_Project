@@ -74,16 +74,15 @@ public class ManagerUsersController implements ActionListener {
 			searchAction();
 
 		} else if (cm.equals("Xem chi tiết")) {
-			
 
 			int i = this.view.getTableListUser().getSelectedRow();
 
 			if (i == -1) {
 				JOptionPane.showMessageDialog(view, "Chưa chọn đối tượng để xem");
 			} else {
-				
+
 				this.view.dispose();
-				
+
 				String id = this.view.getTableListUser().getModel().getValueAt(i, 0).toString().trim();
 				UserInfoViewDetail uivd = new UserInfoViewDetail(id);
 				uivd.setVisible(true);
@@ -158,37 +157,68 @@ public class ManagerUsersController implements ActionListener {
 		String city = this.view.getCity().getSelectedItem().toString().trim();
 		String f = this.view.getStatus().getSelectedItem().toString().trim();
 		String zoneName = this.view.getTreatment().getSelectedItem().toString().trim();
-
-		User user = validateUser(name, id, year, ward, district, city, f, zoneName, relative);
+		String oldZoneId = "";
+		if (previousCm.equals("Sửa")) {
+			int i = this.view.getTableListUser().getSelectedRow();
+			TableModel model = this.view.getTableListUser().getModel();
+			if (model.getValueAt(i, 6) != null) {
+				oldZoneId = model.getValueAt(i, 6).toString().trim();
+			}
+		}
+		User user = validateUser(name, id, year, ward, district, city, f, zoneName, relative, oldZoneId);
 		// System.out.println(user.toString());
 		if (user != null) {
 			Managed_History.addManagerHistory(previousCm, "NGUOIDUNG", user.getId());
 			if (previousCm.equals("Thêm")) {
 				Managed_User.addUser(user);
-				int receivedSlot = Managed_Zone.getReceivedSlot(user.getPlaceOfTreatment().getId()) + 1;
-				Managed_Zone.updateReceivedSlot(user.getPlaceOfTreatment().getId(), receivedSlot);
+				if (!user.getStatus().getF().equals("Khỏi bệnh")) {
+					int receivedSlot = Managed_Zone.getReceivedSlot(user.getPlaceOfTreatment().getId()) + 1;
+					Managed_Zone.updateReceivedSlot(user.getPlaceOfTreatment().getId(), receivedSlot);
+				}
+				JOptionPane.showMessageDialog(view, "Thêm thành công");
 			} else {
 				int i = this.view.getTableListUser().getSelectedRow();
 				TableModel model = this.view.getTableListUser().getModel();
 				String idModify = model.getValueAt(i, 0).toString().trim();
 				// System.out.println(idModify);
-				String oldZone = model.getValueAt(i, 6).toString().trim();
+				String oldZone = "";
+				if (model.getValueAt(i, 6) != null) {
+					oldZone = model.getValueAt(i, 6).toString().trim();
+				}
 				String newZone = user.getPlaceOfTreatment().getId();
-				if (!oldZone.equals(newZone)) {
+				if (!oldZone.equals(newZone) && !oldZone.equals("") && !newZone.equals("")) {
 					int newReceivedSlot = Managed_Zone.getReceivedSlot(newZone) + 1;
-					int oldReceivedSlot = Managed_Zone.getReceivedSlot(newZone) - 1;
+					int oldReceivedSlot = Managed_Zone.getReceivedSlot(oldZone) - 1;
 					Managed_Zone.updateReceivedSlot(newZone, newReceivedSlot);
 					Managed_Zone.updateReceivedSlot(oldZone, oldReceivedSlot);
+
 				}
+
+				if (oldZone.equals("") && !newZone.equals("")) {
+					int newReceivedSlot = Managed_Zone.getReceivedSlot(newZone) + 1;
+					Managed_Zone.updateReceivedSlot(newZone, newReceivedSlot);
+				}
+
+				if (!oldZone.equals("") && newZone.equals("")) {
+					int oldReceivedSlot = Managed_Zone.getReceivedSlot(oldZone) - 1;
+					Managed_Zone.updateReceivedSlot(oldZone, oldReceivedSlot);
+				}
+
 				Managed_User.modifyUser(user, idModify);
+				JOptionPane.showMessageDialog(view, "Sửa thành công");
 			}
 			clearForm();
 			disabledForm();
+		} else {
+			if (previousCm.equals("Sửa")) {
+				clearForm();
+				disabledForm();
+			}
 		}
 	}
 
 	public User validateUser(String name, String id, String year, String ward, String district, String city, String f,
-			String zoneName, String relative) {
+			String zoneName, String relative, String oldZoneId) {
 		if (id.length() < 9 || id.length() > 12 || id.length() == 11) {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD là dãy 9/10/12 chữ số ");
 			return null;
@@ -197,7 +227,7 @@ public class ManagerUsersController implements ActionListener {
 		try {
 			long temp = Long.parseLong(id);
 //			System.out.println(temp);
-		
+
 		} catch (Exception e) {
 			JOptionPane.showMessageDialog(view, "CMND/CCCD phải là dãy số");
 
@@ -209,14 +239,14 @@ public class ManagerUsersController implements ActionListener {
 		}
 
 		if (name.length() == 0) {
-			JOptionPane.showMessageDialog(view, "Chưa nhập tên User");
+			JOptionPane.showMessageDialog(view, "Chưa nhập tên người bị quản lí");
 			return null;
 		}
 		int yob = -1;
 		try {
 			yob = Integer.parseInt(year);
 		} catch (Exception e) {
-			JOptionPane.showMessageDialog(view, "Năm sinh phải là số");
+			JOptionPane.showMessageDialog(view, "Năm sinh không hợp lệ");
 			return null;
 		}
 
@@ -245,29 +275,26 @@ public class ManagerUsersController implements ActionListener {
 		} else if (f.equals("Khỏi bệnh")) {
 			status = F.CURED;
 		}
-		if (zoneName.equals("Nơi điều trị/cách ly")) {
+		if (zoneName.equals("Nơi điều trị/cách ly") && !f.equals("Khỏi bệnh")) {
 			JOptionPane.showMessageDialog(view, "Chưa chọn nơi điều trị/cách ly!");
 			return null;
-		} else if (Managed_Zone.isFull(zoneName)) {
+		} else if (Managed_Zone.isFull(zoneName) && !Managed_Zone.getIdFromZoneName(zoneName).equals(oldZoneId) && !f.equals("Khỏi bệnh")) {
 			JOptionPane.showMessageDialog(view, "Khu điều trị/cách ly đã đầy!");
 			return null;
 		}
+
 		Zone zone = new Zone(Managed_Zone.getIdFromZoneName(zoneName));
 
 		User relativeUser = new User("");
 		if (!f.equals("F0") && !f.equals("Khỏi bệnh")) {
-			int relativeId = 0;
+			long relativeId = 0;
 			try {
-				relativeId = Integer.parseInt(relative);
+				relativeId = Long.parseLong(relative);
 			} catch (Exception e) {
 				JOptionPane.showMessageDialog(view, "Chọn số CMND/CCCD ở ô người liên quan");
 				return null;
 			}
 			relativeUser = new User(relative);
-//			if (relativeUser == null) {
-//				JOptionPane.showMessageDialog(view, "Người liên quan không tồn tại");
-//				return null;
-//			}
 		}
 		return new User(name, id, yob, addr, status, zone, relativeUser);
 	}
@@ -282,8 +309,18 @@ public class ManagerUsersController implements ActionListener {
 		this.view.getDistrict().setEnabled(true);
 		this.view.getCity().setEnabled(true);
 		this.view.getStatus().setEnabled(true);
-		this.view.getTreatment().setEnabled(true);
-		this.view.getRelative().setEnabled(true);
+
+		String status = this.view.getStatus().getSelectedItem().toString().trim();
+		if (status.equals("F0") || status.equals("Khỏi bệnh")) {
+			this.view.getRelative().setEnabled(false);
+		} else {
+			this.view.getRelative().setEnabled(true);
+		}
+		if (status.equals("Khỏi bệnh")) {
+			this.view.getTreatment().setEnabled(false);
+		} else {
+			this.view.getTreatment().setEnabled(true);
+		}
 	}
 
 	private void disabledForm() {
@@ -317,7 +354,6 @@ public class ManagerUsersController implements ActionListener {
 	}
 
 	public void displayData() {
-		disabledForm();
 		int i = this.view.getTableListUser().getSelectedRow();
 		// System.out.println(i);
 		TableModel model = this.view.getTableListUser().getModel();
@@ -357,13 +393,14 @@ public class ManagerUsersController implements ActionListener {
 		this.view.getCity().setSelectedItem(addr[2].trim());
 		this.view.getDistrict().setSelectedItem(addr[1].trim());
 		this.view.getTown().setSelectedItem(addr[0].trim());
-		
+
 		if (model.getValueAt(i, 6) != null) {
 			String zoneName = Managed_Zone.getZoneNameFromId(model.getValueAt(i, 6).toString().trim());
 			this.view.getTreatment().setSelectedItem(zoneName);
 		} else {
 			this.view.getTreatment().setSelectedItem("Nơi điều trị/cách ly");
 		}
+		disabledForm();
 
 	}
 

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.RowIdLifetime;
 import java.sql.SQLException;
+import java.sql.Types;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -205,7 +206,12 @@ public class Managed_User {
 			stmt.setString(6, user.getAddress().getWard());
 			stmt.setString(7, user.getAddress().getDistrict());
 			stmt.setString(8, user.getAddress().getProvince());
-			stmt.setString(9, user.getPlaceOfTreatment().getId());
+			if (user.getPlaceOfTreatment().getId().equals("")) {
+				stmt.setNull(9, Types.NVARCHAR);
+			} else {
+				stmt.setString(9, user.getPlaceOfTreatment().getId());	
+			}
+			
 			stmt.setString(10, idModify);
 
 			stmt.executeUpdate();
@@ -341,8 +347,11 @@ public class Managed_User {
 				String district = rs.getString(7);
 				String city = rs.getString(8);
 				Address addr = new Address(ward, district, city);
-
-				String zoneId = rs.getString(9).trim();
+				
+				String zoneId = "";
+				if (rs.getString(9) != null) {
+					zoneId = rs.getString(9).trim();
+				}
 				Zone zone = new Zone(zoneId);
 				con.close();
 				return new User(name, id, year, addr, status, zone, relativeUser);

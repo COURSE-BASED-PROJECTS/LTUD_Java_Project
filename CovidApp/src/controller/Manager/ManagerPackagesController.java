@@ -1,5 +1,6 @@
 package controller.Manager;
 
+import java.awt.Window.Type;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
@@ -194,9 +195,10 @@ public class ManagerPackagesController implements ActionListener {
 			Managed_History.addManagerHistory(previousCm, "NHUYEUPHAM", pk.getId());
 			if (previousCm.equals("Thêm")) {
 				Managed_Package.addPackage(pk);
-				
+				JOptionPane.showMessageDialog(view, "Thêm thành công");
 			} else {
 				Managed_Package.modifyPackage(pk);
+				JOptionPane.showMessageDialog(view, "Sửa thành công");
 			}
 			clearForm();
 		}
@@ -212,6 +214,13 @@ public class ManagerPackagesController implements ActionListener {
 		}
 		try {
 			tl = new SimpleDateFormat("yyyy-MM-dd").parse(timeLimit);
+			Date now = new Date();
+			System.out.println(now);
+			System.out.println(now.compareTo(tl));
+			if (now.compareTo(tl) >= 0) {
+				JOptionPane.showMessageDialog(view, "Thời gian giới hạn không hợp lệ");
+				return null;
+			}
 		} catch (ParseException e) {
 			JOptionPane.showMessageDialog(view, "Sai định dạng ngày tháng");
 			return null;

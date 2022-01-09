@@ -163,7 +163,7 @@ public class UserInfoViewDetail extends JFrame {
 		
 		JLabel relateUser = new JLabel("Người liên quan:");
 		relateUser.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		relateUser.setBounds(729, 81, 108, 35);
+		relateUser.setBounds(729, 81, 113, 35);
 		Info.add(relateUser);
 		
 		relativeText = new JLabel("");
