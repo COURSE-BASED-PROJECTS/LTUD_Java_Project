@@ -34,9 +34,10 @@ public class Managed_User {
 		listUser = new ArrayList<User>();
 	}
 
-	public static void showPaymentUser(JLabel debitCurrentText, JLabel balanceCurrentText, Account account) {
+	public static void showPaymentUser(JLabel debitCurrentText, JLabel balanceCurrentText, JLabel minDebitText,  Account account) {
 		debitCurrentText.setText(account.getDebit() == null ? "0" : account.getDebit());
 		balanceCurrentText.setText(account.getBalance() == null ? "0" : account.getBalance());
+		minDebitText.setText(account.getDebit() == null ? "0" : String.valueOf(Double.parseDouble(account.getDebit()) * 0.1));
 	}
 
 	public static DefaultTableModel showListUser(DefaultTableModel tableModel) {
@@ -102,7 +103,12 @@ public class Managed_User {
 			stmt.setString(5, user.getAddress().getWard());
 			stmt.setString(6, user.getAddress().getDistrict());
 			stmt.setString(7, user.getAddress().getProvince());
-			stmt.setString(8, user.getRelative().getId());
+			
+			if(user.getRelative().getId().length() == 0) {
+				stmt.setString(8, null);
+			}else {
+				stmt.setString(8, user.getRelative().getId());
+			}
 			stmt.setString(9, user.getPlaceOfTreatment().getId());
 
 			stmt.executeUpdate();
@@ -139,9 +145,7 @@ public class Managed_User {
 		user.setYearOfBirth(Integer.valueOf(row.get(2)));
 		user.setStatus(row.get(3).contains("F2") ? F.F2 : (row.get(3).contains("F1") ? F.F1 : F.F0));
 		user.setAddress(new Address(row.get(5), row.get(6), row.get(7)));
-		
-		System.out.println(row.get(8));
-		
+				
 		if(row.get(8) != null){
 			user.setPlaceOfTreatment(Managed_Zone.LockDownPlace(row.get(8)));
 		}else {
@@ -159,13 +163,20 @@ public class Managed_User {
 			String sql = "Select SODU, DUNO From TAIKHOAN  Where TAIKHOAN = '"+ id +"'";
 			ResultSet rs = DatabaseConnect.getResultSet(DatabaseConnect.openConnection(), sql);
 			while (rs.next()) {
-				balance = rs.getString(1).trim();
-				debt = rs.getString(2).trim();
+				if(rs.getString(1) != null)
+					balance = rs.getString(1).trim();
+				else
+					balance = "0";
+				if(rs.getString(2) != null)
+					debt = rs.getString(2).trim();
+				else
+					debt = "0";
 			}
 		} catch (SQLException e) {
-			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN từ BD_CovidApp");
+			System.out.println("Lỗi trong khi load dữ liệu từ bảng TAIKHOAN từ DB_CovidApp");
 			e.printStackTrace();
 		}
+		
 		user.setBalance(Double.parseDouble(balance));
 		user.setDebt(Double.parseDouble(debt));
 		

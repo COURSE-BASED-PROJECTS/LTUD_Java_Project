@@ -30,3 +30,8 @@ public class mainTest {
 		}
 	}
 }
+//TEST
+// TÀI KHOẢN BỊ LOCK: 060699033017
+// TÀI KHOẢN ĐÃ KÍCH HOẠT: 0312614186
+// TÀI KHOẢN ADMIN: Admin_Covid
+// TÀI KHOẢN ADMIN PAYMENT: Admin_Payment

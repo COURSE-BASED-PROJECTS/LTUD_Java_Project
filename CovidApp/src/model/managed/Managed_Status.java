@@ -51,9 +51,10 @@ public class Managed_Status {
 			int stt = 0;
 			while (rs.next()) {
 				Vector<String> row = new Vector<String>();
+				
 				row.addElement("" + ++stt);
 				for (int i = 2; i <= numberColumn; i++) {
-					row.addElement(rs.getString(i).trim());
+					row.addElement(rs.getString(i));
 				}
 
 				tableModel.addRow(row);

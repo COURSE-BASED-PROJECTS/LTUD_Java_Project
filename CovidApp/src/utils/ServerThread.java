@@ -43,6 +43,7 @@ public class ServerThread extends Thread implements Runnable{
             }
         } catch (IOException ex) {
             JOptionPane.showMessageDialog(null,"Sorry, cannot start the server!","Error",1);
+            
         }
     }    
     

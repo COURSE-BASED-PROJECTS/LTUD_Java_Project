@@ -27,6 +27,7 @@ public class PaymentSystemController implements ActionListener {
 			lv.setVisible(true);
 			
 		} else if (cm.equals("Thêm người được quản lí")) {
+			this.view.dispose();
 			CreateUserPaymentView cup = new CreateUserPaymentView();
 			cup.setVisible(true);
 			

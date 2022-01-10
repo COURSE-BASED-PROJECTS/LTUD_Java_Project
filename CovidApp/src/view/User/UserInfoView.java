@@ -13,6 +13,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JSeparator;
 import javax.swing.JTable;
+import javax.swing.ListSelectionModel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 import javax.swing.border.EtchedBorder;
@@ -219,6 +220,9 @@ public class UserInfoView extends JFrame {
 		managedHistory.add(scrollPaneManaged);
 		
 		tableManaged = new JTable();
+		tableManaged.getTableHeader().setReorderingAllowed(false);
+		tableManaged.setDefaultEditor(Object.class,null);
+		tableManaged.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneManaged.setViewportView(tableManaged);
 		tableManaged.setModel(initialRow(columnNamesManaged));
 		tableManaged.setModel(Managed_Status.showHistoryStatus(user.getId(), initialRow(columnNamesManaged)));
@@ -234,6 +238,9 @@ public class UserInfoView extends JFrame {
 		managedConsume.add(scrollPaneConsume);
 		
 		tableConsume = new JTable();
+		tableConsume.getTableHeader().setReorderingAllowed(false);
+		tableConsume.setDefaultEditor(Object.class,null);
+		tableConsume.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneConsume.setViewportView(tableConsume);
 		tableConsume.setModel(initialRow(columnNamesComsume));
 		tableConsume.setModel(Managed_Order.showHistoryOrder(user.getId(), initialRow(columnNamesComsume)));
@@ -249,6 +256,9 @@ public class UserInfoView extends JFrame {
 		managedDebit.add(scrollPaneDebit);
 		
 		tableDebit = new JTable();
+		tableDebit.getTableHeader().setReorderingAllowed(false);
+		tableDebit.setDefaultEditor(Object.class,null);
+		tableDebit.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
 		scrollPaneDebit.setViewportView(tableDebit);
 		tableDebit.setModel(initialRow(columnNamesDebit));
 		tableDebit.setModel(Managed_Payment.showHistoryPayment(user.getId(), initialRow(columnNamesDebit)));

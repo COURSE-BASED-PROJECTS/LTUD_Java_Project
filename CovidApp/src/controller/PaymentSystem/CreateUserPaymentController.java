@@ -39,7 +39,7 @@ public class CreateUserPaymentController implements ActionListener {
 	}
 	
 	private void clearForm() {
-		this.view.getUsernameText().setText(null);
+		//this.view.getUsernameText().setText(null);
 		this.view.getPassText().setText(null);
 	}
 	private void addAccountAction() {
@@ -47,10 +47,8 @@ public class CreateUserPaymentController implements ActionListener {
 		acc.setUserName(view.getUsernameText().getText());
 		acc.setPassword(view.getPassText().getText());
 
-		if (view.getRole() == 0)
-			acc.setRole(Role.MANAGER);
-		else
-			acc.setRole(Role.USER);
+		acc.setRole(Role.USER);
+
 		System.out.println(acc.getRole());
 		
 		String username = acc.getUserName();

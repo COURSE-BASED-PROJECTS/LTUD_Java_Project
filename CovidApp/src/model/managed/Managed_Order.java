@@ -66,7 +66,9 @@ public class Managed_Order extends Managed_General{
 		Connection con = DatabaseConnect.openConnection();
 		boolean result = false;
 		String sql = "INSERT INTO LSMUAHANG(MAHD,CMND,LOAIHANG,SOLUONG, SOTIEN, THOIGIAN) VALUES(?,?,?,?,?,?)";
+		Long money = Managed_Package.getPrice(orderHistory.getType()).longValue()*Long.valueOf(orderHistory.getQuantity());
 		
+		System.out.println(money);
 		try {
 			PreparedStatement stmt = con.prepareStatement(sql);
 			
@@ -74,7 +76,7 @@ public class Managed_Order extends Managed_General{
 			stmt.setString(2, orderHistory.getCMND());
 			stmt.setString(3, orderHistory.getType());
 			stmt.setString(4, String.valueOf(orderHistory.getQuantity()));
-			stmt.setString(5, String.valueOf(Double.valueOf(Managed_Package.getPrice(orderHistory.getType()))*Double.valueOf(orderHistory.getQuantity())));
+			stmt.setString(5, "12345678.9");
 			stmt.setTimestamp(6, new Timestamp(System.currentTimeMillis()));
 			
 			result = stmt.executeUpdate() > 0;

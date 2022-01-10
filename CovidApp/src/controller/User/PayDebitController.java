@@ -94,9 +94,9 @@ public class PayDebitController implements ActionListener {
 					clientThread.start();
 
 				} catch (IOException ex) {
-					JOptionPane.showMessageDialog(null, "Cannot connect to server\nPlease check the server IP again!",
+					JOptionPane.showMessageDialog(null, "Không thể kết nối Server\nVui lòng kiểm tra lại IP",
 							"Error", 1);
-					view.dispose();
+//					view.dispose();
 
 				}
 			}
@@ -129,7 +129,7 @@ class ClientThread extends Thread implements Runnable {
 					JOptionPane.showConfirmDialog(pdview, "Đã thanh toán thành công", "Thanh toán thành công",
 							JOptionPane.CLOSED_OPTION, 1);
 
-					Managed_User.showPaymentUser(pdview.getDebitCurrentText(), pdview.getBalanceCurrentText(),
+					Managed_User.showPaymentUser(pdview.getDebitCurrentText(), pdview.getBalanceCurrentText(), pdview.getMinDebitText(),
 							Managed_Account.setAccount(AccountCurrent.getUsernameCurrent()));
 
 					pdview.getPaymentMinimumText().setText("");

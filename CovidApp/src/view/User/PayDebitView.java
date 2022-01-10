@@ -37,8 +37,10 @@ public class PayDebitView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField paymentMinimumText;
+	private JLabel minDebitText;
 	private JLabel debitCurrentText;
 	private JLabel balanceCurrentText;
+	
 
 	public JLabel getBalanceCurrentText() {
 		return balanceCurrentText;
@@ -48,6 +50,9 @@ public class PayDebitView extends JFrame {
 	}
 	public JLabel getDebitCurrentText() {
 		return debitCurrentText;
+	}
+	public JLabel getMinDebitText() {
+		return minDebitText;
 	}
 	public void setBalanceCurrentText(String curr) {
 		balanceCurrentText.setText(curr);;
@@ -108,7 +113,7 @@ public class PayDebitView extends JFrame {
 		paymentButton.addActionListener(action);
 		paymentButton.setBackground(new Color(0, 204, 0));
 		paymentButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		paymentButton.setBounds(164, 345, 165, 77);
+		paymentButton.setBounds(164, 360, 165, 77);
 		contentPane.add(paymentButton);
 		
 		JButton logoutButton = new JButton("Thoát");
@@ -116,7 +121,7 @@ public class PayDebitView extends JFrame {
 		logoutButton.addActionListener(action);
 		logoutButton.setBackground(new Color(255, 0, 51));
 		logoutButton.setFont(new Font("Segoe UI", Font.BOLD, 18));
-		logoutButton.setBounds(400, 345, 165, 77);
+		logoutButton.setBounds(400, 360, 165, 77);
 		contentPane.add(logoutButton);
 		
 		paymentMinimumText = new JTextField();
@@ -137,6 +142,17 @@ public class PayDebitView extends JFrame {
 		balanceCurrentText.setBounds(310, 145, 143, 35);
 		contentPane.add(balanceCurrentText);
 		
+		JLabel minDebtLabel = new JLabel("Hạn mức thanh toán tối thiểu:");
+		minDebtLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		minDebtLabel.setBounds(141, 300, 220, 35);
+		contentPane.add(minDebtLabel);
+		
+		minDebitText = new JLabel("minDebit");
+		minDebitText.setHorizontalAlignment(SwingConstants.LEFT);
+		minDebitText.setFont(new Font("Tahoma", Font.BOLD, 15));
+		minDebitText.setBounds(373, 300, 123, 35);
+		contentPane.add(minDebitText);
+		
 		((AbstractDocument)paymentMinimumText.getDocument()).setDocumentFilter(new DocumentFilter(){
 	        Pattern regEx = Pattern.compile("\\d*");
 
@@ -150,6 +166,8 @@ public class PayDebitView extends JFrame {
 	        }
 	    });
 		
-		Managed_User.showPaymentUser(debitCurrentText, balanceCurrentText, Managed_Account.setAccount(AccountCurrent.getUsernameCurrent()));
+		Managed_User.showPaymentUser(debitCurrentText, balanceCurrentText, minDebitText, Managed_Account.setAccount(AccountCurrent.getUsernameCurrent()));
+		
+
 	}
 }

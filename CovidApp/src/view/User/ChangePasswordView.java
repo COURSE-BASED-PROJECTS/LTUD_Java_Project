@@ -16,6 +16,7 @@ import javax.swing.border.EmptyBorder;
 import javax.swing.border.TitledBorder;
 
 import controller.User.ChangePasswordController;
+import javax.swing.JPasswordField;
 
 public class ChangePasswordView extends JFrame {
 
@@ -23,6 +24,7 @@ public class ChangePasswordView extends JFrame {
 	private JTextField newPassAgainText;
 	private JTextField newPassText;
 	private JTextField oldPassText;
+	private JPasswordField passwordField;
 
 	/**
 	 * Launch the application.
@@ -89,12 +91,12 @@ public class ChangePasswordView extends JFrame {
 		logoutButton.setBounds(420, 373, 165, 77);
 		contentPane.add(logoutButton);
 		
-		newPassAgainText = new JTextField();
+		newPassAgainText = new JPasswordField();
 		newPassAgainText.setColumns(10);
 		newPassAgainText.setBounds(286, 220, 343, 45);
 		contentPane.add(newPassAgainText);
 		
-		newPassText = new JTextField();
+		newPassText = new JPasswordField();
 		newPassText.setColumns(10);
 		newPassText.setBounds(286, 145, 343, 45);
 		contentPane.add(newPassText);

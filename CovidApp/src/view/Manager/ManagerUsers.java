@@ -110,12 +110,12 @@ public class ManagerUsers extends JFrame {
 				new EtchedBorder(EtchedBorder.LOWERED, new Color(255, 255, 255), new Color(160, 160, 160)),
 				"Danh sa\u0301ch ng\u01B0\u01A1\u0300i bi\u0323 qua\u0309n li\u0301", TitledBorder.LEADING,
 				TitledBorder.TOP, null, new Color(0, 0, 0)));
-		listUser.setBounds(10, 10, 1063, 146);
+		listUser.setBounds(10, 10, 1063, 204);
 		contentPane.add(listUser);
 		listUser.setLayout(null);
 
 		scrollPaneUser = new JScrollPane();
-		scrollPaneUser.setBounds(10, 22, 1043, 114);
+		scrollPaneUser.setBounds(10, 22, 1043, 172);
 		listUser.add(scrollPaneUser);
 
 		tableListUser = new JTable();
@@ -135,44 +135,43 @@ public class ManagerUsers extends JFrame {
 		userForm = new JPanel();
 		userForm.setBorder(new TitledBorder(null, "Th\u00F4ng tin ng\u01B0\u01A1\u0300i bi\u0323 qua\u0309n li\u0301",
 				TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		userForm.setBounds(10, 166, 1063, 451);
+		userForm.setBounds(10, 224, 1063, 393);
 		contentPane.add(userForm);
 		userForm.setLayout(null);
 
 		JLabel idLabel = new JLabel("CMND/CCCD:");
 		idLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		idLabel.setHorizontalAlignment(SwingConstants.CENTER);
-		idLabel.setBounds(10, 34, 90, 35);
+		idLabel.setBounds(10, 24, 90, 35);
 		userForm.add(idLabel);
 
 		idText = new JTextField();
 		idText.setEditable(false);
-		idText.setBounds(110, 34, 152, 35);
+		idText.setBounds(110, 26, 152, 35);
 		userForm.add(idText);
 		idText.setColumns(10);
 
 		JLabel nameLabel = new JLabel("Họ và tên:");
 		nameLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		nameLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		nameLabel.setBounds(343, 34, 95, 35);
+		nameLabel.setBounds(343, 26, 95, 35);
 		userForm.add(nameLabel);
 
 		nameText = new JTextField();
 		nameText.setEditable(false);
 		nameText.setColumns(10);
-		nameText.setBounds(436, 34, 281, 35);
+		nameText.setBounds(436, 26, 281, 35);
 		userForm.add(nameText);
 
 		JLabel yearLabel = new JLabel("Năm sinh:");
 		yearLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		yearLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		yearLabel.setBounds(782, 34, 95, 35);
+		yearLabel.setBounds(782, 26, 95, 35);
 		userForm.add(yearLabel);
 
 		addressLabel = new JLabel("Địa chỉ:");
-		addressLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		addressLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		addressLabel.setBounds(10, 150, 95, 35);
+		addressLabel.setBounds(10, 93, 90, 35);
 		userForm.add(addressLabel);
 
 		city = new JComboBox();
@@ -187,7 +186,7 @@ public class ManagerUsers extends JFrame {
 		city.setToolTipText("");
 		city.setModel(new DefaultComboBoxModel(Managed_Address.getListProvice()));
 		city.setName("");
-		city.setBounds(110, 150, 170, 35);
+		city.setBounds(110, 93, 170, 35);
 		userForm.add(city);
 
 		district = new JComboBox();
@@ -201,7 +200,7 @@ public class ManagerUsers extends JFrame {
 		district.setToolTipText("");
 		district.setName("");
 		district.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		district.setBounds(290, 150, 170, 35);
+		district.setBounds(290, 93, 170, 35);
 		userForm.add(district);
 
 		town = new JComboBox();
@@ -210,13 +209,13 @@ public class ManagerUsers extends JFrame {
 		town.setToolTipText("");
 		town.setName("");
 		town.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		town.setBounds(470, 150, 170, 35);
+		town.setBounds(470, 93, 170, 35);
 		userForm.add(town);
 
 		JLabel statusLabel = new JLabel("Trạng thái:");
 		statusLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		statusLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		statusLabel.setBounds(782, 150, 95, 35);
+		statusLabel.setBounds(782, 93, 95, 35);
 		userForm.add(statusLabel);
 
 		status = new JComboBox();
@@ -244,13 +243,12 @@ public class ManagerUsers extends JFrame {
 		status.setToolTipText("");
 		status.setName("");
 		status.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		status.setBounds(887, 150, 95, 35);
+		status.setBounds(887, 93, 95, 35);
 		userForm.add(status);
 
 		JLabel lblNiiuTri = new JLabel("Nơi điều trị:");
-		lblNiiuTri.setHorizontalAlignment(SwingConstants.CENTER);
 		lblNiiuTri.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		lblNiiuTri.setBounds(10, 254, 95, 35);
+		lblNiiuTri.setBounds(10, 179, 90, 35);
 		userForm.add(lblNiiuTri);
 
 		treatment = new JComboBox();
@@ -259,13 +257,13 @@ public class ManagerUsers extends JFrame {
 		treatment.setToolTipText("");
 		treatment.setName("");
 		treatment.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		treatment.setBounds(110, 254, 250, 35);
+		treatment.setBounds(110, 179, 250, 35);
 		userForm.add(treatment);
 
 		relateLabel = new JLabel("Người liên quan:");
 		relateLabel.setHorizontalAlignment(SwingConstants.CENTER);
 		relateLabel.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		relateLabel.setBounds(633, 254, 113, 35);
+		relateLabel.setBounds(633, 179, 113, 35);
 		userForm.add(relateLabel);
 		
 		relative = new JComboBox();
@@ -274,13 +272,13 @@ public class ManagerUsers extends JFrame {
 		relative.setName("");
 		relative.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		relative.setEnabled(false);
-		relative.setBounds(756, 254, 152, 35);
+		relative.setBounds(756, 179, 152, 35);
 		userForm.add(relative);
 
 		utilities = new JPanel();
 		utilities.setBorder(
 				new TitledBorder(null, "Ti\u0301nh n\u0103ng", TitledBorder.LEADING, TitledBorder.TOP, null, null));
-		utilities.setBounds(294, 324, 495, 117);
+		utilities.setBounds(294, 267, 495, 117);
 		userForm.add(utilities);
 		utilities.setLayout(null);
 
@@ -327,7 +325,7 @@ public class ManagerUsers extends JFrame {
 		yearText = new JTextField();
 		yearText.setEditable(false);
 		yearText.setColumns(10);
-		yearText.setBounds(887, 34, 84, 35);
+		yearText.setBounds(887, 26, 84, 35);
 		userForm.add(yearText);
 		
 

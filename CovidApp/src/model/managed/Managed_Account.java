@@ -42,7 +42,7 @@ public class Managed_Account {
 	public static void addAccount(Account acc) {
 		Connection con_Covid = DatabaseConnect.openConnection();
 		Connection con_Payment = DatabaseConnect.connectDB_Payment();
-		String sql = "INSERT INTO TAIKHOAN(TAIKHOAN,MATKHAU,PHANHE,SODU,TINHTRANG)" + "	VALUES  (?,?,?,?,?)";
+		String sql = "INSERT INTO TAIKHOAN(TAIKHOAN,MATKHAU,PHANHE,SODU,DUNO,TINHTRANG)" + "	VALUES  (?,?,?,?,?,?)";
 		try {
 			PreparedStatement stmt = con_Covid.prepareStatement(sql);
 			PreparedStatement stmt1 = con_Payment.prepareStatement(sql);
@@ -54,35 +54,42 @@ public class Managed_Account {
 				switch (acc.getRole()) {
 				case MANAGER:
 					stmt.setString(3, "QUANLY");
-					stmt.setString(4,  "0");
+					stmt.setLong(4, 0);
+					stmt.setLong(5, 0);
 					
 					break;
 				case USER:{
 					stmt.setString(3, "NGUOIDUNG");
-					stmt.setString(4, "1000000");
+					stmt.setLong(4, 1000000);
+					stmt.setLong(5, 0);
 					
 					stmt1.setString(1, acc.getUserName());
 					stmt1.setString(2, Password.encrypt(acc.getPassword()));
 					stmt1.setString(3, "NGUOIDUNG");
-					stmt1.setString(4, "1000000");
-					stmt1.setString(5, "1");
+					stmt1.setLong(4, 1000000);
+					stmt1.setLong(5,0);
+					stmt1.setString(6, "1");
 					stmt1.executeUpdate();
 
 					break;
 				}
 				case ADMIN_COVID:
 					stmt.setString(3, "QUANTRI");
-					stmt.setString(4, "0");
+					stmt.setLong(4, 0);
+					stmt.setLong(5, 0);
 					break;
 				case ADMIN_PAYMENT:
 					stmt.setString(3, "QUANTRI");
-					stmt.setString(4, "0");
+					stmt.setLong(4, 0);
+					stmt.setLong(5, 0);
 					break;
 				default:
 					stmt.setString(3, "");
+					stmt.setLong(4, 0);
+					stmt.setLong(5, 0);
 					break;
 				}
-			stmt.setString(5, "1");
+			stmt.setString(6, "1");
 
 			stmt.executeUpdate();
 			
